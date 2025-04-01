@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js"
 import { z } from "zod";
 import { fetchComponents, fetchComponentConfig } from "./github.js";
@@ -87,7 +87,7 @@ async function updateResourceFiles() {
 // Function to save component schemas
 async function saveComponentSchemas(type: 'receiver' | 'processor' | 'exporter', components: any[]) {
     const typeDir = path.join(SCHEMAS_DIR, `${type}s`);
-    
+
     for (const component of components) {
         if (component.configSchema) {
             const schemaPath = path.join(typeDir, `${component.name}.json`);
@@ -123,9 +123,9 @@ server.tool(
                     {
                         type: "text",
                         text: `Successfully updated resource files:\n` +
-                              `- Receivers: ${stats.receivers}\n` +
-                              `- Processors: ${stats.processors}\n` +
-                              `- Exporters: ${stats.exporters}`,
+                            `- Receivers: ${stats.receivers}\n` +
+                            `- Processors: ${stats.processors}\n` +
+                            `- Exporters: ${stats.exporters}`,
                     },
                 ],
             };
@@ -209,16 +209,81 @@ server.resource("exporters", "OpenTelemetry Collector exporters", {}, async () =
     }
 });
 
+// Resource to get component schema for a specific component
+server.resource("component-schemas", new ResourceTemplate("://{type}/{name}", { list: undefined }), {}, async (uri: URL,
+    { type, name }) => {
+    logger.info('component-schemas', { uri, type, name });
+
+    if (Array.isArray(type)) {
+        type = type[0]
+
+    }
+    if (Array.isArray(name)) {
+        name = name[0]
+    }
+
+    try {
+
+        if (type && name) {
+            // Convert plural to singular for the component type
+            const componentType = type.endsWith('s') ?
+                type.slice(0, -1) as 'receiver' | 'processor' | 'exporter' :
+                type as 'receiver' | 'processor' | 'exporter';
+
+            // Load specific component schema
+            const schema = await loadComponentSchema(componentType, name);
+            if (!schema) {
+                throw new Error(`Schema not found for ${type} ${name}`);
+            }
+
+            return {
+                contents: [{
+                    uri: `${type}/${name}`,
+                    text: JSON.stringify(schema, null, 2),
+                    mimeType: "application/json"
+                }]
+            };
+        }
+
+        // If no specific path provided, list all available schemas
+        const types = ['receivers', 'processors', 'exporters'];
+        const allSchemas = [];
+
+        for (const type of types) {
+            const typeDir = path.join(SCHEMAS_DIR, type);
+            try {
+                const files = await fs.readdir(typeDir);
+                for (const file of files) {
+                    if (file.endsWith('.json')) {
+                        const componentName = path.basename(file, '.json');
+                        const schema = await fs.readFile(path.join(typeDir, file), 'utf8');
+                        allSchemas.push({
+                            uri: `${type}/${componentName}`,
+                            text: schema,
+                            mimeType: "application/json"
+                        });
+                    }
+                }
+            } catch (error) {
+                logger.warn(`Error reading schemas from ${type} directory`, { error });
+            }
+        }
+
+        return {
+            contents: allSchemas
+        };
+    } catch (error) {
+        logger.error('Error reading component schemas resource', { error });
+        throw error;
+    }
+});
+
 // Initialize resources on startup
 if (!process.env.GITHUB_TOKEN) {
     logger.warn('No GITHUB_TOKEN environment variable found. GitHub API rate limits will be restricted.');
     logger.warn('To increase rate limits, set the GITHUB_TOKEN environment variable with a GitHub Personal Access Token.');
     logger.warn('You can create a token at: https://github.com/settings/tokens');
 }
-
-updateResourceFiles().catch(error => {
-    logger.error('Failed to initialize resource files', { error });
-});
 
 // to support multiple simultaneous connections we have a lookup object from
 // sessionId to transport
@@ -228,28 +293,28 @@ app.get("/sse", async (_: Request, res: Response) => {
     const transport = new SSEServerTransport('/messages', res);
     transports[transport.sessionId] = transport;
     logger.info('New SSE connection established', { sessionId: transport.sessionId });
-    
+
     res.on("close", () => {
         logger.info('SSE connection closed', { sessionId: transport.sessionId });
         delete transports[transport.sessionId];
     });
-    
+
     await server.connect(transport);
 });
 
 app.post("/messages", async (req: Request, res: Response) => {
     const sessionId = req.query.sessionId as string;
     logger.debug('Received message', { sessionId, body: req.body });
-    
+
     const transport = transports[sessionId];
     if (transport) {
         try {
             await transport.handlePostMessage(req, res);
             logger.debug('Successfully handled message', { sessionId });
         } catch (error) {
-            logger.error('Error handling message', { 
-                sessionId, 
-                error: error instanceof Error ? error.message : 'Unknown error' 
+            logger.error('Error handling message', {
+                sessionId,
+                error: error instanceof Error ? error.message : 'Unknown error'
             });
             res.status(500).send('Error handling message');
         }
