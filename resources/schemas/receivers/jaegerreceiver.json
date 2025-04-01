@@ -1,0 +1,30 @@
+{
+  "fields": [
+    {
+      "name": "Protocols",
+      "type": "",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "protocols"
+    },
+    {
+      "name": "RemoteSampling",
+      "type": "*RemoteSamplingConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "remote_sampling"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net",
+    "strconv",
+    "time",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configgrpc",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/confmap"
+  ],
+  "packageName": "jaegerreceiver"
+}

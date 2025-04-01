@@ -1,0 +1,24 @@
+{
+  "fields": [
+    {
+      "name": "Interval",
+      "type": "time.Duration",
+      "description": "Interval is the time interval at which the processor will aggregate metrics.",
+      "required": true,
+      "mapstructureTag": "interval"
+    },
+    {
+      "name": "PassThrough",
+      "type": "PassThrough",
+      "description": "PassThrough is a configuration that determines whether gauge and summary metrics should be passed through as they are or aggregated.",
+      "required": true,
+      "mapstructureTag": "pass_through"
+    }
+  ],
+  "imports": [
+    "errors",
+    "time",
+    "go.opentelemetry.io/collector/component"
+  ],
+  "packageName": "intervalprocessor"
+}

@@ -1,0 +1,10 @@
+{
+  "fields": [],
+  "imports": [
+    "errors",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/confmap"
+  ],
+  "packageName": "faroreceiver"
+}

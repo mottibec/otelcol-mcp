@@ -1,0 +1,39 @@
+{
+  "fields": [
+    {
+      "name": "receiverTemplates",
+      "type": "map[string]receiverTemplate",
+      "description": "",
+      "required": true
+    },
+    {
+      "name": "WatchObservers",
+      "type": "[]component.ID",
+      "description": "WatchObservers are the extensions to listen to endpoints from.",
+      "required": true,
+      "mapstructureTag": "watch_observers"
+    },
+    {
+      "name": "ResourceAttributes",
+      "type": "resourceAttributes",
+      "description": "ResourceAttributes is a map of default resource attributes to add to each resource object received by this receiver from dynamically created receivers.",
+      "required": true,
+      "mapstructureTag": "resource_attributes"
+    },
+    {
+      "name": "Discovery",
+      "type": "DiscoveryConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "discovery"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "github.com/spf13/cast",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/confmap",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
+  ],
+  "packageName": "receivercreator"
+}

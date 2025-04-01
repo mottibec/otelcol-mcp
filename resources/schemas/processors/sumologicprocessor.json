@@ -1,0 +1,57 @@
+{
+  "fields": [
+    {
+      "name": "AddCloudNamespace",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "add_cloud_namespace"
+    },
+    {
+      "name": "TranslateAttributes",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "translate_attributes"
+    },
+    {
+      "name": "TranslateTelegrafAttributes",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "translate_telegraf_attributes"
+    },
+    {
+      "name": "NestAttributes",
+      "type": "*NestingProcessorConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "nest_attributes"
+    },
+    {
+      "name": "AggregateAttributes",
+      "type": "[]aggregationPair",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "aggregate_attributes"
+    },
+    {
+      "name": "LogFieldsAttributes",
+      "type": "*logFieldAttributesConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "field_attributes"
+    },
+    {
+      "name": "TranslateDockerMetrics",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "translate_docker_metrics"
+    }
+  ],
+  "imports": [
+    "go.opentelemetry.io/collector/component"
+  ],
+  "packageName": "sumologicprocessor"
+}

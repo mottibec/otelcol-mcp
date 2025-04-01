@@ -1,0 +1,15 @@
+{
+  "fields": [
+    {
+      "name": "CollectionInterval",
+      "type": "time.Duration",
+      "description": "CollectionInterval is the interval at which metrics should be collected",
+      "required": true,
+      "mapstructureTag": "collection_interval"
+    }
+  ],
+  "imports": [
+    "time"
+  ],
+  "packageName": "awsecscontainermetricsreceiver"
+}

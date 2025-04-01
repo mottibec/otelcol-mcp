@@ -1,0 +1,49 @@
+{
+  "fields": [
+    {
+      "name": "MaxIdleConns",
+      "type": "int",
+      "description": "MaxIdleConns is used to set a limit to the maximum idle TCP connections the client can keep open. Default value is 100. If `sending_queue` is enabled, it is recommended to use same value as `sending_queue::num_consumers`.",
+      "required": true,
+      "mapstructureTag": "max_idle_conns"
+    },
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "Timeout is the maximum duration allowed to connecting and sending the data to the Carbon/Graphite backend. The default value is 5s.",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "QueueConfig",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "RetryConfig",
+      "type": "configretry.BackOffConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "retry_on_failure"
+    },
+    {
+      "name": "ResourceToTelemetryConfig",
+      "type": "resourcetotelemetry.Settings",
+      "description": "ResourceToTelemetrySettings defines configuration for converting resource attributes to metric labels.",
+      "required": true,
+      "mapstructureTag": "resource_to_telemetry_conversion"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net",
+    "go.opentelemetry.io/collector/config/confignet",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/resourcetotelemetry"
+  ],
+  "packageName": "carbonexporter"
+}

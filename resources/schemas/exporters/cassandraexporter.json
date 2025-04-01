@@ -1,0 +1,72 @@
+{
+  "fields": [
+    {
+      "name": "Auth",
+      "type": "Auth",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "auth"
+    },
+    {
+      "name": "DSN",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "dsn"
+    },
+    {
+      "name": "Keyspace",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "keyspace"
+    },
+    {
+      "name": "TraceTable",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "trace_table"
+    },
+    {
+      "name": "LogsTable",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "logs_table"
+    },
+    {
+      "name": "Compression",
+      "type": "Compression",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "compression"
+    },
+    {
+      "name": "Replication",
+      "type": "Replication",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "replication"
+    },
+    {
+      "name": "Port",
+      "type": "int",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "port"
+    },
+    {
+      "name": "Timeout",
+      "type": "time.Duration",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "timeout"
+    }
+  ],
+  "imports": [
+    "time",
+    "go.opentelemetry.io/collector/config/configopaque"
+  ],
+  "packageName": "cassandraexporter"
+}

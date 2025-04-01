@@ -1,0 +1,22 @@
+{
+  "fields": [
+    {
+      "name": "Namespaces",
+      "type": "[]string",
+      "description": "List of ‘namespaces’ to collect events from.",
+      "required": true,
+      "mapstructureTag": "namespaces"
+    },
+    {
+      "name": "makeClient",
+      "type": "func(apiConf k8sconfig.APIConfig) (k8s.Interface, error)",
+      "description": "For mocking",
+      "required": true
+    }
+  ],
+  "imports": [
+    "k8s \"k8s.io/client-go/kubernetes\"",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
+  ],
+  "packageName": "k8seventsreceiver"
+}

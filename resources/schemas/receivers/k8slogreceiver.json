@@ -1,0 +1,24 @@
+{
+  "fields": [
+    {
+      "name": "Discovery",
+      "type": "SourceConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "discovery"
+    },
+    {
+      "name": "Extract",
+      "type": "ExtractConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "extract"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "go.uber.org/multierr",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
+  ],
+  "packageName": "k8slogreceiver"
+}

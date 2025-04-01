@@ -1,0 +1,48 @@
+{
+  "fields": [
+    {
+      "name": "Scheme",
+      "type": "string",
+      "description": "The scheme defines the type of flow data that the listener will receive The scheme must be one of sflow, netflow, or flow",
+      "required": true,
+      "mapstructureTag": "scheme"
+    },
+    {
+      "name": "Hostname",
+      "type": "string",
+      "description": "The hostname or IP address that the listener will bind to",
+      "required": true,
+      "mapstructureTag": "hostname"
+    },
+    {
+      "name": "Port",
+      "type": "int",
+      "description": "The port that the listener will bind to",
+      "required": true,
+      "mapstructureTag": "port"
+    },
+    {
+      "name": "Sockets",
+      "type": "int",
+      "description": "The number of sockets that the listener will use",
+      "required": true,
+      "mapstructureTag": "sockets"
+    },
+    {
+      "name": "Workers",
+      "type": "int",
+      "description": "The number of workers that the listener will use to decode incoming flow messages By default it will be two times the number of sockets Ideally set this to the number of CPU cores",
+      "required": true,
+      "mapstructureTag": "workers"
+    },
+    {
+      "name": "QueueSize",
+      "type": "int",
+      "description": "The size of the queue that the listener will use This is a buffer that will hold flow messages before they are processed by a worker",
+      "required": true,
+      "mapstructureTag": "queue_size"
+    }
+  ],
+  "imports": [],
+  "packageName": "netflowreceiver"
+}

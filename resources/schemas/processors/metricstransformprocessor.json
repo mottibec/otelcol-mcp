@@ -1,0 +1,13 @@
+{
+  "fields": [
+    {
+      "name": "Transforms",
+      "type": "[]transform",
+      "description": "transform specifies a list of transforms on metrics with each transform focusing on one metric.",
+      "required": true,
+      "mapstructureTag": "transforms"
+    }
+  ],
+  "imports": [],
+  "packageName": "metricstransformprocessor"
+}

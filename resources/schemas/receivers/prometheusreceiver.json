@@ -1,0 +1,68 @@
+{
+  "fields": [
+    {
+      "name": "PrometheusConfig",
+      "type": "*PromConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "config"
+    },
+    {
+      "name": "TrimMetricSuffixes",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "trim_metric_suffixes"
+    },
+    {
+      "name": "UseStartTimeMetric",
+      "type": "bool",
+      "description": "UseStartTimeMetric enables retrieving the start time of all counter metrics from the process_start_time_seconds metric. This is only correct if all counters on that endpoint started after the process start time, and the process is the only actor exporting the metric after the process started. It should not be used in \"exporters\" which export counters that may have started before the process itself. Use only if you know what you are doing, as this may result in incorrect rate calculations.",
+      "required": true,
+      "mapstructureTag": "use_start_time_metric"
+    },
+    {
+      "name": "StartTimeMetricRegex",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "start_time_metric_regex"
+    },
+    {
+      "name": "ReportExtraScrapeMetrics",
+      "type": "bool",
+      "description": "ReportExtraScrapeMetrics - enables reporting of additional metrics for Prometheus client like scrape_body_size_bytes",
+      "required": true,
+      "mapstructureTag": "report_extra_scrape_metrics"
+    },
+    {
+      "name": "TargetAllocator",
+      "type": "*targetallocator.Config",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "target_allocator"
+    },
+    {
+      "name": "APIServer",
+      "type": "*APIServer",
+      "description": "APIServer has the settings to enable the receiver to host the Prometheus API server in agent mode. This allows the user to call the endpoint to get the config, service discovery, and targets for debugging purposes.",
+      "required": true,
+      "mapstructureTag": "api_server"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "os",
+    "sort",
+    "strings",
+    "commonconfig \"github.com/prometheus/common/config\"",
+    "promconfig \"github.com/prometheus/prometheus/config\"",
+    "github.com/prometheus/prometheus/discovery/kubernetes",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/confmap",
+    "gopkg.in/yaml.v2",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver/targetallocator"
+  ],
+  "packageName": "prometheusreceiver"
+}

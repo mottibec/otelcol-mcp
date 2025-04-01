@@ -1,0 +1,26 @@
+{
+  "fields": [
+    {
+      "name": "TCPIdleTimeout",
+      "type": "time.Duration",
+      "description": "TCPIdleTimeout is the timeout for idle TCP connections, it is ignored if transport being used is UDP.",
+      "required": true,
+      "mapstructureTag": "tcp_idle_timeout"
+    },
+    {
+      "name": "Parser",
+      "type": "*protocol.Config",
+      "description": "Parser specifies a parser and the respective configuration to be used by the receiver.",
+      "required": true,
+      "mapstructureTag": "parser"
+    }
+  ],
+  "imports": [
+    "errors",
+    "time",
+    "go.opentelemetry.io/collector/config/confignet",
+    "go.opentelemetry.io/collector/confmap/xconfmap",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/carbonreceiver/protocol"
+  ],
+  "packageName": "carbonreceiver"
+}

@@ -1,0 +1,73 @@
+{
+  "fields": [
+    {
+      "name": "Nodes",
+      "type": "[]string",
+      "description": "Nodes defines the nodes to scrape. See https://www.elastic.co/guide/en/elasticsearch/reference/7.9/cluster.html#cluster-nodes for which selectors may be used here. If Nodes is empty, no nodes will be scraped.",
+      "required": true,
+      "mapstructureTag": "nodes"
+    },
+    {
+      "name": "SkipClusterMetrics",
+      "type": "bool",
+      "description": "SkipClusterMetrics indicates whether cluster level metrics from /_cluster/* endpoints should be scraped or not.",
+      "required": true,
+      "mapstructureTag": "skip_cluster_metrics"
+    },
+    {
+      "name": "Indices",
+      "type": "[]string",
+      "description": "Indices defines the indices to scrape. See https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-stats.html#index-stats-api-path-params for which names are viable. If Indices is empty, no indices will be scraped.",
+      "required": true,
+      "mapstructureTag": "indices"
+    },
+    {
+      "name": "ProjectID",
+      "type": "string",
+      "description": "ProjectID is a string to reference project where metrics should be associated with. If ProjectID is not filled in, the SDK will automatically call the IAM service to query the project id corresponding to the region.",
+      "required": true,
+      "mapstructureTag": "project_id"
+    },
+    {
+      "name": "RegionID",
+      "type": "string",
+      "description": "RegionID is the ID of the CES region.",
+      "required": true,
+      "mapstructureTag": "region_id"
+    },
+    {
+      "name": "Period",
+      "type": "int32",
+      "description": "How retrieved data from Cloud Eye is aggregated. Possible values are 1, 300, 1200, 3600, 14400, and 86400. 1: Cloud Eye performs no aggregation and displays raw data. 300: Cloud Eye aggregates data every 5 minutes. 1200: Cloud Eye aggregates data every 20 minutes. 3600: Cloud Eye aggregates data every hour. 14400: Cloud Eye aggregates data every 4 hours. 86400: Cloud Eye aggregates data every 24 hours. For details about the aggregation, see https://support.huaweicloud.com/intl/en-us/ces_faq/ces_faq_0009.html",
+      "required": true,
+      "mapstructureTag": "period"
+    },
+    {
+      "name": "Filter",
+      "type": "string",
+      "description": "Data aggregation method. The supported values ​​are max, min, average, sum, variance.",
+      "required": true,
+      "mapstructureTag": "filter"
+    },
+    {
+      "name": "BackOffConfig",
+      "type": "configretry.BackOffConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "retry_on_failure"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "slices",
+    "github.com/huaweicloud/huaweicloud-sdk-go-v3/services/ces/v1/model",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "go.uber.org/multierr"
+  ],
+  "packageName": "huaweicloudcesreceiver"
+}

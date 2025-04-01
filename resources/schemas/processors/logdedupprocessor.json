@@ -1,0 +1,54 @@
+{
+  "fields": [
+    {
+      "name": "LogCountAttribute",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "log_count_attribute"
+    },
+    {
+      "name": "Interval",
+      "type": "time.Duration",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "interval"
+    },
+    {
+      "name": "Timezone",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "timezone"
+    },
+    {
+      "name": "ExcludeFields",
+      "type": "[]string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "exclude_fields"
+    },
+    {
+      "name": "IncludeFields",
+      "type": "[]string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "include_fields"
+    },
+    {
+      "name": "Conditions",
+      "type": "[]string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "conditions"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "strings",
+    "time",
+    "go.opentelemetry.io/collector/component"
+  ],
+  "packageName": "logdedupprocessor"
+}

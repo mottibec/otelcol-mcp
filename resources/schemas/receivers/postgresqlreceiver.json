@@ -1,0 +1,52 @@
+{
+  "fields": [
+    {
+      "name": "Username",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "username"
+    },
+    {
+      "name": "Password",
+      "type": "configopaque.String",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "password"
+    },
+    {
+      "name": "Databases",
+      "type": "[]string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "databases"
+    },
+    {
+      "name": "ExcludeDatabases",
+      "type": "[]string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "exclude_databases"
+    },
+    {
+      "name": "ConnectionPool",
+      "type": "",
+      "description": "",
+      "required": false,
+      "mapstructureTag": "connection_pool,omitempty"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net",
+    "time",
+    "go.opentelemetry.io/collector/config/confignet",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configtls",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "go.uber.org/multierr",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/postgresqlreceiver/internal/metadata"
+  ],
+  "packageName": "postgresqlreceiver"
+}

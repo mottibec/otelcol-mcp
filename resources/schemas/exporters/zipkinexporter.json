@@ -1,0 +1,33 @@
+{
+  "fields": [
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "Format",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "format"
+    },
+    {
+      "name": "DefaultServiceName",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "default_service_name"
+    }
+  ],
+  "imports": [
+    "errors",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper"
+  ],
+  "packageName": "zipkinexporter"
+}

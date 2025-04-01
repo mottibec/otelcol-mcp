@@ -1,0 +1,25 @@
+{
+  "fields": [
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "NumWorkers",
+      "type": "int",
+      "description": "The number of workers that send the gRPC requests.",
+      "required": true,
+      "mapstructureTag": "num_workers"
+    }
+  ],
+  "imports": [
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configgrpc",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper"
+  ],
+  "packageName": "opencensusexporter"
+}

@@ -1,0 +1,16 @@
+{
+  "fields": [
+    {
+      "name": "ProxyServer",
+      "type": "*proxy.Config",
+      "description": "ProxyServer defines configurations related to the local TCP proxy server.",
+      "required": true,
+      "mapstructureTag": "proxy_server"
+    }
+  ],
+  "imports": [
+    "go.opentelemetry.io/collector/config/confignet",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/proxy"
+  ],
+  "packageName": "awsxrayreceiver"
+}

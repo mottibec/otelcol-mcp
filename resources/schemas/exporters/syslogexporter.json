@@ -1,0 +1,69 @@
+{
+  "fields": [
+    {
+      "name": "Endpoint",
+      "type": "string",
+      "description": "Syslog server address",
+      "required": true,
+      "mapstructureTag": "endpoint"
+    },
+    {
+      "name": "Port",
+      "type": "int",
+      "description": "Syslog server port",
+      "required": true,
+      "mapstructureTag": "port"
+    },
+    {
+      "name": "Network",
+      "type": "string",
+      "description": "Network for syslog communication options: tcp, udp",
+      "required": true,
+      "mapstructureTag": "network"
+    },
+    {
+      "name": "Protocol",
+      "type": "string",
+      "description": "Protocol of syslog messages options: rfc5424, rfc3164",
+      "required": true,
+      "mapstructureTag": "protocol"
+    },
+    {
+      "name": "EnableOctetCounting",
+      "type": "bool",
+      "description": "Whether or not to enable RFC 6587 Octet Counting.",
+      "required": true,
+      "mapstructureTag": "enable_octet_counting"
+    },
+    {
+      "name": "TLSSetting",
+      "type": "configtls.ClientConfig",
+      "description": "TLSSetting struct exposes TLS client configuration.",
+      "required": true,
+      "mapstructureTag": "tls"
+    },
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    }
+  ],
+  "imports": [
+    "errors",
+    "strings",
+    "go.opentelemetry.io/collector/config/confignet",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/config/configtls",
+    "go.opentelemetry.io/collector/exporter/exporterhelper"
+  ],
+  "packageName": "syslogexporter"
+}

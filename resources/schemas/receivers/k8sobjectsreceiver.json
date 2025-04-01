@@ -1,0 +1,35 @@
+{
+  "fields": [
+    {
+      "name": "Objects",
+      "type": "[]*K8sObjectsConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "objects"
+    },
+    {
+      "name": "makeDiscoveryClient",
+      "type": "func() (discovery.ServerResourcesInterface, error)",
+      "description": "For mocking purposes only.",
+      "required": true
+    },
+    {
+      "name": "makeDynamicClient",
+      "type": "func() (dynamic.Interface, error)",
+      "description": "",
+      "required": true
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "strings",
+    "time",
+    "k8s.io/apimachinery/pkg/runtime/schema",
+    "apiWatch \"k8s.io/apimachinery/pkg/watch\"",
+    "k8s.io/client-go/discovery",
+    "k8s.io/client-go/dynamic",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
+  ],
+  "packageName": "k8sobjectsreceiver"
+}

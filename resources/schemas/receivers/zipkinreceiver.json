@@ -1,0 +1,16 @@
+{
+  "fields": [
+    {
+      "name": "ParseStringTags",
+      "type": "bool",
+      "description": "If enabled the zipkin receiver will attempt to parse string tags/binary annotations into int/bool/float. Disabled by default",
+      "required": true,
+      "mapstructureTag": "parse_string_tags"
+    }
+  ],
+  "imports": [
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/confighttp"
+  ],
+  "packageName": "zipkinreceiver"
+}

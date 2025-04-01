@@ -1,0 +1,32 @@
+{
+  "fields": [
+    {
+      "name": "Encoding",
+      "type": "string",
+      "description": "Encoding identifies the encoding of records received from Firehose. Defaults to telemetry-specific encodings: \"cwlog\" for logs, and \"cwmetrics\" for metrics.",
+      "required": true,
+      "mapstructureTag": "encoding"
+    },
+    {
+      "name": "RecordType",
+      "type": "string",
+      "description": "RecordType is an alias for Encoding for backwards compatibility. It is an error to specify both encoding and record_type. Deprecated: [v0.121.0] use Encoding instead.",
+      "required": true,
+      "mapstructureTag": "record_type"
+    },
+    {
+      "name": "AccessKey",
+      "type": "configopaque.String",
+      "description": "AccessKey is checked against the one received with each request. This can be set when creating or updating the Firehose delivery stream.",
+      "required": true,
+      "mapstructureTag": "access_key"
+    }
+  ],
+  "imports": [
+    "errors",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.uber.org/zap"
+  ],
+  "packageName": "awsfirehosereceiver"
+}

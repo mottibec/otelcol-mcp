@@ -1,0 +1,37 @@
+{
+  "fields": [
+    {
+      "name": "Scrapers",
+      "type": "map[component.Type]component.Config",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "-"
+    },
+    {
+      "name": "RootPath",
+      "type": "string",
+      "description": "RootPath is the host's root directory (linux only).",
+      "required": true,
+      "mapstructureTag": "root_path"
+    },
+    {
+      "name": "MetadataCollectionInterval",
+      "type": "time.Duration",
+      "description": "Collection interval for metadata. Metadata of the particular entity is collected when the entity changes. In addition metadata of all entities is collected periodically even if no changes happen. Setting the duration to 0 will disable periodic collection (however will not impact metadata collection on changes).",
+      "required": true,
+      "mapstructureTag": "metadata_collection_interval"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "time",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/confmap",
+    "go.opentelemetry.io/collector/confmap/xconfmap",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "go.uber.org/multierr",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal"
+  ],
+  "packageName": "hostmetricsreceiver"
+}

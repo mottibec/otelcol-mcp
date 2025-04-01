@@ -1,0 +1,35 @@
+{
+  "fields": [
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "IngestURL",
+      "type": "string",
+      "description": "IngestURL is the URL to send telemetry to.",
+      "required": true,
+      "mapstructureTag": "ingest_url"
+    },
+    {
+      "name": "IngestKey",
+      "type": "configopaque.String",
+      "description": "Token is the authentication token provided by Mezmo.",
+      "required": true,
+      "mapstructureTag": "ingest_key"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "net/url",
+    "time",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper"
+  ],
+  "packageName": "mezmoexporter"
+}

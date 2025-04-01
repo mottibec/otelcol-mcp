@@ -1,0 +1,23 @@
+{
+  "fields": [
+    {
+      "name": "IncludeServices",
+      "type": "[]string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "include_services"
+    },
+    {
+      "name": "ExcludeServices",
+      "type": "[]string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "exclude_services"
+    }
+  ],
+  "imports": [
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/windowsservicereceiver/internal/metadata"
+  ],
+  "packageName": "windowsservicereceiver"
+}

@@ -1,0 +1,12 @@
+{
+  "fields": [],
+  "imports": [
+    "errors",
+    "fmt",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configgrpc",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/confmap"
+  ],
+  "packageName": "skywalkingreceiver"
+}

@@ -1,0 +1,48 @@
+{
+  "fields": [
+    {
+      "name": "S3Downloader",
+      "type": "S3DownloaderConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "s3downloader"
+    },
+    {
+      "name": "StartTime",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "starttime"
+    },
+    {
+      "name": "EndTime",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "endtime"
+    },
+    {
+      "name": "Encodings",
+      "type": "[]Encoding",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "encodings"
+    },
+    {
+      "name": "Notifications",
+      "type": "Notifications",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "notifications"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "strings",
+    "time",
+    "go.opentelemetry.io/collector/component",
+    "go.uber.org/multierr"
+  ],
+  "packageName": "awss3receiver"
+}

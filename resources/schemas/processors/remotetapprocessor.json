@@ -1,0 +1,18 @@
+{
+  "fields": [
+    {
+      "name": "Limit",
+      "type": "rate.Limit",
+      "description": "Limit is a float that indicates the maximum number of messages repeated through the websocket by this processor in messages per second. Defaults to 1.",
+      "required": true,
+      "mapstructureTag": "limit"
+    }
+  ],
+  "imports": [
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "golang.org/x/time/rate",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/common/testutil"
+  ],
+  "packageName": "remotetapprocessor"
+}

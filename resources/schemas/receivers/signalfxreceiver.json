@@ -1,0 +1,9 @@
+{
+  "fields": [],
+  "imports": [
+    "errors",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
+  ],
+  "packageName": "signalfxreceiver"
+}

@@ -1,0 +1,45 @@
+{
+  "fields": [
+    {
+      "name": "Topic",
+      "type": "string",
+      "description": "The name of the kafka topic to consume from (default \"otlp_spans\" for traces, \"otlp_metrics\" for metrics, \"otlp_logs\" for logs)",
+      "required": true,
+      "mapstructureTag": "topic"
+    },
+    {
+      "name": "Encoding",
+      "type": "string",
+      "description": "Encoding of the messages (default \"otlp_proto\")",
+      "required": true,
+      "mapstructureTag": "encoding"
+    },
+    {
+      "name": "MessageMarking",
+      "type": "MessageMarking",
+      "description": "Controls the way the messages are marked as consumed",
+      "required": true,
+      "mapstructureTag": "message_marking"
+    },
+    {
+      "name": "HeaderExtraction",
+      "type": "HeaderExtraction",
+      "description": "Extract headers from kafka records",
+      "required": true,
+      "mapstructureTag": "header_extraction"
+    },
+    {
+      "name": "ErrorBackOff",
+      "type": "configretry.BackOffConfig",
+      "description": "In case of some errors returned by the next consumer, the receiver will wait and retry the failed message",
+      "required": true,
+      "mapstructureTag": "error_backoff"
+    }
+  ],
+  "imports": [
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configretry",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/kafka/configkafka"
+  ],
+  "packageName": "kafkareceiver"
+}

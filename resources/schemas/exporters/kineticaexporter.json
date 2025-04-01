@@ -1,0 +1,46 @@
+{
+  "fields": [
+    {
+      "name": "Host",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "host"
+    },
+    {
+      "name": "Schema",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "schema"
+    },
+    {
+      "name": "Username",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "username"
+    },
+    {
+      "name": "Password",
+      "type": "configopaque.String",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "password"
+    },
+    {
+      "name": "BypassSslCertCheck",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "bypasssslcertcheck"
+    }
+  ],
+  "imports": [
+    "errors",
+    "net/url",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configopaque"
+  ],
+  "packageName": "kineticaexporter"
+}

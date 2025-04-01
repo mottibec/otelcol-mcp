@@ -1,0 +1,8 @@
+{
+  "fields": [],
+  "imports": [
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/scraper/zookeeperscraper"
+  ],
+  "packageName": "zookeeperreceiver"
+}

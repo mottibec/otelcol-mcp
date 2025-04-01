@@ -1,0 +1,98 @@
+{
+  "fields": [
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "Endpoint",
+      "type": "string",
+      "description": "Endpoint of pulsar broker (default \"pulsar://localhost:6650\")",
+      "required": true,
+      "mapstructureTag": "endpoint"
+    },
+    {
+      "name": "Topic",
+      "type": "string",
+      "description": "The name of the pulsar topic to export to (default otlp_spans for traces, otlp_metrics for metrics)",
+      "required": true,
+      "mapstructureTag": "topic"
+    },
+    {
+      "name": "Encoding",
+      "type": "string",
+      "description": "Encoding of messages (default \"otlp_proto\")",
+      "required": true,
+      "mapstructureTag": "encoding"
+    },
+    {
+      "name": "Producer",
+      "type": "Producer",
+      "description": "Producer configuration of the Pulsar producer",
+      "required": true,
+      "mapstructureTag": "producer"
+    },
+    {
+      "name": "TLSTrustCertsFilePath",
+      "type": "string",
+      "description": "Set the path to the trusted TLS certificate file",
+      "required": true,
+      "mapstructureTag": "tls_trust_certs_file_path"
+    },
+    {
+      "name": "TLSAllowInsecureConnection",
+      "type": "bool",
+      "description": "Configure whether the Pulsar client accept untrusted TLS certificate from broker (default: false)",
+      "required": true,
+      "mapstructureTag": "tls_allow_insecure_connection"
+    },
+    {
+      "name": "Authentication",
+      "type": "Authentication",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "auth"
+    },
+    {
+      "name": "OperationTimeout",
+      "type": "time.Duration",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "operation_timeout"
+    },
+    {
+      "name": "ConnectionTimeout",
+      "type": "time.Duration",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "connection_timeout"
+    },
+    {
+      "name": "MaxConnectionsPerBroker",
+      "type": "int",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "max_connections_per_broker"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "time",
+    "github.com/apache/pulsar-client-go/pulsar",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper"
+  ],
+  "packageName": "pulsarexporter"
+}

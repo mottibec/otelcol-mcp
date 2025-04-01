@@ -1,0 +1,53 @@
+{
+  "fields": [
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "Encoding",
+      "type": "",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "encoding"
+    },
+    {
+      "name": "AWS",
+      "type": "AWSConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "aws"
+    },
+    {
+      "name": "MaxRecordsPerBatch",
+      "type": "int",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "max_records_per_batch"
+    },
+    {
+      "name": "MaxRecordSize",
+      "type": "int",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "max_record_size"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper"
+  ],
+  "packageName": "awskinesisexporter"
+}

@@ -1,0 +1,67 @@
+{
+  "fields": [
+    {
+      "name": "Connection",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "connection"
+    },
+    {
+      "name": "Partition",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "partition"
+    },
+    {
+      "name": "Offset",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "offset"
+    },
+    {
+      "name": "StorageID",
+      "type": "*component.ID",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "storage"
+    },
+    {
+      "name": "Format",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "format"
+    },
+    {
+      "name": "ConsumerGroup",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "group"
+    },
+    {
+      "name": "ApplySemanticConventions",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "apply_semantic_conventions"
+    },
+    {
+      "name": "TimeFormats",
+      "type": "TimeFormat",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "time_formats"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "github.com/Azure/azure-amqp-common-go/v4/conn",
+    "go.opentelemetry.io/collector/component"
+  ],
+  "packageName": "azureeventhubreceiver"
+}

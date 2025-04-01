@@ -1,0 +1,49 @@
+{
+  "fields": [
+    {
+      "name": "Nodes",
+      "type": "[]string",
+      "description": "Nodes defines the nodes to scrape. See https://www.elastic.co/guide/en/elasticsearch/reference/7.9/cluster.html#cluster-nodes for which selectors may be used here. If Nodes is empty, no nodes will be scraped.",
+      "required": true,
+      "mapstructureTag": "nodes"
+    },
+    {
+      "name": "SkipClusterMetrics",
+      "type": "bool",
+      "description": "SkipClusterMetrics indicates whether cluster level metrics from /_cluster/* endpoints should be scraped or not.",
+      "required": true,
+      "mapstructureTag": "skip_cluster_metrics"
+    },
+    {
+      "name": "Indices",
+      "type": "[]string",
+      "description": "Indices defines the indices to scrape. See https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-stats.html#index-stats-api-path-params for which names are viable. If Indices is empty, no indices will be scraped.",
+      "required": true,
+      "mapstructureTag": "indices"
+    },
+    {
+      "name": "Username",
+      "type": "string",
+      "description": "Username is the username used when making REST calls to elasticsearch. Must be specified if Password is. Not required.",
+      "required": true,
+      "mapstructureTag": "username"
+    },
+    {
+      "name": "Password",
+      "type": "configopaque.String",
+      "description": "Password is the password used when making REST calls to elasticsearch. Must be specified if Username is. Not required.",
+      "required": true,
+      "mapstructureTag": "password"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net/url",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/elasticsearchreceiver/internal/metadata"
+  ],
+  "packageName": "elasticsearchreceiver"
+}

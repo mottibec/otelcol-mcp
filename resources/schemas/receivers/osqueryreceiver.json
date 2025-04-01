@@ -1,0 +1,25 @@
+{
+  "fields": [
+    {
+      "name": "ExtensionsSocket",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "extensions_socket"
+    },
+    {
+      "name": "Queries",
+      "type": "[]string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "queries"
+    }
+  ],
+  "imports": [
+    "errors",
+    "time",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/scraper/scraperhelper"
+  ],
+  "packageName": "osqueryreceiver"
+}

@@ -1,0 +1,28 @@
+{
+  "fields": [
+    {
+      "name": "MaxStale",
+      "type": "time.Duration",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "max_stale"
+    },
+    {
+      "name": "MaxStreams",
+      "type": "int",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "max_streams"
+    }
+  ],
+  "imports": [
+    "context",
+    "fmt",
+    "math",
+    "time",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/confmap/xconfmap",
+    "telemetry \"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor/internal/telemetry\""
+  ],
+  "packageName": "deltatocumulativeprocessor"
+}

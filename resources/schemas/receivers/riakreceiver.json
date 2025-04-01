@@ -1,0 +1,36 @@
+{
+  "fields": [
+    {
+      "name": "Username",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "username"
+    },
+    {
+      "name": "Password",
+      "type": "configopaque.String",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "password"
+    },
+    {
+      "name": "MetricsBuilderConfig",
+      "type": "metadata.MetricsBuilderConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "metrics"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net/url",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "go.uber.org/multierr",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/riakreceiver/internal/metadata"
+  ],
+  "packageName": "riakreceiver"
+}

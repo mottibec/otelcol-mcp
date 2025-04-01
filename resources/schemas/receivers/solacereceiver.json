@@ -1,0 +1,54 @@
+{
+  "fields": [
+    {
+      "name": "Broker",
+      "type": "[]string",
+      "description": "The list of solace brokers (default localhost:5671)",
+      "required": true,
+      "mapstructureTag": "broker"
+    },
+    {
+      "name": "Queue",
+      "type": "string",
+      "description": "The name of the solace queue to consume from, it is required parameter",
+      "required": true,
+      "mapstructureTag": "queue"
+    },
+    {
+      "name": "MaxUnacked",
+      "type": "int32",
+      "description": "The maximum number of unacknowledged messages the Solace broker can transmit, to configure AMQP Link",
+      "required": true,
+      "mapstructureTag": "max_unacknowledged"
+    },
+    {
+      "name": "TLS",
+      "type": "configtls.ClientConfig",
+      "description": "",
+      "required": false,
+      "mapstructureTag": "tls,omitempty"
+    },
+    {
+      "name": "Auth",
+      "type": "Authentication",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "auth"
+    },
+    {
+      "name": "Flow",
+      "type": "FlowControl",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "flow_control"
+    }
+  ],
+  "imports": [
+    "errors",
+    "strings",
+    "time",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configtls"
+  ],
+  "packageName": "solacereceiver"
+}

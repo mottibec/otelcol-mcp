@@ -1,0 +1,73 @@
+{
+  "fields": [
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "Endpoint",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "endpoint"
+    },
+    {
+      "name": "ConnectionString",
+      "type": "configopaque.String",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "connection_string"
+    },
+    {
+      "name": "InstrumentationKey",
+      "type": "configopaque.String",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "instrumentation_key"
+    },
+    {
+      "name": "MaxBatchSize",
+      "type": "int",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "maxbatchsize"
+    },
+    {
+      "name": "MaxBatchInterval",
+      "type": "time.Duration",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "maxbatchinterval"
+    },
+    {
+      "name": "SpanEventsEnabled",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "spaneventsenabled"
+    },
+    {
+      "name": "ShutdownTimeout",
+      "type": "time.Duration",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "shutdown_timeout"
+    },
+    {
+      "name": "CustomEventsEnabled",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "custom_events_enabled"
+    }
+  ],
+  "imports": [
+    "time",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/exporter/exporterhelper"
+  ],
+  "packageName": "azuremonitorexporter"
+}

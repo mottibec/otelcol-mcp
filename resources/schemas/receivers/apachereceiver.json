@@ -1,0 +1,19 @@
+{
+  "fields": [
+    {
+      "name": "MetricsBuilderConfig",
+      "type": "metadata.MetricsBuilderConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "net/url",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/apachereceiver/internal/metadata"
+  ],
+  "packageName": "apachereceiver"
+}

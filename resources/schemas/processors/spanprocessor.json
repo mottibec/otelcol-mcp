@@ -1,0 +1,23 @@
+{
+  "fields": [
+    {
+      "name": "Rename",
+      "type": "Name",
+      "description": "Rename specifies the components required to re-name a span. The `from_attributes` field needs to be set for this processor to be properly configured. Note: The field name is `Rename` to avoid collision with the Name() method from config.NamedEntity",
+      "required": true,
+      "mapstructureTag": "name"
+    },
+    {
+      "name": "SetStatus",
+      "type": "*Status",
+      "description": "SetStatus specifies status which should be set for this span.",
+      "required": true,
+      "mapstructureTag": "status"
+    }
+  ],
+  "imports": [
+    "go.opentelemetry.io/collector/component",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterconfig"
+  ],
+  "packageName": "spanprocessor"
+}

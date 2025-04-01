@@ -1,0 +1,16 @@
+{
+  "fields": [
+    {
+      "name": "ReadTimeout",
+      "type": "time.Duration",
+      "description": "ReadTimeout of the http server",
+      "required": true,
+      "mapstructureTag": "read_timeout"
+    }
+  ],
+  "imports": [
+    "time",
+    "go.opentelemetry.io/collector/config/confighttp"
+  ],
+  "packageName": "datadogreceiver"
+}

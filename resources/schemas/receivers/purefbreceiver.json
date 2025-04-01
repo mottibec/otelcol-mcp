@@ -1,0 +1,48 @@
+{
+  "fields": [
+    {
+      "name": "Settings",
+      "type": "*Settings",
+      "description": "Settings contains settings for the individual scrapers",
+      "required": true,
+      "mapstructureTag": "settings"
+    },
+    {
+      "name": "Arrays",
+      "type": "[]internal.ScraperConfig",
+      "description": "Arrays represents the list of arrays to query",
+      "required": true,
+      "mapstructureTag": "arrays"
+    },
+    {
+      "name": "Clients",
+      "type": "[]internal.ScraperConfig",
+      "description": "Clients represents the list of clients metrics",
+      "required": true,
+      "mapstructureTag": "clients"
+    },
+    {
+      "name": "Usage",
+      "type": "[]internal.ScraperConfig",
+      "description": "Usage represents the list of usage to query",
+      "required": true,
+      "mapstructureTag": "usage"
+    },
+    {
+      "name": "Env",
+      "type": "string",
+      "description": "Env represents the respective environment value valid to scrape",
+      "required": true,
+      "mapstructureTag": "env"
+    }
+  ],
+  "imports": [
+    "errors",
+    "time",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.uber.org/multierr",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/purefbreceiver/internal"
+  ],
+  "packageName": "purefbreceiver"
+}

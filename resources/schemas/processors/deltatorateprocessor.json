@@ -1,0 +1,15 @@
+{
+  "fields": [
+    {
+      "name": "Metrics",
+      "type": "[]string",
+      "description": "List of delta sum metrics to convert to rates",
+      "required": true,
+      "mapstructureTag": "metrics"
+    }
+  ],
+  "imports": [
+    "fmt"
+  ],
+  "packageName": "deltatorateprocessor"
+}

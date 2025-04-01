@@ -1,0 +1,35 @@
+{
+  "fields": [
+    {
+      "name": "IdxEndpoint",
+      "type": "confighttp.ClientConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "indexer"
+    },
+    {
+      "name": "SHEndpoint",
+      "type": "confighttp.ClientConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "search_head"
+    },
+    {
+      "name": "CMEndpoint",
+      "type": "confighttp.ClientConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "cluster_master"
+    }
+  ],
+  "imports": [
+    "errors",
+    "net/url",
+    "strings",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "go.uber.org/multierr",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/splunkenterprisereceiver/internal/metadata"
+  ],
+  "packageName": "splunkenterprisereceiver"
+}

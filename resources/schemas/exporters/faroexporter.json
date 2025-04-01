@@ -1,0 +1,28 @@
+{
+  "fields": [
+    {
+      "name": "QueueConfig",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "RetryConfig",
+      "type": "configretry.BackOffConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "retry_on_failure"
+    }
+  ],
+  "imports": [
+    "errors",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/confmap",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "go.uber.org/multierr"
+  ],
+  "packageName": "faroexporter"
+}

@@ -1,0 +1,33 @@
+{
+  "fields": [
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "MappingsSettings",
+      "type": "",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "mapping"
+    },
+    {
+      "name": "QueueConfig",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    }
+  ],
+  "imports": [
+    "errors",
+    "strings",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper"
+  ],
+  "packageName": "opensearchexporter"
+}

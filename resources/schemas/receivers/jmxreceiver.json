@@ -1,0 +1,146 @@
+{
+  "fields": [
+    {
+      "name": "JARPath",
+      "type": "string",
+      "description": "The path for the JMX Metric Gatherer uber JAR (/opt/opentelemetry-java-contrib-jmx-metrics.jar by default).",
+      "required": true,
+      "mapstructureTag": "jar_path"
+    },
+    {
+      "name": "Endpoint",
+      "type": "string",
+      "description": "The Service URL or host:port for the target coerced to one of form: service:jmx:rmi:///jndi/rmi://<host>:<port>/jmxrmi.",
+      "required": true,
+      "mapstructureTag": "endpoint"
+    },
+    {
+      "name": "TargetSystem",
+      "type": "string",
+      "description": "The target system for the metric gatherer whose built in groovy script to run.",
+      "required": true,
+      "mapstructureTag": "target_system"
+    },
+    {
+      "name": "CollectionInterval",
+      "type": "time.Duration",
+      "description": "The duration in between groovy script invocations and metric exports (10 seconds by default). Will be converted to milliseconds.",
+      "required": true,
+      "mapstructureTag": "collection_interval"
+    },
+    {
+      "name": "OTLPExporterConfig",
+      "type": "otlpExporterConfig",
+      "description": "The exporter settings for",
+      "required": true,
+      "mapstructureTag": "otlp"
+    },
+    {
+      "name": "Username",
+      "type": "string",
+      "description": "The JMX username",
+      "required": true,
+      "mapstructureTag": "username"
+    },
+    {
+      "name": "Password",
+      "type": "configopaque.String",
+      "description": "The JMX password",
+      "required": true,
+      "mapstructureTag": "password"
+    },
+    {
+      "name": "KeystorePath",
+      "type": "string",
+      "description": "The keystore path for SSL",
+      "required": true,
+      "mapstructureTag": "keystore_path"
+    },
+    {
+      "name": "KeystorePassword",
+      "type": "configopaque.String",
+      "description": "The keystore password for SSL",
+      "required": true,
+      "mapstructureTag": "keystore_password"
+    },
+    {
+      "name": "KeystoreType",
+      "type": "string",
+      "description": "The keystore type for SSL",
+      "required": true,
+      "mapstructureTag": "keystore_type"
+    },
+    {
+      "name": "TruststorePath",
+      "type": "string",
+      "description": "The truststore path for SSL",
+      "required": true,
+      "mapstructureTag": "truststore_path"
+    },
+    {
+      "name": "TruststorePassword",
+      "type": "configopaque.String",
+      "description": "The truststore password for SSL",
+      "required": true,
+      "mapstructureTag": "truststore_password"
+    },
+    {
+      "name": "TruststoreType",
+      "type": "string",
+      "description": "The truststore type for SSL",
+      "required": true,
+      "mapstructureTag": "truststore_type"
+    },
+    {
+      "name": "RemoteProfile",
+      "type": "string",
+      "description": "The JMX remote profile.  Should be one of: `\"SASL/PLAIN\"`, `\"SASL/DIGEST-MD5\"`, `\"SASL/CRAM-MD5\"`, `\"TLS SASL/PLAIN\"`, `\"TLS SASL/DIGEST-MD5\"`, or `\"TLS SASL/CRAM-MD5\"`, though no enforcement is applied.",
+      "required": true,
+      "mapstructureTag": "remote_profile"
+    },
+    {
+      "name": "Realm",
+      "type": "string",
+      "description": "The SASL/DIGEST-MD5 realm",
+      "required": true,
+      "mapstructureTag": "realm"
+    },
+    {
+      "name": "AdditionalJars",
+      "type": "[]string",
+      "description": "Array of additional JARs to be added to the class path when launching the JMX Metric Gatherer JAR",
+      "required": true,
+      "mapstructureTag": "additional_jars"
+    },
+    {
+      "name": "ResourceAttributes",
+      "type": "map[string]string",
+      "description": "Map of resource attributes used by the Java SDK Autoconfigure to set resource attributes",
+      "required": true,
+      "mapstructureTag": "resource_attributes"
+    },
+    {
+      "name": "LogLevel",
+      "type": "string",
+      "description": "Log level used by the JMX metric gatherer. Should be one of: `\"trace\"`, `\"debug\"`, `\"info\"`, `\"warn\"`, `\"error\"`, `\"off\"`",
+      "required": true,
+      "mapstructureTag": "log_level"
+    }
+  ],
+  "imports": [
+    "crypto/sha256",
+    "encoding/hex",
+    "errors",
+    "fmt",
+    "io",
+    "os",
+    "sort",
+    "strings",
+    "time",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "go.uber.org/zap",
+    "go.uber.org/zap/zapcore"
+  ],
+  "packageName": "jmxreceiver"
+}

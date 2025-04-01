@@ -1,0 +1,27 @@
+{
+  "fields": [
+    {
+      "name": "Version",
+      "type": "int",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "version"
+    },
+    {
+      "name": "Endpoint",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "endpoint"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net",
+    "time",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/ntpreceiver/internal/metadata"
+  ],
+  "packageName": "ntpreceiver"
+}

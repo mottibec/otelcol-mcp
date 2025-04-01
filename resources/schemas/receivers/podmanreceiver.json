@@ -1,0 +1,40 @@
+{
+  "fields": [
+    {
+      "name": "Endpoint",
+      "type": "string",
+      "description": "The URL of the podman server.  Default is \"unix:///run/podman/podman.sock\"",
+      "required": true,
+      "mapstructureTag": "endpoint"
+    },
+    {
+      "name": "APIVersion",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "api_version"
+    },
+    {
+      "name": "SSHKey",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "ssh_key"
+    },
+    {
+      "name": "SSHPassphrase",
+      "type": "configopaque.String",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "ssh_passphrase"
+    }
+  ],
+  "imports": [
+    "errors",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/podmanreceiver/internal/metadata"
+  ],
+  "packageName": "podmanreceiver"
+}

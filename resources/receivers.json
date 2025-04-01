@@ -1,0 +1,4211 @@
+[
+  {
+    "name": "activedirectorydsreceiver",
+    "description": "The `active_directory_ds` receiver scrapes metrics relating to an Active Directory domain controller using the Windows Performance Counters.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/activedirectorydsreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/activedirectorydsreceiver/internal/metadata"
+      ],
+      "packageName": "activedirectorydsreceiver"
+    }
+  },
+  {
+    "name": "aerospikereceiver",
+    "description": "The Aerospike receiver is designed to collect performance metrics from one or",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/aerospikereceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Endpoint",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "endpoint"
+        },
+        {
+          "name": "TLSName",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "tlsname"
+        },
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "username"
+        },
+        {
+          "name": "Password",
+          "type": "configopaque.String",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "password"
+        },
+        {
+          "name": "CollectClusterMetrics",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "collect_cluster_metrics"
+        },
+        {
+          "name": "Timeout",
+          "type": "time.Duration",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "timeout"
+        },
+        {
+          "name": "MetricsBuilderConfig",
+          "type": "metadata.MetricsBuilderConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": ",squash"
+        },
+        {
+          "name": "TLS",
+          "type": "*configtls.ClientConfig",
+          "description": "",
+          "required": false,
+          "mapstructureTag": "tls,omitempty"
+        }
+      ],
+      "imports": [
+        "context",
+        "errors",
+        "fmt",
+        "net",
+        "strconv",
+        "time",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/config/configtls",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/aerospikereceiver/internal/metadata"
+      ],
+      "packageName": "aerospikereceiver"
+    }
+  },
+  {
+    "name": "apachereceiver",
+    "description": "This receiver fetches stats from a Apache Web Server instance using the `server-status?auto` endpoint.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/apachereceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "MetricsBuilderConfig",
+          "type": "metadata.MetricsBuilderConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": ",squash"
+        }
+      ],
+      "imports": [
+        "fmt",
+        "net/url",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/apachereceiver/internal/metadata"
+      ],
+      "packageName": "apachereceiver"
+    }
+  },
+  {
+    "name": "apachesparkreceiver",
+    "description": "This receiver fetches metrics for an Apache Spark cluster through the Apache Spark REST API - specifically, the `/metrics/json`, `/api/v1/applications/[app-id]/stages`, `/api/v1/applications/[app-id]/executors`, and `/api/v1/applications/[app-id]/jobs` endpoints.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/apachesparkreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "ApplicationNames",
+          "type": "[]string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "application_names"
+        }
+      ],
+      "imports": [
+        "errors",
+        "net/url",
+        "time",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/apachesparkreceiver/internal/metadata"
+      ],
+      "packageName": "apachesparkreceiver"
+    }
+  },
+  {
+    "name": "awscloudwatchmetricsreceiver",
+    "description": "Receives Cloudwatch metrics from [AWS Cloudwatch](https://aws.amazon.com/cloudwatch/) via the [AWS SDK for Cloudwatch Logs](https://docs.aws.amazon.com/sdk-for-go/api/service/cloudwatchlogs/)",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/awscloudwatchmetricsreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Region",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "region"
+        },
+        {
+          "name": "Profile",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "profile"
+        },
+        {
+          "name": "IMDSEndpoint",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "imds_endpoint"
+        },
+        {
+          "name": "PollInterval",
+          "type": "time.Duration",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "poll_interval"
+        },
+        {
+          "name": "Metrics",
+          "type": "*MetricsConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "metrics"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net/url",
+        "strings",
+        "time"
+      ],
+      "packageName": "awscloudwatchmetricsreceiver"
+    }
+  },
+  {
+    "name": "awscloudwatchreceiver",
+    "description": "Receives Cloudwatch events from [AWS Cloudwatch](https://aws.amazon.com/cloudwatch/) via the [AWS SDK for Cloudwatch Logs](https://docs.aws.amazon.com/sdk-for-go/api/service/cloudwatchlogs/)",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/awscloudwatchreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Region",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "region"
+        },
+        {
+          "name": "Profile",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "profile"
+        },
+        {
+          "name": "IMDSEndpoint",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "imds_endpoint"
+        },
+        {
+          "name": "Logs",
+          "type": "*LogsConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "logs"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net/url",
+        "time",
+        "go.opentelemetry.io/collector/confmap"
+      ],
+      "packageName": "awscloudwatchreceiver"
+    }
+  },
+  {
+    "name": "awscontainerinsightreceiver",
+    "description": "## Overview",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/awscontainerinsightreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "CollectionInterval",
+          "type": "time.Duration",
+          "description": "CollectionInterval is the interval at which metrics should be collected. The default is 60 second.",
+          "required": true,
+          "mapstructureTag": "collection_interval"
+        },
+        {
+          "name": "ContainerOrchestrator",
+          "type": "string",
+          "description": "ContainerOrchestrator is the type of container orchestration service, e.g. eks or ecs. The default is eks.",
+          "required": true,
+          "mapstructureTag": "container_orchestrator"
+        },
+        {
+          "name": "TagService",
+          "type": "bool",
+          "description": "Whether to add the associated service name as attribute. The default is true",
+          "required": true,
+          "mapstructureTag": "add_service_as_attribute"
+        },
+        {
+          "name": "PrefFullPodName",
+          "type": "bool",
+          "description": "The \"PodName\" attribute is set based on the name of the relevant controllers like Daemonset, Job, ReplicaSet, ReplicationController, ... If it cannot be set that way and PrefFullPodName is true, the \"PodName\" attribute is set to the pod's own name. The default value is false",
+          "required": true,
+          "mapstructureTag": "prefer_full_pod_name"
+        },
+        {
+          "name": "AddFullPodNameMetricLabel",
+          "type": "bool",
+          "description": "The \"FullPodName\" attribute is the pod name including suffix If false FullPodName label is not added The default value is false",
+          "required": true,
+          "mapstructureTag": "add_full_pod_name_metric_label"
+        }
+      ],
+      "imports": [
+        "time"
+      ],
+      "packageName": "awscontainerinsightreceiver"
+    }
+  },
+  {
+    "name": "awsecscontainermetricsreceiver",
+    "description": "## Overview",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/awsecscontainermetricsreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "CollectionInterval",
+          "type": "time.Duration",
+          "description": "CollectionInterval is the interval at which metrics should be collected",
+          "required": true,
+          "mapstructureTag": "collection_interval"
+        }
+      ],
+      "imports": [
+        "time"
+      ],
+      "packageName": "awsecscontainermetricsreceiver"
+    }
+  },
+  {
+    "name": "awsfirehosereceiver",
+    "description": "Receiver for ingesting AWS Kinesis Data Firehose delivery stream messages and parsing the records received based on the configured record type.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/awsfirehosereceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Encoding",
+          "type": "string",
+          "description": "Encoding identifies the encoding of records received from Firehose. Defaults to telemetry-specific encodings: \"cwlog\" for logs, and \"cwmetrics\" for metrics.",
+          "required": true,
+          "mapstructureTag": "encoding"
+        },
+        {
+          "name": "RecordType",
+          "type": "string",
+          "description": "RecordType is an alias for Encoding for backwards compatibility. It is an error to specify both encoding and record_type. Deprecated: [v0.121.0] use Encoding instead.",
+          "required": true,
+          "mapstructureTag": "record_type"
+        },
+        {
+          "name": "AccessKey",
+          "type": "configopaque.String",
+          "description": "AccessKey is checked against the one received with each request. This can be set when creating or updating the Firehose delivery stream.",
+          "required": true,
+          "mapstructureTag": "access_key"
+        }
+      ],
+      "imports": [
+        "errors",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.uber.org/zap"
+      ],
+      "packageName": "awsfirehosereceiver"
+    }
+  },
+  {
+    "name": "awss3receiver",
+    "description": "## Overview",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/awss3receiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "S3Downloader",
+          "type": "S3DownloaderConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "s3downloader"
+        },
+        {
+          "name": "StartTime",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "starttime"
+        },
+        {
+          "name": "EndTime",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "endtime"
+        },
+        {
+          "name": "Encodings",
+          "type": "[]Encoding",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "encodings"
+        },
+        {
+          "name": "Notifications",
+          "type": "Notifications",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "notifications"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "strings",
+        "time",
+        "go.opentelemetry.io/collector/component",
+        "go.uber.org/multierr"
+      ],
+      "packageName": "awss3receiver"
+    }
+  },
+  {
+    "name": "awsxrayreceiver",
+    "description": "## Overview",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/awsxrayreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "ProxyServer",
+          "type": "*proxy.Config",
+          "description": "ProxyServer defines configurations related to the local TCP proxy server.",
+          "required": true,
+          "mapstructureTag": "proxy_server"
+        }
+      ],
+      "imports": [
+        "go.opentelemetry.io/collector/config/confignet",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/proxy"
+      ],
+      "packageName": "awsxrayreceiver"
+    }
+  },
+  {
+    "name": "azureblobreceiver",
+    "description": "This receiver reads logs and trace data from [Azure Blob Storage](https://azure.microsoft.com/en-us/products/storage/blobs/).",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/azureblobreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Authentication",
+          "type": "AuthType",
+          "description": "Type of authentication to use",
+          "required": true,
+          "mapstructureTag": "auth"
+        },
+        {
+          "name": "ConnectionString",
+          "type": "string",
+          "description": "Azure Blob Storage connection key, which can be found in the Azure Blob Storage resource on the Azure Portal. (no default)",
+          "required": true,
+          "mapstructureTag": "connection_string"
+        },
+        {
+          "name": "StorageAccountURL",
+          "type": "string",
+          "description": "Storage Account URL, used with Service Principal authentication",
+          "required": true,
+          "mapstructureTag": "storage_account_url"
+        },
+        {
+          "name": "ServicePrincipal",
+          "type": "ServicePrincipalConfig",
+          "description": "Configuration for the Service Principal credentials",
+          "required": true,
+          "mapstructureTag": "service_principal"
+        },
+        {
+          "name": "Cloud",
+          "type": "CloudType",
+          "description": "Azure Cloud to authenticate against, used with Service Principal authentication",
+          "required": true,
+          "mapstructureTag": "cloud"
+        },
+        {
+          "name": "EventHub",
+          "type": "EventHubConfig",
+          "description": "Configurations of Azure Event Hub triggering on the `Blob Create` event",
+          "required": true,
+          "mapstructureTag": "event_hub"
+        },
+        {
+          "name": "Logs",
+          "type": "LogsConfig",
+          "description": "Logs related configurations",
+          "required": true,
+          "mapstructureTag": "logs"
+        },
+        {
+          "name": "Traces",
+          "type": "TracesConfig",
+          "description": "Traces related configurations",
+          "required": true,
+          "mapstructureTag": "traces"
+        },
+        {
+          "name": "_",
+          "type": "struct{",
+          "description": "prevent unkeyed literal initialization",
+          "required": true
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.uber.org/multierr"
+      ],
+      "packageName": "azureblobreceiver"
+    }
+  },
+  {
+    "name": "azureeventhubreceiver",
+    "description": "## Overview",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/azureeventhubreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Connection",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "connection"
+        },
+        {
+          "name": "Partition",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "partition"
+        },
+        {
+          "name": "Offset",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "offset"
+        },
+        {
+          "name": "StorageID",
+          "type": "*component.ID",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "storage"
+        },
+        {
+          "name": "Format",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "format"
+        },
+        {
+          "name": "ConsumerGroup",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "group"
+        },
+        {
+          "name": "ApplySemanticConventions",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "apply_semantic_conventions"
+        },
+        {
+          "name": "TimeFormats",
+          "type": "TimeFormat",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "time_formats"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "github.com/Azure/azure-amqp-common-go/v4/conn",
+        "go.opentelemetry.io/collector/component"
+      ],
+      "packageName": "azureeventhubreceiver"
+    }
+  },
+  {
+    "name": "azuremonitorreceiver",
+    "description": "This receiver scrapes Azure Monitor API for resources metrics.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/azuremonitorreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "MetricsBuilderConfig",
+          "type": "metadata.MetricsBuilderConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": ",squash"
+        },
+        {
+          "name": "Cloud",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "cloud"
+        },
+        {
+          "name": "SubscriptionIDs",
+          "type": "[]string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "subscription_ids"
+        },
+        {
+          "name": "DiscoverSubscriptions",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "discover_subscriptions"
+        },
+        {
+          "name": "Authentication",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "auth"
+        },
+        {
+          "name": "TenantID",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "tenant_id"
+        },
+        {
+          "name": "ClientID",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "client_id"
+        },
+        {
+          "name": "ClientSecret",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "client_secret"
+        },
+        {
+          "name": "FederatedTokenFile",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "federated_token_file"
+        },
+        {
+          "name": "ResourceGroups",
+          "type": "[]string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "resource_groups"
+        },
+        {
+          "name": "Services",
+          "type": "[]string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "services"
+        },
+        {
+          "name": "Metrics",
+          "type": "NestedListAlias",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "metrics"
+        },
+        {
+          "name": "CacheResources",
+          "type": "float64",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "cache_resources"
+        },
+        {
+          "name": "CacheResourcesDefinitions",
+          "type": "float64",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "cache_resources_definitions"
+        },
+        {
+          "name": "MaximumNumberOfMetricsInACall",
+          "type": "int",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "maximum_number_of_metrics_in_a_call"
+        },
+        {
+          "name": "MaximumNumberOfRecordsPerResource",
+          "type": "int32",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "maximum_number_of_records_per_resource"
+        },
+        {
+          "name": "AppendTagsAsAttributes",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "append_tags_as_attributes"
+        },
+        {
+          "name": "Dimensions",
+          "type": "DimensionsConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "dimensions"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/azuremonitorreceiver/internal/metadata"
+      ],
+      "packageName": "azuremonitorreceiver"
+    }
+  },
+  {
+    "name": "bigipreceiver",
+    "description": "This receiver fetches stats from a F5 Big-IP node using F5's [iControl REST API](https://clouddocs.f5.com/api/icontrol-rest).",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/bigipreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "username"
+        },
+        {
+          "name": "Password",
+          "type": "configopaque.String",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "password"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net/url",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/bigipreceiver/internal/metadata"
+      ],
+      "packageName": "bigipreceiver"
+    }
+  },
+  {
+    "name": "carbonreceiver",
+    "description": "The [Carbon](https://github.com/graphite-project/carbon) receiver supports",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/carbonreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "TCPIdleTimeout",
+          "type": "time.Duration",
+          "description": "TCPIdleTimeout is the timeout for idle TCP connections, it is ignored if transport being used is UDP.",
+          "required": true,
+          "mapstructureTag": "tcp_idle_timeout"
+        },
+        {
+          "name": "Parser",
+          "type": "*protocol.Config",
+          "description": "Parser specifies a parser and the respective configuration to be used by the receiver.",
+          "required": true,
+          "mapstructureTag": "parser"
+        }
+      ],
+      "imports": [
+        "errors",
+        "time",
+        "go.opentelemetry.io/collector/config/confignet",
+        "go.opentelemetry.io/collector/confmap/xconfmap",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/carbonreceiver/protocol"
+      ],
+      "packageName": "carbonreceiver"
+    }
+  },
+  {
+    "name": "chronyreceiver",
+    "description": "The [chrony] receiver is a pure go implementation of the command `chronyc tracking` to allow for",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/chronyreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Endpoint",
+          "type": "string",
+          "description": "Endpoint is the published address or unix socket that allows clients to connect to: The allowed format is: unix:///path/to/chronyd/unix.sock udp://localhost:323 The default value is unix:///var/run/chrony/chronyd.sock",
+          "required": true,
+          "mapstructureTag": "endpoint"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "time",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/chronyreceiver/internal/chrony",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/chronyreceiver/internal/metadata"
+      ],
+      "packageName": "chronyreceiver"
+    }
+  },
+  {
+    "name": "cloudflarereceiver",
+    "description": "This Cloudflare receiver allows Cloudflare's [LogPush Jobs](https://developers.cloudflare.com/logs/logpush/) to send logs over HTTPS from the Cloudflare logs aggregation system to an OpenTelemetry collector.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/cloudflarereceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Logs",
+          "type": "LogsConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "logs"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net",
+        "go.opentelemetry.io/collector/config/configtls",
+        "go.uber.org/multierr"
+      ],
+      "packageName": "cloudflarereceiver"
+    }
+  },
+  {
+    "name": "cloudfoundryreceiver",
+    "description": "The Cloud Foundry receiver connects to the RLP (Reverse Log Proxy) Gateway of the Cloud Foundry installation, typically",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/cloudfoundryreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "RLPGateway",
+          "type": "RLPGatewayConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "rlp_gateway"
+        },
+        {
+          "name": "UAA",
+          "type": "UAAConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "uaa"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net/url",
+        "strings",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/config/configopaque"
+      ],
+      "packageName": "cloudfoundryreceiver"
+    }
+  },
+  {
+    "name": "collectdreceiver",
+    "description": "This receiver can receive data exported by the CollectD's `write_http`",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/collectdreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Timeout",
+          "type": "time.Duration",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "timeout"
+        },
+        {
+          "name": "Encoding",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "encoding"
+        },
+        {
+          "name": "AttributesPrefix",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "attributes_prefix"
+        }
+      ],
+      "imports": [
+        "fmt",
+        "strings",
+        "time",
+        "go.opentelemetry.io/collector/config/confighttp"
+      ],
+      "packageName": "collectdreceiver"
+    }
+  },
+  {
+    "name": "couchdbreceiver",
+    "description": "This receiver fetches stats from a couchdb server using the `/_node/{node-name}/_stats/couchdb` [endpoint](https://docs.couchdb.org/en/latest/api/server/common.html#node-node-name-stats).",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/couchdbreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "username"
+        },
+        {
+          "name": "Password",
+          "type": "configopaque.String",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "password"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net/url",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/couchdbreceiver/internal/metadata"
+      ],
+      "packageName": "couchdbreceiver"
+    }
+  },
+  {
+    "name": "datadogreceiver",
+    "description": "## Overview",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/datadogreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "ReadTimeout",
+          "type": "time.Duration",
+          "description": "ReadTimeout of the http server",
+          "required": true,
+          "mapstructureTag": "read_timeout"
+        }
+      ],
+      "imports": [
+        "time",
+        "go.opentelemetry.io/collector/config/confighttp"
+      ],
+      "packageName": "datadogreceiver"
+    }
+  },
+  {
+    "name": "dockerstatsreceiver",
+    "description": "The Docker Stats receiver queries the local Docker daemon's container stats API for",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/dockerstatsreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "ContainerLabelsToMetricLabels",
+          "type": "map[string]string",
+          "description": "A mapping of container label names to MetricDescriptor label keys. The corresponding container label value will become the DataPoint label value for the mapped name.  E.g. `io.kubernetes.container.name: container_spec_name` would result in a MetricDescriptor label called `container_spec_name` whose Metric DataPoints have the value of the `io.kubernetes.container.name` container label.",
+          "required": true,
+          "mapstructureTag": "container_labels_to_metric_labels"
+        },
+        {
+          "name": "EnvVarsToMetricLabels",
+          "type": "map[string]string",
+          "description": "A mapping of container environment variable names to MetricDescriptor label keys.  The corresponding env var values become the DataPoint label value. E.g. `APP_VERSION: version` would result MetricDescriptors having a label key called `version` whose DataPoint label values are the value of the `APP_VERSION` environment variable configured for that particular container, if present.",
+          "required": true,
+          "mapstructureTag": "env_vars_to_metric_labels"
+        }
+      ],
+      "imports": [
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/confmap",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/docker",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/dockerstatsreceiver/internal/metadata"
+      ],
+      "packageName": "dockerstatsreceiver"
+    }
+  },
+  {
+    "name": "elasticsearchreceiver",
+    "description": "This receiver queries the Elasticsearch [node stats](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-stats.html), [cluster health](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.html) and [index stats](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-stats.html) endpoints in order to scrape metrics from a running Elasticsearch cluster.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/elasticsearchreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Nodes",
+          "type": "[]string",
+          "description": "Nodes defines the nodes to scrape. See https://www.elastic.co/guide/en/elasticsearch/reference/7.9/cluster.html#cluster-nodes for which selectors may be used here. If Nodes is empty, no nodes will be scraped.",
+          "required": true,
+          "mapstructureTag": "nodes"
+        },
+        {
+          "name": "SkipClusterMetrics",
+          "type": "bool",
+          "description": "SkipClusterMetrics indicates whether cluster level metrics from /_cluster/* endpoints should be scraped or not.",
+          "required": true,
+          "mapstructureTag": "skip_cluster_metrics"
+        },
+        {
+          "name": "Indices",
+          "type": "[]string",
+          "description": "Indices defines the indices to scrape. See https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-stats.html#index-stats-api-path-params for which names are viable. If Indices is empty, no indices will be scraped.",
+          "required": true,
+          "mapstructureTag": "indices"
+        },
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "Username is the username used when making REST calls to elasticsearch. Must be specified if Password is. Not required.",
+          "required": true,
+          "mapstructureTag": "username"
+        },
+        {
+          "name": "Password",
+          "type": "configopaque.String",
+          "description": "Password is the password used when making REST calls to elasticsearch. Must be specified if Username is. Not required.",
+          "required": true,
+          "mapstructureTag": "password"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net/url",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/elasticsearchreceiver/internal/metadata"
+      ],
+      "packageName": "elasticsearchreceiver"
+    }
+  },
+  {
+    "name": "envoyalsreceiver",
+    "description": "This is a receiver for the [Envoy gRPC ALS](https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/access_loggers/grpc/v3/als.proto#envoy-v3-api-msg-extensions-access-loggers-grpc-v3-httpgrpcaccesslogconfig) sink.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/envoyalsreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/configgrpc"
+      ],
+      "packageName": "envoyalsreceiver"
+    }
+  },
+  {
+    "name": "expvarreceiver",
+    "description": "An Expvar Receiver scrapes metrics from [expvar](https://pkg.go.dev/expvar),",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/expvarreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [
+        "errors",
+        "fmt",
+        "net/url",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/expvarreceiver/internal/metadata"
+      ],
+      "packageName": "expvarreceiver"
+    }
+  },
+  {
+    "name": "faroreceiver",
+    "description": "TODO",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/faroreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [
+        "errors",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/confmap"
+      ],
+      "packageName": "faroreceiver"
+    }
+  },
+  {
+    "name": "filelogreceiver",
+    "description": "Tails and parses logs from files.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/filelogreceiver/README.md"
+  },
+  {
+    "name": "filestatsreceiver",
+    "description": "The File Stats receiver collects metrics from files specified with a glob pattern.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/filestatsreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Include",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "include"
+        }
+      ],
+      "imports": [
+        "errors",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filestatsreceiver/internal/metadata"
+      ],
+      "packageName": "filestatsreceiver"
+    }
+  },
+  {
+    "name": "flinkmetricsreceiver",
+    "description": "This receiver uses Flink's [REST API](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/ops/metrics/#rest-api-integration) to collect Jobmanager, Taskmanager, Job, Task and Operator metrics.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/flinkmetricsreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [
+        "fmt",
+        "net/url",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/flinkmetricsreceiver/internal/metadata"
+      ],
+      "packageName": "flinkmetricsreceiver"
+    }
+  },
+  {
+    "name": "fluentforwardreceiver",
+    "description": "This receiver runs a TCP server that accepts events via the [Fluent Forward",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/fluentforwardreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "ListenAddress",
+          "type": "string",
+          "description": "The address to listen on for incoming Fluent Forward events.  Should be of the form `<ip addr>:<port>` (TCP) or `unix://<socket_path>` (Unix domain socket).",
+          "required": true,
+          "mapstructureTag": "endpoint"
+        }
+      ],
+      "imports": [],
+      "packageName": "fluentforwardreceiver"
+    }
+  },
+  {
+    "name": "githubreceiver",
+    "description": "# Table of Contents",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/githubreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Scrapers",
+          "type": "map[string]internal.Config",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "scrapers"
+        },
+        {
+          "name": "WebHook",
+          "type": "WebHook",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "webhook"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "time",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/confmap",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/githubreceiver/internal",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/githubreceiver/internal/metadata"
+      ],
+      "packageName": "githubreceiver"
+    }
+  },
+  {
+    "name": "gitlabreceiver",
+    "description": "## Traces - Getting Started",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/gitlabreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "WebHook",
+          "type": "WebHook",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "webhook"
+        }
+      ],
+      "imports": [
+        "errors",
+        "time",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/confmap",
+        "go.uber.org/multierr"
+      ],
+      "packageName": "gitlabreceiver"
+    }
+  },
+  {
+    "name": "googlecloudmonitoringreceiver",
+    "description": "The primary objective of the Google Cloud Monitoring Receiver is to gather time series metrics data from all Google services and convert this data into a pipeline format that facilitates further use.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/googlecloudmonitoringreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "ProjectID",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "project_id"
+        },
+        {
+          "name": "MetricsList",
+          "type": "[]MetricConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "metrics_list"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "time",
+        "go.opentelemetry.io/collector/scraper/scraperhelper"
+      ],
+      "packageName": "googlecloudmonitoringreceiver"
+    }
+  },
+  {
+    "name": "googlecloudpubsubreceiver",
+    "description": "> ⚠️ This is a community-provided module. It has been developed and extensively tested at Collibra, but it is not officially supported by GCP.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/googlecloudpubsubreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "ProjectID",
+          "type": "string",
+          "description": "Google Cloud Project ID where the Pubsub client will connect to",
+          "required": true,
+          "mapstructureTag": "project"
+        },
+        {
+          "name": "UserAgent",
+          "type": "string",
+          "description": "User agent that will be used by the Pubsub client to connect to the service",
+          "required": true,
+          "mapstructureTag": "user_agent"
+        },
+        {
+          "name": "Endpoint",
+          "type": "string",
+          "description": "Override of the Pubsub Endpoint, leave empty for the default endpoint",
+          "required": true,
+          "mapstructureTag": "endpoint"
+        },
+        {
+          "name": "Insecure",
+          "type": "bool",
+          "description": "Only has effect if Endpoint is not \"\"",
+          "required": true,
+          "mapstructureTag": "insecure"
+        },
+        {
+          "name": "TimeoutSettings",
+          "type": "exporterhelper.TimeoutConfig",
+          "description": "Timeout for all API calls. If not set, defaults to 12 seconds.",
+          "required": true,
+          "mapstructureTag": ",squash"
+        },
+        {
+          "name": "Subscription",
+          "type": "string",
+          "description": "The fully qualified resource name of the Pubsub subscription",
+          "required": true,
+          "mapstructureTag": "subscription"
+        },
+        {
+          "name": "Encoding",
+          "type": "string",
+          "description": "Lock down the encoding of the payload, leave empty for attribute based detection",
+          "required": true,
+          "mapstructureTag": "encoding"
+        },
+        {
+          "name": "Compression",
+          "type": "string",
+          "description": "Lock down the compression of the payload, leave empty for attribute based detection",
+          "required": true,
+          "mapstructureTag": "compression"
+        },
+        {
+          "name": "ClientID",
+          "type": "string",
+          "description": "The client id that will be used by Pubsub to make load balancing decisions",
+          "required": true,
+          "mapstructureTag": "client_id"
+        }
+      ],
+      "imports": [
+        "fmt",
+        "regexp",
+        "go.opentelemetry.io/collector/exporter/exporterhelper"
+      ],
+      "packageName": "googlecloudpubsubreceiver"
+    }
+  },
+  {
+    "name": "googlecloudspannerreceiver",
+    "description": "Google Cloud Spanner enable you to investigate issues with your database",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/googlecloudspannerreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "TopMetricsQueryMaxRows",
+          "type": "int",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "top_metrics_query_max_rows"
+        },
+        {
+          "name": "BackfillEnabled",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "backfill_enabled"
+        },
+        {
+          "name": "CardinalityTotalLimit",
+          "type": "int",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "cardinality_total_limit"
+        },
+        {
+          "name": "Projects",
+          "type": "[]Project",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "projects"
+        },
+        {
+          "name": "HideTopnLockstatsRowrangestartkey",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "hide_topn_lockstats_rowrangestartkey"
+        },
+        {
+          "name": "TruncateText",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "truncate_text"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "go.opentelemetry.io/collector/scraper/scraperhelper"
+      ],
+      "packageName": "googlecloudspannerreceiver"
+    }
+  },
+  {
+    "name": "haproxyreceiver",
+    "description": "The HAProxy receiver generates metrics by polling periodically the HAProxy process through a dedicated socket or HTTP URL.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/haproxyreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [
+        "errors",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/haproxyreceiver/internal/metadata"
+      ],
+      "packageName": "haproxyreceiver"
+    }
+  },
+  {
+    "name": "hostmetricsreceiver",
+    "description": "The Host Metrics receiver generates metrics about the host system scraped",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Scrapers",
+          "type": "map[component.Type]component.Config",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "-"
+        },
+        {
+          "name": "RootPath",
+          "type": "string",
+          "description": "RootPath is the host's root directory (linux only).",
+          "required": true,
+          "mapstructureTag": "root_path"
+        },
+        {
+          "name": "MetadataCollectionInterval",
+          "type": "time.Duration",
+          "description": "Collection interval for metadata. Metadata of the particular entity is collected when the entity changes. In addition metadata of all entities is collected periodically even if no changes happen. Setting the duration to 0 will disable periodic collection (however will not impact metadata collection on changes).",
+          "required": true,
+          "mapstructureTag": "metadata_collection_interval"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "time",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/confmap",
+        "go.opentelemetry.io/collector/confmap/xconfmap",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal"
+      ],
+      "packageName": "hostmetricsreceiver"
+    }
+  },
+  {
+    "name": "httpcheckreceiver",
+    "description": "The HTTP Check Receiver can be used for synthetic checks against HTTP endpoints. This receiver will make a request to the specified `endpoint` using the",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/httpcheckreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Targets",
+          "type": "[]*targetConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "targets"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net/url",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/httpcheckreceiver/internal/metadata"
+      ],
+      "packageName": "httpcheckreceiver"
+    }
+  },
+  {
+    "name": "huaweicloudcesreceiver",
+    "description": "This receiver contains the implementation of the Huawei Cloud [Cloud Eye Service](https://www.huaweicloud.com/intl/en-us/product/ces.html) (CES) receiver for the OpenTelemetry Collector. The receiver collects metrics from Huawei Cloud's CES service and sends them to the OpenTelemetry Collector for processing and exporting.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/huaweicloudcesreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Nodes",
+          "type": "[]string",
+          "description": "Nodes defines the nodes to scrape. See https://www.elastic.co/guide/en/elasticsearch/reference/7.9/cluster.html#cluster-nodes for which selectors may be used here. If Nodes is empty, no nodes will be scraped.",
+          "required": true,
+          "mapstructureTag": "nodes"
+        },
+        {
+          "name": "SkipClusterMetrics",
+          "type": "bool",
+          "description": "SkipClusterMetrics indicates whether cluster level metrics from /_cluster/* endpoints should be scraped or not.",
+          "required": true,
+          "mapstructureTag": "skip_cluster_metrics"
+        },
+        {
+          "name": "Indices",
+          "type": "[]string",
+          "description": "Indices defines the indices to scrape. See https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-stats.html#index-stats-api-path-params for which names are viable. If Indices is empty, no indices will be scraped.",
+          "required": true,
+          "mapstructureTag": "indices"
+        },
+        {
+          "name": "ProjectID",
+          "type": "string",
+          "description": "ProjectID is a string to reference project where metrics should be associated with. If ProjectID is not filled in, the SDK will automatically call the IAM service to query the project id corresponding to the region.",
+          "required": true,
+          "mapstructureTag": "project_id"
+        },
+        {
+          "name": "RegionID",
+          "type": "string",
+          "description": "RegionID is the ID of the CES region.",
+          "required": true,
+          "mapstructureTag": "region_id"
+        },
+        {
+          "name": "Period",
+          "type": "int32",
+          "description": "How retrieved data from Cloud Eye is aggregated. Possible values are 1, 300, 1200, 3600, 14400, and 86400. 1: Cloud Eye performs no aggregation and displays raw data. 300: Cloud Eye aggregates data every 5 minutes. 1200: Cloud Eye aggregates data every 20 minutes. 3600: Cloud Eye aggregates data every hour. 14400: Cloud Eye aggregates data every 4 hours. 86400: Cloud Eye aggregates data every 24 hours. For details about the aggregation, see https://support.huaweicloud.com/intl/en-us/ces_faq/ces_faq_0009.html",
+          "required": true,
+          "mapstructureTag": "period"
+        },
+        {
+          "name": "Filter",
+          "type": "string",
+          "description": "Data aggregation method. The supported values ​​are max, min, average, sum, variance.",
+          "required": true,
+          "mapstructureTag": "filter"
+        },
+        {
+          "name": "BackOffConfig",
+          "type": "configretry.BackOffConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "retry_on_failure"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "slices",
+        "github.com/huaweicloud/huaweicloud-sdk-go-v3/services/ces/v1/model",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/config/configretry",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr"
+      ],
+      "packageName": "huaweicloudcesreceiver"
+    }
+  },
+  {
+    "name": "iisreceiver",
+    "description": "The `iis` receiver grabs metrics about an IIS instance using the Windows Performance Counters.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/iisreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/iisreceiver/internal/metadata"
+      ],
+      "packageName": "iisreceiver"
+    }
+  },
+  {
+    "name": "influxdbreceiver",
+    "description": "This receiver accepts metrics data as [InfluxDB Line Protocol](https://docs.influxdata.com/influxdb/v2.0/reference/syntax/line-protocol/).",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/influxdbreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [
+        "go.opentelemetry.io/collector/config/confighttp"
+      ],
+      "packageName": "influxdbreceiver"
+    }
+  },
+  {
+    "name": "jaegerreceiver",
+    "description": "Receives trace data in [Jaeger](https://www.jaegertracing.io/) format.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/jaegerreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Protocols",
+          "type": "",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "protocols"
+        },
+        {
+          "name": "RemoteSampling",
+          "type": "*RemoteSamplingConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "remote_sampling"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net",
+        "strconv",
+        "time",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/configgrpc",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/confmap"
+      ],
+      "packageName": "jaegerreceiver"
+    }
+  },
+  {
+    "name": "jmxreceiver",
+    "description": "### Overview",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/jmxreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "JARPath",
+          "type": "string",
+          "description": "The path for the JMX Metric Gatherer uber JAR (/opt/opentelemetry-java-contrib-jmx-metrics.jar by default).",
+          "required": true,
+          "mapstructureTag": "jar_path"
+        },
+        {
+          "name": "Endpoint",
+          "type": "string",
+          "description": "The Service URL or host:port for the target coerced to one of form: service:jmx:rmi:///jndi/rmi://<host>:<port>/jmxrmi.",
+          "required": true,
+          "mapstructureTag": "endpoint"
+        },
+        {
+          "name": "TargetSystem",
+          "type": "string",
+          "description": "The target system for the metric gatherer whose built in groovy script to run.",
+          "required": true,
+          "mapstructureTag": "target_system"
+        },
+        {
+          "name": "CollectionInterval",
+          "type": "time.Duration",
+          "description": "The duration in between groovy script invocations and metric exports (10 seconds by default). Will be converted to milliseconds.",
+          "required": true,
+          "mapstructureTag": "collection_interval"
+        },
+        {
+          "name": "OTLPExporterConfig",
+          "type": "otlpExporterConfig",
+          "description": "The exporter settings for",
+          "required": true,
+          "mapstructureTag": "otlp"
+        },
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "The JMX username",
+          "required": true,
+          "mapstructureTag": "username"
+        },
+        {
+          "name": "Password",
+          "type": "configopaque.String",
+          "description": "The JMX password",
+          "required": true,
+          "mapstructureTag": "password"
+        },
+        {
+          "name": "KeystorePath",
+          "type": "string",
+          "description": "The keystore path for SSL",
+          "required": true,
+          "mapstructureTag": "keystore_path"
+        },
+        {
+          "name": "KeystorePassword",
+          "type": "configopaque.String",
+          "description": "The keystore password for SSL",
+          "required": true,
+          "mapstructureTag": "keystore_password"
+        },
+        {
+          "name": "KeystoreType",
+          "type": "string",
+          "description": "The keystore type for SSL",
+          "required": true,
+          "mapstructureTag": "keystore_type"
+        },
+        {
+          "name": "TruststorePath",
+          "type": "string",
+          "description": "The truststore path for SSL",
+          "required": true,
+          "mapstructureTag": "truststore_path"
+        },
+        {
+          "name": "TruststorePassword",
+          "type": "configopaque.String",
+          "description": "The truststore password for SSL",
+          "required": true,
+          "mapstructureTag": "truststore_password"
+        },
+        {
+          "name": "TruststoreType",
+          "type": "string",
+          "description": "The truststore type for SSL",
+          "required": true,
+          "mapstructureTag": "truststore_type"
+        },
+        {
+          "name": "RemoteProfile",
+          "type": "string",
+          "description": "The JMX remote profile.  Should be one of: `\"SASL/PLAIN\"`, `\"SASL/DIGEST-MD5\"`, `\"SASL/CRAM-MD5\"`, `\"TLS SASL/PLAIN\"`, `\"TLS SASL/DIGEST-MD5\"`, or `\"TLS SASL/CRAM-MD5\"`, though no enforcement is applied.",
+          "required": true,
+          "mapstructureTag": "remote_profile"
+        },
+        {
+          "name": "Realm",
+          "type": "string",
+          "description": "The SASL/DIGEST-MD5 realm",
+          "required": true,
+          "mapstructureTag": "realm"
+        },
+        {
+          "name": "AdditionalJars",
+          "type": "[]string",
+          "description": "Array of additional JARs to be added to the class path when launching the JMX Metric Gatherer JAR",
+          "required": true,
+          "mapstructureTag": "additional_jars"
+        },
+        {
+          "name": "ResourceAttributes",
+          "type": "map[string]string",
+          "description": "Map of resource attributes used by the Java SDK Autoconfigure to set resource attributes",
+          "required": true,
+          "mapstructureTag": "resource_attributes"
+        },
+        {
+          "name": "LogLevel",
+          "type": "string",
+          "description": "Log level used by the JMX metric gatherer. Should be one of: `\"trace\"`, `\"debug\"`, `\"info\"`, `\"warn\"`, `\"error\"`, `\"off\"`",
+          "required": true,
+          "mapstructureTag": "log_level"
+        }
+      ],
+      "imports": [
+        "crypto/sha256",
+        "encoding/hex",
+        "errors",
+        "fmt",
+        "io",
+        "os",
+        "sort",
+        "strings",
+        "time",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/exporter/exporterhelper",
+        "go.uber.org/zap",
+        "go.uber.org/zap/zapcore"
+      ],
+      "packageName": "jmxreceiver"
+    }
+  },
+  {
+    "name": "journaldreceiver",
+    "description": "Parses Journald events from systemd journal.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/journaldreceiver/README.md"
+  },
+  {
+    "name": "k8sclusterreceiver",
+    "description": "The Kubernetes Cluster receiver collects cluster-level metrics and entity events from the Kubernetes",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/k8sclusterreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "CollectionInterval",
+          "type": "time.Duration",
+          "description": "Collection interval for metrics.",
+          "required": true,
+          "mapstructureTag": "collection_interval"
+        },
+        {
+          "name": "NodeConditionTypesToReport",
+          "type": "[]string",
+          "description": "Node condition types to report. See all condition types, see here: https://kubernetes.io/docs/concepts/architecture/nodes/#condition.",
+          "required": true,
+          "mapstructureTag": "node_conditions_to_report"
+        },
+        {
+          "name": "AllocatableTypesToReport",
+          "type": "[]string",
+          "description": "Allocate resource types to report. See all resource types, see here: https://kubernetes.io/docs/concepts/architecture/nodes/#capacity",
+          "required": true,
+          "mapstructureTag": "allocatable_types_to_report"
+        },
+        {
+          "name": "MetadataExporters",
+          "type": "[]string",
+          "description": "List of exporters to which metadata from this receiver should be forwarded to.",
+          "required": true,
+          "mapstructureTag": "metadata_exporters"
+        },
+        {
+          "name": "Distribution",
+          "type": "string",
+          "description": "Whether OpenShift support should be enabled or not.",
+          "required": true,
+          "mapstructureTag": "distribution"
+        },
+        {
+          "name": "MetadataCollectionInterval",
+          "type": "time.Duration",
+          "description": "Collection interval for metadata. Metadata of the particular entity in the cluster is collected when the entity changes. In addition metadata of all entities is collected periodically even if no changes happen. Setting the duration to 0 will disable periodic collection (however will not impact metadata collection on changes).",
+          "required": true,
+          "mapstructureTag": "metadata_collection_interval"
+        },
+        {
+          "name": "Namespace",
+          "type": "string",
+          "description": "Namespace to fetch resources from. If this is set, certain cluster-wide resources such as Nodes or Namespaces will not be able to be observed. Setting this option is recommended in environments where due to security restrictions the collector cannot be granted cluster-wide permissions.",
+          "required": true,
+          "mapstructureTag": "namespace"
+        }
+      ],
+      "imports": [
+        "fmt",
+        "time",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver/internal/metadata"
+      ],
+      "packageName": "k8sclusterreceiver"
+    }
+  },
+  {
+    "name": "k8seventsreceiver",
+    "description": "The kubernetes Events receiver collects events from the Kubernetes",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/k8seventsreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Namespaces",
+          "type": "[]string",
+          "description": "List of ‘namespaces’ to collect events from.",
+          "required": true,
+          "mapstructureTag": "namespaces"
+        },
+        {
+          "name": "makeClient",
+          "type": "func(apiConf k8sconfig.APIConfig) (k8s.Interface, error)",
+          "description": "For mocking",
+          "required": true
+        }
+      ],
+      "imports": [
+        "k8s \"k8s.io/client-go/kubernetes\"",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
+      ],
+      "packageName": "k8seventsreceiver"
+    }
+  },
+  {
+    "name": "k8slogreceiver",
+    "description": "Tails and parses logs in k8s environment.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/k8slogreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Discovery",
+          "type": "SourceConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "discovery"
+        },
+        {
+          "name": "Extract",
+          "type": "ExtractConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "extract"
+        }
+      ],
+      "imports": [
+        "fmt",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
+      ],
+      "packageName": "k8slogreceiver"
+    }
+  },
+  {
+    "name": "k8sobjectsreceiver",
+    "description": "The kubernetes Objects receiver collects(pull/watch) objects from the Kubernetes API server.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/k8sobjectsreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Objects",
+          "type": "[]*K8sObjectsConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "objects"
+        },
+        {
+          "name": "makeDiscoveryClient",
+          "type": "func() (discovery.ServerResourcesInterface, error)",
+          "description": "For mocking purposes only.",
+          "required": true
+        },
+        {
+          "name": "makeDynamicClient",
+          "type": "func() (dynamic.Interface, error)",
+          "description": "",
+          "required": true
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "strings",
+        "time",
+        "k8s.io/apimachinery/pkg/runtime/schema",
+        "apiWatch \"k8s.io/apimachinery/pkg/watch\"",
+        "k8s.io/client-go/discovery",
+        "k8s.io/client-go/dynamic",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig"
+      ],
+      "packageName": "k8sobjectsreceiver"
+    }
+  },
+  {
+    "name": "kafkametricsreceiver",
+    "description": "Kafka metrics receiver collects kafka metrics (brokers, topics, partitions, consumer groups) from kafka server,",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/kafkametricsreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "ClusterAlias",
+          "type": "string",
+          "description": "Alias name of the kafka cluster",
+          "required": true,
+          "mapstructureTag": "cluster_alias"
+        },
+        {
+          "name": "TopicMatch",
+          "type": "string",
+          "description": "TopicMatch topics to collect metrics on",
+          "required": true,
+          "mapstructureTag": "topic_match"
+        },
+        {
+          "name": "GroupMatch",
+          "type": "string",
+          "description": "GroupMatch consumer groups to collect on",
+          "required": true,
+          "mapstructureTag": "group_match"
+        },
+        {
+          "name": "RefreshFrequency",
+          "type": "time.Duration",
+          "description": "Cluster metadata refresh frequency Configures the refresh frequency to update cached cluster metadata Defaults to 10 minutes from Sarama library If Metadata.RefreshInterval is set, this will be ignored. Deprecated [v0.122.0]: use Metadata.RefreshInterval instead.",
+          "required": true,
+          "mapstructureTag": "refresh_frequency"
+        },
+        {
+          "name": "Scrapers",
+          "type": "[]string",
+          "description": "Scrapers defines which metric data points to be captured from kafka",
+          "required": true,
+          "mapstructureTag": "scrapers"
+        }
+      ],
+      "imports": [
+        "time",
+        "go.opentelemetry.io/collector/confmap",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/kafka/configkafka",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kafkametricsreceiver/internal/metadata"
+      ],
+      "packageName": "kafkametricsreceiver"
+    }
+  },
+  {
+    "name": "kafkareceiver",
+    "description": "Kafka receiver receives traces, metrics, and logs from Kafka. Message payload encoding is configurable.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/kafkareceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Topic",
+          "type": "string",
+          "description": "The name of the kafka topic to consume from (default \"otlp_spans\" for traces, \"otlp_metrics\" for metrics, \"otlp_logs\" for logs)",
+          "required": true,
+          "mapstructureTag": "topic"
+        },
+        {
+          "name": "Encoding",
+          "type": "string",
+          "description": "Encoding of the messages (default \"otlp_proto\")",
+          "required": true,
+          "mapstructureTag": "encoding"
+        },
+        {
+          "name": "MessageMarking",
+          "type": "MessageMarking",
+          "description": "Controls the way the messages are marked as consumed",
+          "required": true,
+          "mapstructureTag": "message_marking"
+        },
+        {
+          "name": "HeaderExtraction",
+          "type": "HeaderExtraction",
+          "description": "Extract headers from kafka records",
+          "required": true,
+          "mapstructureTag": "header_extraction"
+        },
+        {
+          "name": "ErrorBackOff",
+          "type": "configretry.BackOffConfig",
+          "description": "In case of some errors returned by the next consumer, the receiver will wait and retry the failed message",
+          "required": true,
+          "mapstructureTag": "error_backoff"
+        }
+      ],
+      "imports": [
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/configretry",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/kafka/configkafka"
+      ],
+      "packageName": "kafkareceiver"
+    }
+  },
+  {
+    "name": "kubeletstatsreceiver",
+    "description": "The Kubelet Stats Receiver pulls node, pod, container, and volume metrics from the API server on a kubelet",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/kubeletstatsreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "ExtraMetadataLabels",
+          "type": "[]kubelet.MetadataLabel",
+          "description": "ExtraMetadataLabels contains list of extra metadata that should be taken from /pods endpoint and put as extra labels on metrics resource. No additional metadata is fetched by default, so there are no extra calls to /pods endpoint. Supported values include container.id and k8s.volume.type.",
+          "required": true,
+          "mapstructureTag": "extra_metadata_labels"
+        },
+        {
+          "name": "MetricGroupsToCollect",
+          "type": "[]kubelet.MetricGroup",
+          "description": "MetricGroupsToCollect provides a list of metrics groups to collect metrics from. \"container\", \"pod\", \"node\" and \"volume\" are the only valid groups.",
+          "required": true,
+          "mapstructureTag": "metric_groups"
+        },
+        {
+          "name": "K8sAPIConfig",
+          "type": "*k8sconfig.APIConfig",
+          "description": "Configuration of the Kubernetes API client.",
+          "required": true,
+          "mapstructureTag": "k8s_api_config"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/confignet",
+        "go.opentelemetry.io/collector/confmap",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "k8s.io/client-go/kubernetes",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig",
+        "kube \"github.com/open-telemetry/opentelemetry-collector-contrib/internal/kubelet\"",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kubeletstatsreceiver/internal/kubelet",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kubeletstatsreceiver/internal/metadata"
+      ],
+      "packageName": "kubeletstatsreceiver"
+    }
+  },
+  {
+    "name": "libhoneyreceiver",
+    "description": "### The purpose and use-cases of the new component",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/libhoneyreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "HTTP",
+          "type": "*HTTPConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "http"
+        },
+        {
+          "name": "AuthAPI",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "auth_api"
+        },
+        {
+          "name": "Wrapper",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "wrapper"
+        },
+        {
+          "name": "FieldMapConfig",
+          "type": "libhoneyevent.FieldMapConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "fields"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net/url",
+        "path",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/confmap",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/libhoneyreceiver/internal/libhoneyevent"
+      ],
+      "packageName": "libhoneyreceiver"
+    }
+  },
+  {
+    "name": "lokireceiver",
+    "description": "The Loki receiver implements the [Loki push api](https://grafana.com/docs/loki/latest/clients/promtail/#loki-push-api) as specified in [Loki HTTP API: Ingest logs](https://grafana.com/docs/loki/latest/reference/loki-http-api/#ingest-logs).",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/lokireceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Protocols",
+          "type": "",
+          "description": "Protocols is the configuration for the supported protocols, currently gRPC and HTTP (Proto and JSON).",
+          "required": true,
+          "mapstructureTag": "protocols"
+        },
+        {
+          "name": "KeepTimestamp",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "use_incoming_timestamp"
+        }
+      ],
+      "imports": [
+        "errors",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/configgrpc",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/confmap"
+      ],
+      "packageName": "lokireceiver"
+    }
+  },
+  {
+    "name": "memcachedreceiver",
+    "description": "This receiver can fetch stats from a Memcached instance using the [stats",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/memcachedreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [
+        "go.opentelemetry.io/collector/config/confignet",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/memcachedreceiver/internal/metadata"
+      ],
+      "packageName": "memcachedreceiver"
+    }
+  },
+  {
+    "name": "mongodbatlasreceiver",
+    "description": "Receives metrics from [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/mongodbatlasreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "PublicKey",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "public_key"
+        },
+        {
+          "name": "PrivateKey",
+          "type": "configopaque.String",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "private_key"
+        },
+        {
+          "name": "Granularity",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "granularity"
+        },
+        {
+          "name": "MetricsBuilderConfig",
+          "type": "metadata.MetricsBuilderConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": ",squash"
+        },
+        {
+          "name": "Projects",
+          "type": "[]*ProjectConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "projects"
+        },
+        {
+          "name": "Alerts",
+          "type": "AlertConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "alerts"
+        },
+        {
+          "name": "Events",
+          "type": "*EventsConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "events"
+        },
+        {
+          "name": "Logs",
+          "type": "LogConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "logs"
+        },
+        {
+          "name": "BackOffConfig",
+          "type": "configretry.BackOffConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "retry_on_failure"
+        },
+        {
+          "name": "StorageID",
+          "type": "*component.ID",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "storage"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net",
+        "strings",
+        "time",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/config/configretry",
+        "go.opentelemetry.io/collector/config/configtls",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/mongodbatlasreceiver/internal/metadata"
+      ],
+      "packageName": "mongodbatlasreceiver"
+    }
+  },
+  {
+    "name": "mongodbreceiver",
+    "description": "This receiver fetches stats from a MongoDB instance using the [golang",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/mongodbreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Hosts",
+          "type": "[]confignet.TCPAddrConfig",
+          "description": "Deprecated - Transport option will be removed in v0.102.0",
+          "required": true,
+          "mapstructureTag": "hosts"
+        },
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "username"
+        },
+        {
+          "name": "Password",
+          "type": "configopaque.String",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "password"
+        },
+        {
+          "name": "ReplicaSet",
+          "type": "string",
+          "description": "",
+          "required": false,
+          "mapstructureTag": "replica_set,omitempty"
+        },
+        {
+          "name": "Timeout",
+          "type": "time.Duration",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "timeout"
+        },
+        {
+          "name": "DirectConnection",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "direct_connection"
+        }
+      ],
+      "imports": [
+        "context",
+        "errors",
+        "fmt",
+        "strings",
+        "time",
+        "go.mongodb.org/mongo-driver/mongo/options",
+        "go.mongodb.org/mongo-driver/mongo/readpref",
+        "go.opentelemetry.io/collector/config/confignet",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/config/configtls",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/mongodbreceiver/internal/metadata"
+      ],
+      "packageName": "mongodbreceiver"
+    }
+  },
+  {
+    "name": "mysqlreceiver",
+    "description": "This receiver queries MySQL's global status and InnoDB tables.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/mysqlreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "",
+          "required": false,
+          "mapstructureTag": "username,omitempty"
+        },
+        {
+          "name": "Password",
+          "type": "configopaque.String",
+          "description": "",
+          "required": false,
+          "mapstructureTag": "password,omitempty"
+        },
+        {
+          "name": "Database",
+          "type": "string",
+          "description": "",
+          "required": false,
+          "mapstructureTag": "database,omitempty"
+        },
+        {
+          "name": "AllowNativePasswords",
+          "type": "bool",
+          "description": "",
+          "required": false,
+          "mapstructureTag": "allow_native_passwords,omitempty"
+        },
+        {
+          "name": "TLS",
+          "type": "configtls.ClientConfig",
+          "description": "",
+          "required": false,
+          "mapstructureTag": "tls,omitempty"
+        },
+        {
+          "name": "MetricsBuilderConfig",
+          "type": "metadata.MetricsBuilderConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": ",squash"
+        },
+        {
+          "name": "StatementEvents",
+          "type": "StatementEventsConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "statement_events"
+        }
+      ],
+      "imports": [
+        "time",
+        "go.opentelemetry.io/collector/config/confignet",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/config/configtls",
+        "go.opentelemetry.io/collector/confmap",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/mysqlreceiver/internal/metadata"
+      ],
+      "packageName": "mysqlreceiver"
+    }
+  },
+  {
+    "name": "namedpipereceiver",
+    "description": "This receiver supports opening a Unix Named Pipe (aka FIFO), and reading logs from it.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/namedpipereceiver/README.md"
+  },
+  {
+    "name": "netflowreceiver",
+    "description": "The netflow receiver can listen for [netflow](https://en.wikipedia.org/wiki/NetFlow), [sflow](https://en.wikipedia.org/wiki/SFlow), and [ipfix](https://en.wikipedia.org/wiki/IP_Flow_Information_Export) data and convert it to OpenTelemetry logs. The receiver is based on the [goflow2](https://github.com/netsampler/goflow2) project.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/netflowreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Scheme",
+          "type": "string",
+          "description": "The scheme defines the type of flow data that the listener will receive The scheme must be one of sflow, netflow, or flow",
+          "required": true,
+          "mapstructureTag": "scheme"
+        },
+        {
+          "name": "Hostname",
+          "type": "string",
+          "description": "The hostname or IP address that the listener will bind to",
+          "required": true,
+          "mapstructureTag": "hostname"
+        },
+        {
+          "name": "Port",
+          "type": "int",
+          "description": "The port that the listener will bind to",
+          "required": true,
+          "mapstructureTag": "port"
+        },
+        {
+          "name": "Sockets",
+          "type": "int",
+          "description": "The number of sockets that the listener will use",
+          "required": true,
+          "mapstructureTag": "sockets"
+        },
+        {
+          "name": "Workers",
+          "type": "int",
+          "description": "The number of workers that the listener will use to decode incoming flow messages By default it will be two times the number of sockets Ideally set this to the number of CPU cores",
+          "required": true,
+          "mapstructureTag": "workers"
+        },
+        {
+          "name": "QueueSize",
+          "type": "int",
+          "description": "The size of the queue that the listener will use This is a buffer that will hold flow messages before they are processed by a worker",
+          "required": true,
+          "mapstructureTag": "queue_size"
+        }
+      ],
+      "imports": [],
+      "packageName": "netflowreceiver"
+    }
+  },
+  {
+    "name": "nginxreceiver",
+    "description": "This receiver can fetch stats from a NGINX instance using the `ngx_http_stub_status_module` module's `status` endpoint.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/nginxreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "MetricsBuilderConfig",
+          "type": "metadata.MetricsBuilderConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": ",squash"
+        }
+      ],
+      "imports": [
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/nginxreceiver/internal/metadata"
+      ],
+      "packageName": "nginxreceiver"
+    }
+  },
+  {
+    "name": "nsxtreceiver",
+    "description": "This receiver fetches metrics important to run virtual networking using NSX-T. The receiver ingests metrics via the [NSX Rest API](https://docs.vmware.com/en/VMware-NSX-Data-Center-for-vSphere/6.4/nsx_64_api.pdf).",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/nsxtreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "username"
+        },
+        {
+          "name": "Password",
+          "type": "configopaque.String",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "password"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net/url",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/nsxtreceiver/internal/metadata"
+      ],
+      "packageName": "nsxtreceiver"
+    }
+  },
+  {
+    "name": "ntpreceiver",
+    "description": "## Purpose",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/ntpreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Version",
+          "type": "int",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "version"
+        },
+        {
+          "name": "Endpoint",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "endpoint"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net",
+        "time",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/ntpreceiver/internal/metadata"
+      ],
+      "packageName": "ntpreceiver"
+    }
+  },
+  {
+    "name": "opencensusreceiver",
+    "description": ":warning: This component is deprecated, slated for removal in August 2025. Please use the OTLP receiver instead.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/opencensusreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "CorsOrigins",
+          "type": "[]string",
+          "description": "CorsOrigins are the allowed CORS origins for HTTP/JSON requests to grpc-gateway adapter for the OpenCensus receiver. See github.com/rs/cors An empty list means that CORS is not enabled at all. A wildcard (*) can be used to match any origin or one or more characters of an origin.",
+          "required": true,
+          "mapstructureTag": "cors_allowed_origins"
+        }
+      ],
+      "imports": [
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/configgrpc"
+      ],
+      "packageName": "opencensusreceiver"
+    }
+  },
+  {
+    "name": "oracledbreceiver",
+    "description": "This receiver collects metrics from an Oracle Database.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/oracledbreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "DataSource",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "datasource"
+        },
+        {
+          "name": "Endpoint",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "endpoint"
+        },
+        {
+          "name": "Password",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "password"
+        },
+        {
+          "name": "Service",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "service"
+        },
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "username"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net",
+        "net/url",
+        "strconv",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/oracledbreceiver/internal/metadata"
+      ],
+      "packageName": "oracledbreceiver"
+    }
+  },
+  {
+    "name": "osqueryreceiver",
+    "description": "The osquery receiver runs queries run on an [osquery](https://osquery.io/)'s daemon on a schedule and converts the output to logs.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/osqueryreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "ExtensionsSocket",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "extensions_socket"
+        },
+        {
+          "name": "Queries",
+          "type": "[]string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "queries"
+        }
+      ],
+      "imports": [
+        "errors",
+        "time",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/scraper/scraperhelper"
+      ],
+      "packageName": "osqueryreceiver"
+    }
+  },
+  {
+    "name": "otelarrowreceiver",
+    "description": "Receives telemetry data using [OpenTelemetry Protocol with Apache",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/otelarrowreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Admission",
+          "type": "AdmissionConfig",
+          "description": "Admission is the configuration for controlling amount of request memory entering the receiver.",
+          "required": true,
+          "mapstructureTag": "admission"
+        }
+      ],
+      "imports": [
+        "fmt",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/configgrpc",
+        "go.opentelemetry.io/collector/confmap",
+        "go.opentelemetry.io/collector/confmap/xconfmap",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/otelarrow/compression/zstd"
+      ],
+      "packageName": "otelarrowreceiver"
+    }
+  },
+  {
+    "name": "otlpjsonfilereceiver",
+    "description": "This receiver will read pipeline data from JSON files. The data is written in",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/otlpjsonfilereceiver/README.md"
+  },
+  {
+    "name": "podmanreceiver",
+    "description": "The Podman Stats receiver queries the Podman service API to fetch stats for all running containers",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/podmanreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Endpoint",
+          "type": "string",
+          "description": "The URL of the podman server.  Default is \"unix:///run/podman/podman.sock\"",
+          "required": true,
+          "mapstructureTag": "endpoint"
+        },
+        {
+          "name": "APIVersion",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "api_version"
+        },
+        {
+          "name": "SSHKey",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "ssh_key"
+        },
+        {
+          "name": "SSHPassphrase",
+          "type": "configopaque.String",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "ssh_passphrase"
+        }
+      ],
+      "imports": [
+        "errors",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/podmanreceiver/internal/metadata"
+      ],
+      "packageName": "podmanreceiver"
+    }
+  },
+  {
+    "name": "postgresqlreceiver",
+    "description": "This receiver queries the PostgreSQL [statistics collector](https://www.postgresql.org/docs/13/monitoring-stats.html).",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/postgresqlreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "username"
+        },
+        {
+          "name": "Password",
+          "type": "configopaque.String",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "password"
+        },
+        {
+          "name": "Databases",
+          "type": "[]string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "databases"
+        },
+        {
+          "name": "ExcludeDatabases",
+          "type": "[]string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "exclude_databases"
+        },
+        {
+          "name": "ConnectionPool",
+          "type": "",
+          "description": "",
+          "required": false,
+          "mapstructureTag": "connection_pool,omitempty"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net",
+        "time",
+        "go.opentelemetry.io/collector/config/confignet",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/config/configtls",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/postgresqlreceiver/internal/metadata"
+      ],
+      "packageName": "postgresqlreceiver"
+    }
+  },
+  {
+    "name": "pprofreceiver",
+    "description": "TODO",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/pprofreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [],
+      "packageName": "pprofreceiver"
+    }
+  },
+  {
+    "name": "prometheusreceiver",
+    "description": "Receives metric data in [Prometheus](https://prometheus.io/) format. See the",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/prometheusreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "PrometheusConfig",
+          "type": "*PromConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "config"
+        },
+        {
+          "name": "TrimMetricSuffixes",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "trim_metric_suffixes"
+        },
+        {
+          "name": "UseStartTimeMetric",
+          "type": "bool",
+          "description": "UseStartTimeMetric enables retrieving the start time of all counter metrics from the process_start_time_seconds metric. This is only correct if all counters on that endpoint started after the process start time, and the process is the only actor exporting the metric after the process started. It should not be used in \"exporters\" which export counters that may have started before the process itself. Use only if you know what you are doing, as this may result in incorrect rate calculations.",
+          "required": true,
+          "mapstructureTag": "use_start_time_metric"
+        },
+        {
+          "name": "StartTimeMetricRegex",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "start_time_metric_regex"
+        },
+        {
+          "name": "ReportExtraScrapeMetrics",
+          "type": "bool",
+          "description": "ReportExtraScrapeMetrics - enables reporting of additional metrics for Prometheus client like scrape_body_size_bytes",
+          "required": true,
+          "mapstructureTag": "report_extra_scrape_metrics"
+        },
+        {
+          "name": "TargetAllocator",
+          "type": "*targetallocator.Config",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "target_allocator"
+        },
+        {
+          "name": "APIServer",
+          "type": "*APIServer",
+          "description": "APIServer has the settings to enable the receiver to host the Prometheus API server in agent mode. This allows the user to call the endpoint to get the config, service discovery, and targets for debugging purposes.",
+          "required": true,
+          "mapstructureTag": "api_server"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "os",
+        "sort",
+        "strings",
+        "commonconfig \"github.com/prometheus/common/config\"",
+        "promconfig \"github.com/prometheus/prometheus/config\"",
+        "github.com/prometheus/prometheus/discovery/kubernetes",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/confmap",
+        "gopkg.in/yaml.v2",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver/targetallocator"
+      ],
+      "packageName": "prometheusreceiver"
+    }
+  },
+  {
+    "name": "prometheusremotewritereceiver",
+    "description": "No description available",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/prometheusremotewritereceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/confighttp"
+      ],
+      "packageName": "prometheusremotewritereceiver"
+    }
+  },
+  {
+    "name": "pulsarreceiver",
+    "description": "Pulsar receiver receives logs, metrics, and traces from [Apache Pulsar](https://pulsar.apache.org/).",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/pulsarreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Endpoint",
+          "type": "string",
+          "description": "Configure the service URL for the Pulsar service.",
+          "required": true,
+          "mapstructureTag": "endpoint"
+        },
+        {
+          "name": "Topic",
+          "type": "string",
+          "description": "The topic of pulsar to consume logs,metrics,traces. (default = \"otlp_traces\" for traces, \"otlp_metrics\" for metrics, \"otlp_logs\" for logs)",
+          "required": true,
+          "mapstructureTag": "topic"
+        },
+        {
+          "name": "Subscription",
+          "type": "string",
+          "description": "The Subscription that receiver will be consuming messages from (default \"otlp_subscription\")",
+          "required": true,
+          "mapstructureTag": "subscription"
+        },
+        {
+          "name": "Encoding",
+          "type": "string",
+          "description": "Encoding of the messages (default \"otlp_proto\")",
+          "required": true,
+          "mapstructureTag": "encoding"
+        },
+        {
+          "name": "ConsumerName",
+          "type": "string",
+          "description": "Name specifies the consumer name.",
+          "required": true,
+          "mapstructureTag": "consumer_name"
+        },
+        {
+          "name": "TLSTrustCertsFilePath",
+          "type": "string",
+          "description": "Set the path to the trusted TLS certificate file",
+          "required": true,
+          "mapstructureTag": "tls_trust_certs_file_path"
+        },
+        {
+          "name": "TLSAllowInsecureConnection",
+          "type": "bool",
+          "description": "Configure whether the Pulsar client accept untrusted TLS certificate from broker (default: false)",
+          "required": true,
+          "mapstructureTag": "tls_allow_insecure_connection"
+        },
+        {
+          "name": "Authentication",
+          "type": "Authentication",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "auth"
+        }
+      ],
+      "imports": [
+        "errors",
+        "github.com/apache/pulsar-client-go/pulsar",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/configopaque"
+      ],
+      "packageName": "pulsarreceiver"
+    }
+  },
+  {
+    "name": "purefareceiver",
+    "description": "The Pure Storage FlashArray receiver, receives metrics from the Pure Storage FlashArray.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/purefareceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Settings",
+          "type": "*Settings",
+          "description": "Settings contains settings for the individual scrapers",
+          "required": true,
+          "mapstructureTag": "settings"
+        },
+        {
+          "name": "Array",
+          "type": "[]internal.ScraperConfig",
+          "description": "Array represents the list of arrays to query",
+          "required": true,
+          "mapstructureTag": "array"
+        },
+        {
+          "name": "Hosts",
+          "type": "[]internal.ScraperConfig",
+          "description": "Hosts represents the list of hosts to query",
+          "required": true,
+          "mapstructureTag": "hosts"
+        },
+        {
+          "name": "Directories",
+          "type": "[]internal.ScraperConfig",
+          "description": "Directories represents the list of directories to query",
+          "required": true,
+          "mapstructureTag": "directories"
+        },
+        {
+          "name": "Pods",
+          "type": "[]internal.ScraperConfig",
+          "description": "Pods represents the list of pods to query",
+          "required": true,
+          "mapstructureTag": "pods"
+        },
+        {
+          "name": "Volumes",
+          "type": "[]internal.ScraperConfig",
+          "description": "Volumes represents the list of volumes to query",
+          "required": true,
+          "mapstructureTag": "volumes"
+        },
+        {
+          "name": "Env",
+          "type": "string",
+          "description": "Env represents the respective environment value valid to scrape",
+          "required": true,
+          "mapstructureTag": "env"
+        },
+        {
+          "name": "ArrayName",
+          "type": "string",
+          "description": "ArrayName represents the display name that is appended to the received metrics, as the `host` label if not provided by OpenMetrics output, and to the `fa_array_name` label always",
+          "required": true,
+          "mapstructureTag": "fa_array_name"
+        },
+        {
+          "name": "Namespace",
+          "type": "string",
+          "description": "Namespace selects the OpenMetrics namespace requested",
+          "required": true,
+          "mapstructureTag": "namespace"
+        }
+      ],
+      "imports": [
+        "errors",
+        "time",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/purefareceiver/internal"
+      ],
+      "packageName": "purefareceiver"
+    }
+  },
+  {
+    "name": "purefbreceiver",
+    "description": "The Pure Storage FlashBlade receiver, receives metrics from Pure Storage FlashBlade via the [Pure Storage FlashBlade OpenMetrics Exporter](https://github.com/PureStorage-OpenConnect/pure-fb-openmetrics-exporter)",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/purefbreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Settings",
+          "type": "*Settings",
+          "description": "Settings contains settings for the individual scrapers",
+          "required": true,
+          "mapstructureTag": "settings"
+        },
+        {
+          "name": "Arrays",
+          "type": "[]internal.ScraperConfig",
+          "description": "Arrays represents the list of arrays to query",
+          "required": true,
+          "mapstructureTag": "arrays"
+        },
+        {
+          "name": "Clients",
+          "type": "[]internal.ScraperConfig",
+          "description": "Clients represents the list of clients metrics",
+          "required": true,
+          "mapstructureTag": "clients"
+        },
+        {
+          "name": "Usage",
+          "type": "[]internal.ScraperConfig",
+          "description": "Usage represents the list of usage to query",
+          "required": true,
+          "mapstructureTag": "usage"
+        },
+        {
+          "name": "Env",
+          "type": "string",
+          "description": "Env represents the respective environment value valid to scrape",
+          "required": true,
+          "mapstructureTag": "env"
+        }
+      ],
+      "imports": [
+        "errors",
+        "time",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/purefbreceiver/internal"
+      ],
+      "packageName": "purefbreceiver"
+    }
+  },
+  {
+    "name": "rabbitmqreceiver",
+    "description": "This receiver fetches stats from a RabbitMQ node using the [RabbitMQ Management Plugin](https://www.rabbitmq.com/management.html).",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/rabbitmqreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "username"
+        },
+        {
+          "name": "Password",
+          "type": "configopaque.String",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "password"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net/url",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/rabbitmqreceiver/internal/metadata"
+      ],
+      "packageName": "rabbitmqreceiver"
+    }
+  },
+  {
+    "name": "receivercreator",
+    "description": "This receiver can instantiate other receivers at runtime based on whether",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/receivercreator/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "receiverTemplates",
+          "type": "map[string]receiverTemplate",
+          "description": "",
+          "required": true
+        },
+        {
+          "name": "WatchObservers",
+          "type": "[]component.ID",
+          "description": "WatchObservers are the extensions to listen to endpoints from.",
+          "required": true,
+          "mapstructureTag": "watch_observers"
+        },
+        {
+          "name": "ResourceAttributes",
+          "type": "resourceAttributes",
+          "description": "ResourceAttributes is a map of default resource attributes to add to each resource object received by this receiver from dynamically created receivers.",
+          "required": true,
+          "mapstructureTag": "resource_attributes"
+        },
+        {
+          "name": "Discovery",
+          "type": "DiscoveryConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "discovery"
+        }
+      ],
+      "imports": [
+        "fmt",
+        "github.com/spf13/cast",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/confmap",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer"
+      ],
+      "packageName": "receivercreator"
+    }
+  },
+  {
+    "name": "redisreceiver",
+    "description": "The Redis receiver is designed to retrieve Redis INFO data from a single Redis",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/redisreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "TODO allow users to add additional resource key value pairs? Optional username. Use the specified Username to authenticate the current connection with one of the connections defined in the ACL list when connecting to a Redis 6.0 instance, or greater, that is using the Redis ACL system.",
+          "required": true,
+          "mapstructureTag": "username"
+        },
+        {
+          "name": "Password",
+          "type": "configopaque.String",
+          "description": "Optional password. Must match the password specified in the requirepass server configuration option, or the user's password when connecting to a Redis 6.0 instance, or greater, that is using the Redis ACL system.",
+          "required": true,
+          "mapstructureTag": "password"
+        },
+        {
+          "name": "TLS",
+          "type": "configtls.ClientConfig",
+          "description": "",
+          "required": false,
+          "mapstructureTag": "tls,omitempty"
+        },
+        {
+          "name": "MetricsBuilderConfig",
+          "type": "metadata.MetricsBuilderConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": ",squash"
+        }
+      ],
+      "imports": [
+        "fmt",
+        "net",
+        "go.opentelemetry.io/collector/config/confignet",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/config/configtls",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/redisreceiver/internal/metadata"
+      ],
+      "packageName": "redisreceiver"
+    }
+  },
+  {
+    "name": "riakreceiver",
+    "description": "<!-- markdown-link-check-disable --><!-- Failing due to \"unable to verify the first certificate\" -->",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/riakreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "username"
+        },
+        {
+          "name": "Password",
+          "type": "configopaque.String",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "password"
+        },
+        {
+          "name": "MetricsBuilderConfig",
+          "type": "metadata.MetricsBuilderConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "metrics"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net/url",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/riakreceiver/internal/metadata"
+      ],
+      "packageName": "riakreceiver"
+    }
+  },
+  {
+    "name": "saphanareceiver",
+    "description": "This receiver can fetch stats from a SAP HANA instance. It leverages the [driver](https://github.com/SAP/go-hdb) written by SAP for connecting to SAP HANA with the golang sql module to execute several monitoring queries.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/saphanareceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "username"
+        },
+        {
+          "name": "Password",
+          "type": "configopaque.String",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "password"
+        }
+      ],
+      "imports": [
+        "errors",
+        "go.opentelemetry.io/collector/config/confignet",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/config/configtls",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/saphanareceiver/internal/metadata"
+      ],
+      "packageName": "saphanareceiver"
+    }
+  },
+  {
+    "name": "sapmreceiver",
+    "description": "**The SAPM receiver is deprecated and will be removed from the repository in April 2025.**",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/sapmreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [
+        "go.opentelemetry.io/collector/config/confighttp"
+      ],
+      "packageName": "sapmreceiver"
+    }
+  },
+  {
+    "name": "signalfxreceiver",
+    "description": "The SignalFx receiver accepts:",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/signalfxreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [
+        "errors",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
+      ],
+      "packageName": "signalfxreceiver"
+    }
+  },
+  {
+    "name": "simpleprometheusreceiver",
+    "description": "The `prometheus_simple` receiver is a wrapper around the [prometheus",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/simpleprometheusreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "CollectionInterval",
+          "type": "time.Duration",
+          "description": "CollectionInterval is the interval at which metrics should be collected",
+          "required": true,
+          "mapstructureTag": "collection_interval"
+        },
+        {
+          "name": "MetricsPath",
+          "type": "string",
+          "description": "MetricsPath the path to the metrics endpoint.",
+          "required": true,
+          "mapstructureTag": "metrics_path"
+        },
+        {
+          "name": "Params",
+          "type": "url.Values",
+          "description": "Params the parameters to the metrics endpoint.",
+          "required": false,
+          "mapstructureTag": "params,omitempty"
+        },
+        {
+          "name": "Labels",
+          "type": "map[string]string",
+          "description": "Labels static labels",
+          "required": false,
+          "mapstructureTag": "labels,omitempty"
+        },
+        {
+          "name": "UseServiceAccount",
+          "type": "bool",
+          "description": "Whether or not to use pod service account to authenticate.",
+          "required": true,
+          "mapstructureTag": "use_service_account"
+        },
+        {
+          "name": "JobName",
+          "type": "string",
+          "description": "JobName allows users to customize the job name optionally.",
+          "required": true,
+          "mapstructureTag": "job_name"
+        }
+      ],
+      "imports": [
+        "net/url",
+        "time",
+        "go.opentelemetry.io/collector/config/confighttp"
+      ],
+      "packageName": "simpleprometheusreceiver"
+    }
+  },
+  {
+    "name": "skywalkingreceiver",
+    "description": "Receives trace data and metric data in [Skywalking](https://skywalking.apache.org/) format.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/skywalkingreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [
+        "errors",
+        "fmt",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/configgrpc",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/confmap"
+      ],
+      "packageName": "skywalkingreceiver"
+    }
+  },
+  {
+    "name": "snmpreceiver",
+    "description": "No description available",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/snmpreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [
+        "errors",
+        "fmt",
+        "net/url",
+        "strings",
+        "time",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/scraper/scraperhelper"
+      ],
+      "packageName": "snmpreceiver"
+    }
+  },
+  {
+    "name": "snowflakereceiver",
+    "description": "This receiver collects metrics from a Snowflake account by connecting to and querying a Snowflake deployment.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/snowflakereceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "username"
+        },
+        {
+          "name": "Password",
+          "type": "configopaque.String",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "password"
+        },
+        {
+          "name": "Account",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "account"
+        },
+        {
+          "name": "Schema",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "schema"
+        },
+        {
+          "name": "Warehouse",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "warehouse"
+        },
+        {
+          "name": "Database",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "database"
+        },
+        {
+          "name": "Role",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "role"
+        }
+      ],
+      "imports": [
+        "errors",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/snowflakereceiver/internal/metadata"
+      ],
+      "packageName": "snowflakereceiver"
+    }
+  },
+  {
+    "name": "solacereceiver",
+    "description": "The Solace receiver receives trace data from a [Solace PubSub+ Event Broker](https://solace.com/products/event-broker/).",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/solacereceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Broker",
+          "type": "[]string",
+          "description": "The list of solace brokers (default localhost:5671)",
+          "required": true,
+          "mapstructureTag": "broker"
+        },
+        {
+          "name": "Queue",
+          "type": "string",
+          "description": "The name of the solace queue to consume from, it is required parameter",
+          "required": true,
+          "mapstructureTag": "queue"
+        },
+        {
+          "name": "MaxUnacked",
+          "type": "int32",
+          "description": "The maximum number of unacknowledged messages the Solace broker can transmit, to configure AMQP Link",
+          "required": true,
+          "mapstructureTag": "max_unacknowledged"
+        },
+        {
+          "name": "TLS",
+          "type": "configtls.ClientConfig",
+          "description": "",
+          "required": false,
+          "mapstructureTag": "tls,omitempty"
+        },
+        {
+          "name": "Auth",
+          "type": "Authentication",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "auth"
+        },
+        {
+          "name": "Flow",
+          "type": "FlowControl",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "flow_control"
+        }
+      ],
+      "imports": [
+        "errors",
+        "strings",
+        "time",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/config/configtls"
+      ],
+      "packageName": "solacereceiver"
+    }
+  },
+  {
+    "name": "splunkenterprisereceiver",
+    "description": "The Splunk Enterprise Receiver is a pull based tool which enables the ingestion of performance metrics describing the operational status of a user's Splunk Enterprise deployment to an appropriate observability tool.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/splunkenterprisereceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "IdxEndpoint",
+          "type": "confighttp.ClientConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "indexer"
+        },
+        {
+          "name": "SHEndpoint",
+          "type": "confighttp.ClientConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "search_head"
+        },
+        {
+          "name": "CMEndpoint",
+          "type": "confighttp.ClientConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "cluster_master"
+        }
+      ],
+      "imports": [
+        "errors",
+        "net/url",
+        "strings",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/splunkenterprisereceiver/internal/metadata"
+      ],
+      "packageName": "splunkenterprisereceiver"
+    }
+  },
+  {
+    "name": "splunkhecreceiver",
+    "description": "The Splunk HEC receiver accepts events in the [Splunk HEC",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/splunkhecreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "RawPath",
+          "type": "string",
+          "description": "RawPath for raw data collection, default is '/services/collector/raw'",
+          "required": true,
+          "mapstructureTag": "raw_path"
+        },
+        {
+          "name": "Splitting",
+          "type": "SplittingStrategy",
+          "description": "Splitting defines the splitting strategy used by the receiver when ingesting raw events. Can be set to \"line\" or \"none\". Default is \"line\".",
+          "required": true,
+          "mapstructureTag": "splitting"
+        },
+        {
+          "name": "HealthPath",
+          "type": "string",
+          "description": "HealthPath for health API, default is '/services/collector/health'",
+          "required": true,
+          "mapstructureTag": "health_path"
+        },
+        {
+          "name": "HecToOtelAttrs",
+          "type": "splunk.HecToOtelAttrs",
+          "description": "HecToOtelAttrs creates a mapping from HEC metadata to attributes.",
+          "required": true,
+          "mapstructureTag": "hec_metadata_to_otel_attrs"
+        }
+      ],
+      "imports": [
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
+      ],
+      "packageName": "splunkhecreceiver"
+    }
+  },
+  {
+    "name": "sqlqueryreceiver",
+    "description": "The SQL Query Receiver uses custom SQL queries to generate metrics from a database connection.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/sqlqueryreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "MaxOpenConn",
+          "type": "int",
+          "description": "The maximumn number of open connections to the sql server. <= 0 means unlimited",
+          "required": true,
+          "mapstructureTag": "max_open_conn"
+        }
+      ],
+      "imports": [
+        "time",
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/internal/sqlquery"
+      ],
+      "packageName": "sqlqueryreceiver"
+    }
+  },
+  {
+    "name": "sqlserverreceiver",
+    "description": "The `sqlserver` receiver grabs metrics/logs about a Microsoft SQL Server instance. The receiver works by either using the",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/sqlserverreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "InstanceName",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "instance_name"
+        },
+        {
+          "name": "ComputerName",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "computer_name"
+        },
+        {
+          "name": "Password",
+          "type": "configopaque.String",
+          "description": "The following options currently do nothing. Functionality will be added in a future PR.",
+          "required": true,
+          "mapstructureTag": "password"
+        },
+        {
+          "name": "Port",
+          "type": "uint",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "port"
+        },
+        {
+          "name": "Server",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "server"
+        },
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "username"
+        }
+      ],
+      "imports": [
+        "errors",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/sqlserverreceiver/internal/metadata"
+      ],
+      "packageName": "sqlserverreceiver"
+    }
+  },
+  {
+    "name": "sshcheckreceiver",
+    "description": "This receiver creates stats by connecting to an SSH server which may be an SFTP server.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/sshcheckreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "CheckSFTP",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "check_sftp"
+        },
+        {
+          "name": "MetricsBuilderConfig",
+          "type": "metadata.MetricsBuilderConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": ",squash"
+        }
+      ],
+      "imports": [
+        "errors",
+        "net",
+        "strings",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/sshcheckreceiver/internal/configssh",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/sshcheckreceiver/internal/metadata"
+      ],
+      "packageName": "sshcheckreceiver"
+    }
+  },
+  {
+    "name": "statsdreceiver",
+    "description": "StatsD receiver for ingesting StatsD messages(https://github.com/statsd/statsd/blob/master/docs/metric_types.md) into the OpenTelemetry Collector.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/statsdreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "NetAddr",
+          "type": "confignet.AddrConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": ",squash"
+        },
+        {
+          "name": "AggregationInterval",
+          "type": "time.Duration",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "aggregation_interval"
+        },
+        {
+          "name": "EnableIPOnlyAggregation",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "enable_ip_only_aggregation"
+        },
+        {
+          "name": "EnableMetricType",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "enable_metric_type"
+        },
+        {
+          "name": "EnableSimpleTags",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "enable_simple_tags"
+        },
+        {
+          "name": "IsMonotonicCounter",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "is_monotonic_counter"
+        },
+        {
+          "name": "TimerHistogramMapping",
+          "type": "[]protocol.TimerHistogramMapping",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "timer_histogram_mapping"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "time",
+        "github.com/lightstep/go-expohisto/structure",
+        "go.opentelemetry.io/collector/config/confignet",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/statsdreceiver/protocol"
+      ],
+      "packageName": "statsdreceiver"
+    }
+  },
+  {
+    "name": "stefreceiver",
+    "description": "No description available",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/stefreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [],
+      "packageName": "stefreceiver"
+    }
+  },
+  {
+    "name": "syslogreceiver",
+    "description": "Parses Syslogs received over TCP or UDP.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/syslogreceiver/README.md"
+  },
+  {
+    "name": "systemdreceiver",
+    "description": "No description available",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/systemdreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [],
+      "packageName": "systemdreceiver"
+    }
+  },
+  {
+    "name": "tcpcheckreceiver",
+    "description": "This receiver creates stats by connecting to an TCP server.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/tcpcheckreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Targets",
+          "type": "[]*confignet.TCPAddrConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "targets"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net",
+        "strconv",
+        "strings",
+        "go.opentelemetry.io/collector/config/confignet",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/tcpcheckreceiver/internal/metadata"
+      ],
+      "packageName": "tcpcheckreceiver"
+    }
+  },
+  {
+    "name": "tcplogreceiver",
+    "description": "Receives logs over TCP.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/tcplogreceiver/README.md"
+  },
+  {
+    "name": "tlscheckreceiver",
+    "description": "Emit metrics about x.509 certificates.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/tlscheckreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Targets",
+          "type": "[]*CertificateTarget",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "targets"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "net",
+        "os",
+        "path/filepath",
+        "strconv",
+        "strings",
+        "go.opentelemetry.io/collector/config/confignet",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/tlscheckreceiver/internal/metadata"
+      ],
+      "packageName": "tlscheckreceiver"
+    }
+  },
+  {
+    "name": "udplogreceiver",
+    "description": "Receives logs over UDP.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/udplogreceiver/README.md"
+  },
+  {
+    "name": "vcenterreceiver",
+    "description": "This receiver fetches metrics from a vCenter or ESXi host running VMware vSphere APIs.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/vcenterreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "Endpoint",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "endpoint"
+        },
+        {
+          "name": "Username",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "username"
+        },
+        {
+          "name": "Password",
+          "type": "configopaque.String",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "password"
+        }
+      ],
+      "imports": [
+        "context",
+        "errors",
+        "fmt",
+        "net/url",
+        "go.opentelemetry.io/collector/config/configopaque",
+        "go.opentelemetry.io/collector/config/configtls",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/vcenterreceiver/internal/metadata"
+      ],
+      "packageName": "vcenterreceiver"
+    }
+  },
+  {
+    "name": "wavefrontreceiver",
+    "description": "The Wavefront receiver accepts metrics and depends on [carbonreceiver proto",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/wavefrontreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "TCPIdleTimeout",
+          "type": "time.Duration",
+          "description": "TCPIdleTimeout is the timeout for idle TCP connections.",
+          "required": true,
+          "mapstructureTag": "tcp_idle_timeout"
+        },
+        {
+          "name": "ExtractCollectdTags",
+          "type": "bool",
+          "description": "ExtractCollectdTags instructs the Wavefront receiver to attempt to extract tags in the CollectD format from the metric name. The default is false.",
+          "required": true,
+          "mapstructureTag": "extract_collectd_tags"
+        }
+      ],
+      "imports": [
+        "errors",
+        "time",
+        "go.opentelemetry.io/collector/config/confignet"
+      ],
+      "packageName": "wavefrontreceiver"
+    }
+  },
+  {
+    "name": "webhookeventreceiver",
+    "description": "The Webhook Event Receiver is a push based event collector component meant to act as a generally available receiver for any webhook style data source. It is designed to work alongside other pipeline components",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/webhookeventreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "ReadTimeout",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "read_timeout"
+        },
+        {
+          "name": "WriteTimeout",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "write_timeout"
+        },
+        {
+          "name": "Path",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "path"
+        },
+        {
+          "name": "HealthPath",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "health_path"
+        },
+        {
+          "name": "RequiredHeader",
+          "type": "RequiredHeader",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "required_header"
+        },
+        {
+          "name": "SplitLogsAtNewLine",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "split_logs_at_newline"
+        },
+        {
+          "name": "ConvertHeadersToAttributes",
+          "type": "bool",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "convert_headers_to_attributes"
+        },
+        {
+          "name": "HeaderAttributeRegex",
+          "type": "string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "header_attribute_regex"
+        }
+      ],
+      "imports": [
+        "errors",
+        "regexp",
+        "time",
+        "go.opentelemetry.io/collector/config/confighttp",
+        "go.uber.org/multierr"
+      ],
+      "packageName": "webhookeventreceiver"
+    }
+  },
+  {
+    "name": "windowseventlogreceiver",
+    "description": "Tails and parses logs from windows event log API using the [opentelemetry-log-collection](https://github.com/open-telemetry/opentelemetry-log-collection) library.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/windowseventlogreceiver/README.md"
+  },
+  {
+    "name": "windowsperfcountersreceiver",
+    "description": "This receiver, for Windows only, captures the configured system, application, or",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/windowsperfcountersreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "MetricMetaData",
+          "type": "map[string]MetricConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "metrics"
+        },
+        {
+          "name": "PerfCounters",
+          "type": "[]ObjectConfig",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "perfcounters"
+        }
+      ],
+      "imports": [
+        "errors",
+        "fmt",
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "go.uber.org/multierr"
+      ],
+      "packageName": "windowsperfcountersreceiver"
+    }
+  },
+  {
+    "name": "windowsservicereceiver",
+    "description": "The Windows Service Receiver is a receiver for scraping information about the state of services running on a Windows machine.",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/windowsservicereceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "IncludeServices",
+          "type": "[]string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "include_services"
+        },
+        {
+          "name": "ExcludeServices",
+          "type": "[]string",
+          "description": "",
+          "required": true,
+          "mapstructureTag": "exclude_services"
+        }
+      ],
+      "imports": [
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/windowsservicereceiver/internal/metadata"
+      ],
+      "packageName": "windowsservicereceiver"
+    }
+  },
+  {
+    "name": "zipkinreceiver",
+    "description": "This receiver receives spans from [Zipkin](https://zipkin.io/) (V1 and V2).",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/zipkinreceiver/README.md",
+    "configSchema": {
+      "fields": [
+        {
+          "name": "ParseStringTags",
+          "type": "bool",
+          "description": "If enabled the zipkin receiver will attempt to parse string tags/binary annotations into int/bool/float. Disabled by default",
+          "required": true,
+          "mapstructureTag": "parse_string_tags"
+        }
+      ],
+      "imports": [
+        "go.opentelemetry.io/collector/component",
+        "go.opentelemetry.io/collector/config/confighttp"
+      ],
+      "packageName": "zipkinreceiver"
+    }
+  },
+  {
+    "name": "zookeeperreceiver",
+    "description": "The Zookeeper receiver collects metrics from a Zookeeper instance, using the `mntr` command. The `mntr` 4 letter word command needs",
+    "stability": "Unknown",
+    "readmeUrl": "https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/zookeeperreceiver/README.md",
+    "configSchema": {
+      "fields": [],
+      "imports": [
+        "go.opentelemetry.io/collector/scraper/scraperhelper",
+        "github.com/open-telemetry/opentelemetry-collector-contrib/scraper/zookeeperscraper"
+      ],
+      "packageName": "zookeeperreceiver"
+    }
+  }
+]

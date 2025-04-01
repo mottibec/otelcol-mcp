@@ -1,0 +1,63 @@
+{
+  "fields": [
+    {
+      "name": "Username",
+      "type": "string",
+      "description": "",
+      "required": false,
+      "mapstructureTag": "username,omitempty"
+    },
+    {
+      "name": "Password",
+      "type": "configopaque.String",
+      "description": "",
+      "required": false,
+      "mapstructureTag": "password,omitempty"
+    },
+    {
+      "name": "Database",
+      "type": "string",
+      "description": "",
+      "required": false,
+      "mapstructureTag": "database,omitempty"
+    },
+    {
+      "name": "AllowNativePasswords",
+      "type": "bool",
+      "description": "",
+      "required": false,
+      "mapstructureTag": "allow_native_passwords,omitempty"
+    },
+    {
+      "name": "TLS",
+      "type": "configtls.ClientConfig",
+      "description": "",
+      "required": false,
+      "mapstructureTag": "tls,omitempty"
+    },
+    {
+      "name": "MetricsBuilderConfig",
+      "type": "metadata.MetricsBuilderConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "StatementEvents",
+      "type": "StatementEventsConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "statement_events"
+    }
+  ],
+  "imports": [
+    "time",
+    "go.opentelemetry.io/collector/config/confignet",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configtls",
+    "go.opentelemetry.io/collector/confmap",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/mysqlreceiver/internal/metadata"
+  ],
+  "packageName": "mysqlreceiver"
+}

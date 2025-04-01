@@ -1,0 +1,26 @@
+{
+  "fields": [
+    {
+      "name": "Strategy",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "strategy"
+    },
+    {
+      "name": "GCInterval",
+      "type": "time.Duration",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "gc_interval"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "time",
+    "go.opentelemetry.io/collector/component",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricstarttimeprocessor/internal/subtractinitial",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricstarttimeprocessor/internal/truereset"
+  ],
+  "packageName": "metricstarttimeprocessor"
+}

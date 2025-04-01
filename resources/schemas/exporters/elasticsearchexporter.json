@@ -1,0 +1,162 @@
+{
+  "fields": [
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "Endpoints",
+      "type": "[]string",
+      "description": "Endpoints holds the Elasticsearch URLs the exporter should send events to. This setting is required if CloudID is not set and if the ELASTICSEARCH_URL environment variable is not set.",
+      "required": true,
+      "mapstructureTag": "endpoints"
+    },
+    {
+      "name": "CloudID",
+      "type": "string",
+      "description": "CloudID holds the cloud ID to identify the Elastic Cloud cluster to send events to. https://www.elastic.co/guide/en/cloud/current/ec-cloud-id.html This setting is required if no URL is configured.",
+      "required": true,
+      "mapstructureTag": "cloudid"
+    },
+    {
+      "name": "NumWorkers",
+      "type": "int",
+      "description": "NumWorkers configures the number of workers publishing bulk requests.",
+      "required": true,
+      "mapstructureTag": "num_workers"
+    },
+    {
+      "name": "LogsIndex",
+      "type": "string",
+      "description": "LogsIndex configures the static index used for document routing for logs. It should be empty if dynamic document routing is preferred.",
+      "required": true,
+      "mapstructureTag": "logs_index"
+    },
+    {
+      "name": "LogsDynamicIndex",
+      "type": "DynamicIndexSetting",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "logs_dynamic_index"
+    },
+    {
+      "name": "MetricsIndex",
+      "type": "string",
+      "description": "MetricsIndex configures the static index used for document routing for metrics. It should be empty if dynamic document routing is preferred.",
+      "required": true,
+      "mapstructureTag": "metrics_index"
+    },
+    {
+      "name": "MetricsDynamicIndex",
+      "type": "DynamicIndexSetting",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "metrics_dynamic_index"
+    },
+    {
+      "name": "TracesIndex",
+      "type": "string",
+      "description": "TracesIndex configures the static index used for document routing for metrics. It should be empty if dynamic document routing is preferred.",
+      "required": true,
+      "mapstructureTag": "traces_index"
+    },
+    {
+      "name": "TracesDynamicIndex",
+      "type": "DynamicIndexSetting",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "traces_dynamic_index"
+    },
+    {
+      "name": "LogsDynamicID",
+      "type": "DynamicIDSettings",
+      "description": "LogsDynamicID configures whether log record attribute `elasticsearch.document_id` is set as the document ID in ES.",
+      "required": true,
+      "mapstructureTag": "logs_dynamic_id"
+    },
+    {
+      "name": "LogsDynamicPipeline",
+      "type": "DynamicPipelineSettings",
+      "description": "LogsDynamicPipeline configures whether log record attribute `elasticsearch.document_pipeline` is set as the document ingest pipeline for ES.",
+      "required": true,
+      "mapstructureTag": "logs_dynamic_pipeline"
+    },
+    {
+      "name": "Pipeline",
+      "type": "string",
+      "description": "Pipeline configures the ingest node pipeline name that should be used to process the events. https://www.elastic.co/guide/en/elasticsearch/reference/current/ingest.html",
+      "required": true,
+      "mapstructureTag": "pipeline"
+    },
+    {
+      "name": "Authentication",
+      "type": "AuthenticationSettings",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "Discovery",
+      "type": "DiscoverySettings",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "discover"
+    },
+    {
+      "name": "Retry",
+      "type": "RetrySettings",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "retry"
+    },
+    {
+      "name": "Flush",
+      "type": "FlushSettings",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "flush"
+    },
+    {
+      "name": "Mapping",
+      "type": "MappingsSettings",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "mapping"
+    },
+    {
+      "name": "LogstashFormat",
+      "type": "LogstashFormatSettings",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "logstash_format"
+    },
+    {
+      "name": "Batcher",
+      "type": "BatcherConfig",
+      "description": "Batcher holds configuration for batching requests based on timeout and size-based thresholds. Batcher is unused by default, in which case Flush will be used. If Batcher.Enabled is non-nil (i.e. batcher::enabled is specified), then the Flush will be ignored even if Batcher.Enabled is false.",
+      "required": true,
+      "mapstructureTag": "batcher"
+    }
+  ],
+  "imports": [
+    "encoding/base64",
+    "errors",
+    "fmt",
+    "net/url",
+    "os",
+    "slices",
+    "strings",
+    "time",
+    "go.opentelemetry.io/collector/config/configcompression",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/confmap",
+    "go.opentelemetry.io/collector/exporter/exporterbatcher",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "go.uber.org/zap"
+  ],
+  "packageName": "elasticsearchexporter"
+}

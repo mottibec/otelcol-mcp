@@ -1,0 +1,53 @@
+{
+  "fields": [
+    {
+      "name": "InstanceName",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "instance_name"
+    },
+    {
+      "name": "ComputerName",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "computer_name"
+    },
+    {
+      "name": "Password",
+      "type": "configopaque.String",
+      "description": "The following options currently do nothing. Functionality will be added in a future PR.",
+      "required": true,
+      "mapstructureTag": "password"
+    },
+    {
+      "name": "Port",
+      "type": "uint",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "port"
+    },
+    {
+      "name": "Server",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "server"
+    },
+    {
+      "name": "Username",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "username"
+    }
+  ],
+  "imports": [
+    "errors",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/sqlserverreceiver/internal/metadata"
+  ],
+  "packageName": "sqlserverreceiver"
+}

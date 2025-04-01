@@ -1,0 +1,162 @@
+{
+  "fields": [
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "AccessToken",
+      "type": "configopaque.String",
+      "description": "AccessToken is the authentication token provided by SignalFx.",
+      "required": true,
+      "mapstructureTag": "access_token"
+    },
+    {
+      "name": "Realm",
+      "type": "string",
+      "description": "Realm is the SignalFx realm where data is going to be sent to.",
+      "required": true,
+      "mapstructureTag": "realm"
+    },
+    {
+      "name": "IngestURL",
+      "type": "string",
+      "description": "IngestURL is the destination to where SignalFx metrics will be sent to, it is intended for tests and debugging. The value of Realm is ignored if the URL is specified. The exporter will automatically append the appropriate path: \"/v2/datapoint\" for metrics, and \"/v2/event\" for events.",
+      "required": true,
+      "mapstructureTag": "ingest_url"
+    },
+    {
+      "name": "IngestTLSSettings",
+      "type": "configtls.ClientConfig",
+      "description": "ingest_tls needs to be set if the exporter's IngestURL is pointing to a signalfx receiver with TLS enabled and using a self-signed certificate where its CA is not loaded in the system cert pool.",
+      "required": false,
+      "mapstructureTag": "ingest_tls,omitempty"
+    },
+    {
+      "name": "APIURL",
+      "type": "string",
+      "description": "APIURL is the destination to where SignalFx metadata will be sent. This value takes precedence over the value of Realm",
+      "required": true,
+      "mapstructureTag": "api_url"
+    },
+    {
+      "name": "APITLSSettings",
+      "type": "configtls.ClientConfig",
+      "description": "api_tls needs to be set if the exporter's APIURL is pointing to a httpforwarder extension with TLS enabled and using a self-signed certificate where its CA is not loaded in the system cert pool.",
+      "required": false,
+      "mapstructureTag": "api_tls,omitempty"
+    },
+    {
+      "name": "LogDataPoints",
+      "type": "bool",
+      "description": "Whether to log datapoints dispatched to Splunk Observability Cloud",
+      "required": true,
+      "mapstructureTag": "log_data_points"
+    },
+    {
+      "name": "LogDimensionUpdates",
+      "type": "bool",
+      "description": "Whether to log dimension updates being sent to SignalFx.",
+      "required": true,
+      "mapstructureTag": "log_dimension_updates"
+    },
+    {
+      "name": "DimensionClient",
+      "type": "DimensionClientConfig",
+      "description": "Dimension update client configuration used for metadata updates.",
+      "required": true,
+      "mapstructureTag": "dimension_client"
+    },
+    {
+      "name": "DisableDefaultTranslationRules",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "disable_default_translation_rules"
+    },
+    {
+      "name": "DeltaTranslationTTL",
+      "type": "int64",
+      "description": "DeltaTranslationTTL specifies in seconds the max duration to keep the most recent datapoint for any `delta_metric` specified in TranslationRules. Default is 3600s.",
+      "required": true,
+      "mapstructureTag": "delta_translation_ttl"
+    },
+    {
+      "name": "SyncHostMetadata",
+      "type": "bool",
+      "description": "SyncHostMetadata defines if the exporter should scrape host metadata and sends it as property updates to SignalFx backend. IMPORTANT: Host metadata synchronization relies on `resourcedetection` processor. If this option is enabled make sure that `resourcedetection` processor is enabled in the pipeline with one of the cloud provider detectors or environment variable detector setting a unique value to `host.name` attribute within your k8s cluster. Also keep override And keep `override=true` in resourcedetection config.",
+      "required": true,
+      "mapstructureTag": "sync_host_metadata"
+    },
+    {
+      "name": "ExcludeMetrics",
+      "type": "[]dpfilters.MetricFilter",
+      "description": "ExcludeMetrics defines dpfilter.MetricFilters that will determine metrics to be excluded from sending to SignalFx backend. If translations enabled with TranslationRules options, the exclusion will be applied on translated metrics.",
+      "required": true,
+      "mapstructureTag": "exclude_metrics"
+    },
+    {
+      "name": "IncludeMetrics",
+      "type": "[]dpfilters.MetricFilter",
+      "description": "IncludeMetrics defines dpfilter.MetricFilters to override exclusion any of metric. This option can be used to included metrics that are otherwise dropped by default. See ./translation/default_metrics.go for a list of metrics that are dropped by default.",
+      "required": true,
+      "mapstructureTag": "include_metrics"
+    },
+    {
+      "name": "ExcludeProperties",
+      "type": "[]dpfilters.PropertyFilter",
+      "description": "ExcludeProperties defines dpfilter.PropertyFilters to prevent inclusion of properties to include with dimension updates to the SignalFx backend.",
+      "required": true,
+      "mapstructureTag": "exclude_properties"
+    },
+    {
+      "name": "Correlation",
+      "type": "*correlation.Config",
+      "description": "Correlation configuration for syncing traces service and environment to metrics.",
+      "required": true,
+      "mapstructureTag": "correlation"
+    },
+    {
+      "name": "NonAlphanumericDimensionChars",
+      "type": "string",
+      "description": "NonAlphanumericDimensionChars is a list of allowable characters, in addition to alphanumeric ones, to be used in a dimension key.",
+      "required": true,
+      "mapstructureTag": "nonalphanumeric_dimension_chars"
+    },
+    {
+      "name": "DropHistogramBuckets",
+      "type": "bool",
+      "description": "Whether to drop histogram bucket metrics dispatched to Splunk Observability. Default value is set to false.",
+      "required": true,
+      "mapstructureTag": "drop_histogram_buckets"
+    },
+    {
+      "name": "SendOTLPHistograms",
+      "type": "bool",
+      "description": "Whether to send histogram metrics in OTLP format to Splunk Observability. Default value is set to false.",
+      "required": true,
+      "mapstructureTag": "send_otlp_histograms"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net/url",
+    "time",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/config/configtls",
+    "go.opentelemetry.io/collector/confmap",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "gopkg.in/yaml.v3",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter/internal/correlation",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter/internal/translation",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter/internal/translation/dpfilters",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
+  ],
+  "packageName": "signalfxexporter"
+}

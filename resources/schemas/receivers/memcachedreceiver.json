@@ -1,0 +1,9 @@
+{
+  "fields": [],
+  "imports": [
+    "go.opentelemetry.io/collector/config/confignet",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/memcachedreceiver/internal/metadata"
+  ],
+  "packageName": "memcachedreceiver"
+}

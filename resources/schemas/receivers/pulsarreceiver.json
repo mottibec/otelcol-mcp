@@ -1,0 +1,67 @@
+{
+  "fields": [
+    {
+      "name": "Endpoint",
+      "type": "string",
+      "description": "Configure the service URL for the Pulsar service.",
+      "required": true,
+      "mapstructureTag": "endpoint"
+    },
+    {
+      "name": "Topic",
+      "type": "string",
+      "description": "The topic of pulsar to consume logs,metrics,traces. (default = \"otlp_traces\" for traces, \"otlp_metrics\" for metrics, \"otlp_logs\" for logs)",
+      "required": true,
+      "mapstructureTag": "topic"
+    },
+    {
+      "name": "Subscription",
+      "type": "string",
+      "description": "The Subscription that receiver will be consuming messages from (default \"otlp_subscription\")",
+      "required": true,
+      "mapstructureTag": "subscription"
+    },
+    {
+      "name": "Encoding",
+      "type": "string",
+      "description": "Encoding of the messages (default \"otlp_proto\")",
+      "required": true,
+      "mapstructureTag": "encoding"
+    },
+    {
+      "name": "ConsumerName",
+      "type": "string",
+      "description": "Name specifies the consumer name.",
+      "required": true,
+      "mapstructureTag": "consumer_name"
+    },
+    {
+      "name": "TLSTrustCertsFilePath",
+      "type": "string",
+      "description": "Set the path to the trusted TLS certificate file",
+      "required": true,
+      "mapstructureTag": "tls_trust_certs_file_path"
+    },
+    {
+      "name": "TLSAllowInsecureConnection",
+      "type": "bool",
+      "description": "Configure whether the Pulsar client accept untrusted TLS certificate from broker (default: false)",
+      "required": true,
+      "mapstructureTag": "tls_allow_insecure_connection"
+    },
+    {
+      "name": "Authentication",
+      "type": "Authentication",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "auth"
+    }
+  ],
+  "imports": [
+    "errors",
+    "github.com/apache/pulsar-client-go/pulsar",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configopaque"
+  ],
+  "packageName": "pulsarreceiver"
+}

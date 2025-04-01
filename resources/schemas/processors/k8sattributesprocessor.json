@@ -1,0 +1,63 @@
+{
+  "fields": [
+    {
+      "name": "Passthrough",
+      "type": "bool",
+      "description": "Passthrough mode only annotates resources with the pod IP and does not try to extract any other metadata. It does not need access to the K8S cluster API. Agent/Collector must receive spans directly from services to be able to correctly detect the pod IPs.",
+      "required": true,
+      "mapstructureTag": "passthrough"
+    },
+    {
+      "name": "Extract",
+      "type": "ExtractConfig",
+      "description": "Extract section allows specifying extraction rules to extract data from k8s pod specs",
+      "required": true,
+      "mapstructureTag": "extract"
+    },
+    {
+      "name": "Filter",
+      "type": "FilterConfig",
+      "description": "Filter section allows specifying filters to filter pods by labels, fields, namespaces, nodes, etc.",
+      "required": true,
+      "mapstructureTag": "filter"
+    },
+    {
+      "name": "Association",
+      "type": "[]PodAssociationConfig",
+      "description": "Association section allows to define rules for tagging spans, metrics, and logs with Pod metadata.",
+      "required": true,
+      "mapstructureTag": "pod_association"
+    },
+    {
+      "name": "Exclude",
+      "type": "ExcludeConfig",
+      "description": "Exclude section allows to define names of pod that should be ignored while tagging.",
+      "required": true,
+      "mapstructureTag": "exclude"
+    },
+    {
+      "name": "WaitForMetadata",
+      "type": "bool",
+      "description": "WaitForMetadata is a flag that determines if the processor should wait k8s metadata to be synced when starting.",
+      "required": true,
+      "mapstructureTag": "wait_for_metadata"
+    },
+    {
+      "name": "WaitForMetadataTimeout",
+      "type": "time.Duration",
+      "description": "WaitForMetadataTimeout is the maximum time the processor will wait for the k8s metadata to be synced.",
+      "required": true,
+      "mapstructureTag": "wait_for_metadata_timeout"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "regexp",
+    "time",
+    "go.opentelemetry.io/collector/featuregate",
+    "conventions \"go.opentelemetry.io/collector/semconv/v1.6.1\"",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor/internal/kube"
+  ],
+  "packageName": "k8sattributesprocessor"
+}

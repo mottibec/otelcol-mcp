@@ -1,0 +1,8 @@
+{
+  "fields": [],
+  "imports": [
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/confighttp"
+  ],
+  "packageName": "prometheusremotewritereceiver"
+}

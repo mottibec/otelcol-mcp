@@ -1,0 +1,25 @@
+{
+  "fields": [
+    {
+      "name": "APIKey",
+      "type": "configopaque.String",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "api_key"
+    },
+    {
+      "name": "RetryConfig",
+      "type": "configretry.BackOffConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "retry_on_failure"
+    }
+  ],
+  "imports": [
+    "errors",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configretry"
+  ],
+  "packageName": "bmchelixexporter"
+}
