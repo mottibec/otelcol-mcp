@@ -1,0 +1,74 @@
+{
+  "fields": [
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "Producer",
+      "type": "configkafka.ProducerConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "producer"
+    },
+    {
+      "name": "Topic",
+      "type": "string",
+      "description": "The name of the kafka topic to export to (default otlp_spans for traces, otlp_metrics for metrics)",
+      "required": true,
+      "mapstructureTag": "topic"
+    },
+    {
+      "name": "TopicFromAttribute",
+      "type": "string",
+      "description": "TopicFromAttribute is the name of the attribute to use as the topic name.",
+      "required": true,
+      "mapstructureTag": "topic_from_attribute"
+    },
+    {
+      "name": "Encoding",
+      "type": "string",
+      "description": "Encoding of messages (default \"otlp_proto\")",
+      "required": true,
+      "mapstructureTag": "encoding"
+    },
+    {
+      "name": "PartitionTracesByID",
+      "type": "bool",
+      "description": "PartitionTracesByID sets the message key of outgoing trace messages to the trace ID. Please note: does not have any effect on Jaeger encoding exporters since Jaeger exporters include trace ID as the message key by default.",
+      "required": true,
+      "mapstructureTag": "partition_traces_by_id"
+    },
+    {
+      "name": "PartitionMetricsByResourceAttributes",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "partition_metrics_by_resource_attributes"
+    },
+    {
+      "name": "PartitionLogsByResourceAttributes",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "partition_logs_by_resource_attributes"
+    }
+  ],
+  "imports": [
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/kafka/configkafka"
+  ],
+  "packageName": "kafkaexporter"
+}

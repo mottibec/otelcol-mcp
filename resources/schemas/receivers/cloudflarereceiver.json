@@ -1,0 +1,19 @@
+{
+  "fields": [
+    {
+      "name": "Logs",
+      "type": "LogsConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "logs"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net",
+    "go.opentelemetry.io/collector/config/configtls",
+    "go.uber.org/multierr"
+  ],
+  "packageName": "cloudflarereceiver"
+}

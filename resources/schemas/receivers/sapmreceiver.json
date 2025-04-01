@@ -1,0 +1,7 @@
+{
+  "fields": [],
+  "imports": [
+    "go.opentelemetry.io/collector/config/confighttp"
+  ],
+  "packageName": "sapmreceiver"
+}

@@ -1,0 +1,47 @@
+{
+  "fields": [
+    {
+      "name": "Region",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "region"
+    },
+    {
+      "name": "Profile",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "profile"
+    },
+    {
+      "name": "IMDSEndpoint",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "imds_endpoint"
+    },
+    {
+      "name": "PollInterval",
+      "type": "time.Duration",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "poll_interval"
+    },
+    {
+      "name": "Metrics",
+      "type": "*MetricsConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "metrics"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net/url",
+    "strings",
+    "time"
+  ],
+  "packageName": "awscloudwatchmetricsreceiver"
+}

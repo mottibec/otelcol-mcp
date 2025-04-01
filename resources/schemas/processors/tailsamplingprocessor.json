@@ -1,0 +1,51 @@
+{
+  "fields": [
+    {
+      "name": "DecisionWait",
+      "type": "time.Duration",
+      "description": "DecisionWait is the desired wait time from the arrival of the first span of trace until the decision about sampling it or not is evaluated.",
+      "required": true,
+      "mapstructureTag": "decision_wait"
+    },
+    {
+      "name": "NumTraces",
+      "type": "uint64",
+      "description": "NumTraces is the number of traces kept on memory. Typically most of the data of a trace is released after a sampling decision is taken.",
+      "required": true,
+      "mapstructureTag": "num_traces"
+    },
+    {
+      "name": "ExpectedNewTracesPerSec",
+      "type": "uint64",
+      "description": "ExpectedNewTracesPerSec sets the expected number of new traces sending to the tail sampling processor per second. This helps with allocating data structures with closer to actual usage size.",
+      "required": true,
+      "mapstructureTag": "expected_new_traces_per_sec"
+    },
+    {
+      "name": "PolicyCfgs",
+      "type": "[]PolicyCfg",
+      "description": "PolicyCfgs sets the tail-based sampling policy which makes a sampling decision for a given trace when requested.",
+      "required": true,
+      "mapstructureTag": "policies"
+    },
+    {
+      "name": "DecisionCache",
+      "type": "DecisionCacheConfig",
+      "description": "DecisionCache holds configuration for the decision cache(s)",
+      "required": true,
+      "mapstructureTag": "decision_cache"
+    },
+    {
+      "name": "Options",
+      "type": "[]Option",
+      "description": "Options allows for additional configuration of the tail-based sampling processor in code.",
+      "required": true,
+      "mapstructureTag": "-"
+    }
+  ],
+  "imports": [
+    "time",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
+  ],
+  "packageName": "tailsamplingprocessor"
+}

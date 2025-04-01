@@ -1,0 +1,74 @@
+{
+  "fields": [
+    {
+      "name": "Endpoint",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "endpoint"
+    },
+    {
+      "name": "TLSName",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "tlsname"
+    },
+    {
+      "name": "Username",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "username"
+    },
+    {
+      "name": "Password",
+      "type": "configopaque.String",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "password"
+    },
+    {
+      "name": "CollectClusterMetrics",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "collect_cluster_metrics"
+    },
+    {
+      "name": "Timeout",
+      "type": "time.Duration",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "timeout"
+    },
+    {
+      "name": "MetricsBuilderConfig",
+      "type": "metadata.MetricsBuilderConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "TLS",
+      "type": "*configtls.ClientConfig",
+      "description": "",
+      "required": false,
+      "mapstructureTag": "tls,omitempty"
+    }
+  ],
+  "imports": [
+    "context",
+    "errors",
+    "fmt",
+    "net",
+    "strconv",
+    "time",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configtls",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "go.uber.org/multierr",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/aerospikereceiver/internal/metadata"
+  ],
+  "packageName": "aerospikereceiver"
+}

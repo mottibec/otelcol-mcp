@@ -1,0 +1,16 @@
+{
+  "fields": [
+    {
+      "name": "Rules",
+      "type": "[]Rule",
+      "description": "Set of rules for generating new metrics",
+      "required": true,
+      "mapstructureTag": "rules"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "sort"
+  ],
+  "packageName": "metricsgenerationprocessor"
+}

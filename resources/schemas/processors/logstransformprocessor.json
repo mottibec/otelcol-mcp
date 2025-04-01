@@ -1,0 +1,9 @@
+{
+  "fields": [],
+  "imports": [
+    "errors",
+    "go.opentelemetry.io/collector/component",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/adapter"
+  ],
+  "packageName": "logstransformprocessor"
+}

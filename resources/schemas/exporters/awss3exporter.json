@@ -1,0 +1,54 @@
+{
+  "fields": [
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "S3Uploader",
+      "type": "S3UploaderConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "s3uploader"
+    },
+    {
+      "name": "MarshalerName",
+      "type": "MarshalerType",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "marshaler"
+    },
+    {
+      "name": "Encoding",
+      "type": "*component.ID",
+      "description": "Encoding to apply. If present, overrides the marshaler configuration option.",
+      "required": true,
+      "mapstructureTag": "encoding"
+    },
+    {
+      "name": "EncodingFileExtension",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "encoding_file_extension"
+    }
+  ],
+  "imports": [
+    "errors",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configcompression",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "go.uber.org/multierr"
+  ],
+  "packageName": "awss3exporter"
+}

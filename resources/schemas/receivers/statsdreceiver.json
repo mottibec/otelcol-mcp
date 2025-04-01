@@ -1,0 +1,63 @@
+{
+  "fields": [
+    {
+      "name": "NetAddr",
+      "type": "confignet.AddrConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "AggregationInterval",
+      "type": "time.Duration",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "aggregation_interval"
+    },
+    {
+      "name": "EnableIPOnlyAggregation",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "enable_ip_only_aggregation"
+    },
+    {
+      "name": "EnableMetricType",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "enable_metric_type"
+    },
+    {
+      "name": "EnableSimpleTags",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "enable_simple_tags"
+    },
+    {
+      "name": "IsMonotonicCounter",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "is_monotonic_counter"
+    },
+    {
+      "name": "TimerHistogramMapping",
+      "type": "[]protocol.TimerHistogramMapping",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "timer_histogram_mapping"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "time",
+    "github.com/lightstep/go-expohisto/structure",
+    "go.opentelemetry.io/collector/config/confignet",
+    "go.uber.org/multierr",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/statsdreceiver/protocol"
+  ],
+  "packageName": "statsdreceiver"
+}

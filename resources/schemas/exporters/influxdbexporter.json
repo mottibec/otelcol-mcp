@@ -1,0 +1,84 @@
+{
+  "fields": [
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "Org",
+      "type": "string",
+      "description": "Org is the InfluxDB organization name of the destination bucket.",
+      "required": true,
+      "mapstructureTag": "org"
+    },
+    {
+      "name": "Bucket",
+      "type": "string",
+      "description": "Bucket is the InfluxDB bucket name that telemetry will be written to.",
+      "required": true,
+      "mapstructureTag": "bucket"
+    },
+    {
+      "name": "Token",
+      "type": "configopaque.String",
+      "description": "Token is used to identify InfluxDB permissions within the organization.",
+      "required": true,
+      "mapstructureTag": "token"
+    },
+    {
+      "name": "V1Compatibility",
+      "type": "V1Compatibility",
+      "description": "V1Compatibility is used to specify if the exporter should use the v1.X InfluxDB API schema.",
+      "required": true,
+      "mapstructureTag": "v1_compatibility"
+    },
+    {
+      "name": "SpanDimensions",
+      "type": "[]string",
+      "description": "SpanDimensions are span attributes to be used as line protocol tags. These are always included as tags: - trace ID - span ID The default values are strongly recommended for use with Jaeger: - service.name - span.name Other common attributes can be found here: - https://opentelemetry.io/docs/specs/semconv/",
+      "required": true,
+      "mapstructureTag": "span_dimensions"
+    },
+    {
+      "name": "LogRecordDimensions",
+      "type": "[]string",
+      "description": "LogRecordDimensions are log record attributes to be used as line protocol tags. These are always included as tags, if available: - trace ID - span ID The default values: - service.name Other common attributes can be found here: - https://opentelemetry.io/docs/specs/semconv/ When using InfluxDB for both logs and traces, be certain that log_record_dimensions matches the tracing span_dimensions value.",
+      "required": true,
+      "mapstructureTag": "log_record_dimensions"
+    },
+    {
+      "name": "MetricsSchema",
+      "type": "string",
+      "description": "MetricsSchema indicates the metrics schema to emit to line protocol. Options: - telegraf-prometheus-v1 - telegraf-prometheus-v2",
+      "required": true,
+      "mapstructureTag": "metrics_schema"
+    },
+    {
+      "name": "PayloadMaxLines",
+      "type": "int",
+      "description": "PayloadMaxLines is the maximum number of line protocol lines to POST in a single request.",
+      "required": true,
+      "mapstructureTag": "payload_max_lines"
+    },
+    {
+      "name": "PayloadMaxBytes",
+      "type": "int",
+      "description": "PayloadMaxBytes is the maximum number of line protocol bytes to POST in a single request.",
+      "required": true,
+      "mapstructureTag": "payload_max_bytes"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "strings",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "golang.org/x/exp/maps"
+  ],
+  "packageName": "influxdbexporter"
+}

@@ -1,0 +1,47 @@
+{
+  "fields": [
+    {
+      "name": "Connection",
+      "type": "ConnectionConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "connection"
+    },
+    {
+      "name": "Routing",
+      "type": "RoutingConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "routing"
+    },
+    {
+      "name": "EncodingExtensionID",
+      "type": "*component.ID",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "encoding_extension"
+    },
+    {
+      "name": "Durable",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "durable"
+    },
+    {
+      "name": "RetrySettings",
+      "type": "configretry.BackOffConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "retry_on_failure"
+    }
+  ],
+  "imports": [
+    "errors",
+    "time",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/config/configtls"
+  ],
+  "packageName": "rabbitmqexporter"
+}

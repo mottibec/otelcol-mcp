@@ -1,0 +1,37 @@
+{
+  "fields": [
+    {
+      "name": "Endpoint",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "endpoint"
+    },
+    {
+      "name": "Username",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "username"
+    },
+    {
+      "name": "Password",
+      "type": "configopaque.String",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "password"
+    }
+  ],
+  "imports": [
+    "context",
+    "errors",
+    "fmt",
+    "net/url",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configtls",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "go.uber.org/multierr",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/vcenterreceiver/internal/metadata"
+  ],
+  "packageName": "vcenterreceiver"
+}

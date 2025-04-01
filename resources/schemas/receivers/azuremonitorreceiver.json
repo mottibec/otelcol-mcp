@@ -1,0 +1,138 @@
+{
+  "fields": [
+    {
+      "name": "MetricsBuilderConfig",
+      "type": "metadata.MetricsBuilderConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "Cloud",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "cloud"
+    },
+    {
+      "name": "SubscriptionIDs",
+      "type": "[]string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "subscription_ids"
+    },
+    {
+      "name": "DiscoverSubscriptions",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "discover_subscriptions"
+    },
+    {
+      "name": "Authentication",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "auth"
+    },
+    {
+      "name": "TenantID",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "tenant_id"
+    },
+    {
+      "name": "ClientID",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "client_id"
+    },
+    {
+      "name": "ClientSecret",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "client_secret"
+    },
+    {
+      "name": "FederatedTokenFile",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "federated_token_file"
+    },
+    {
+      "name": "ResourceGroups",
+      "type": "[]string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "resource_groups"
+    },
+    {
+      "name": "Services",
+      "type": "[]string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "services"
+    },
+    {
+      "name": "Metrics",
+      "type": "NestedListAlias",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "metrics"
+    },
+    {
+      "name": "CacheResources",
+      "type": "float64",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "cache_resources"
+    },
+    {
+      "name": "CacheResourcesDefinitions",
+      "type": "float64",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "cache_resources_definitions"
+    },
+    {
+      "name": "MaximumNumberOfMetricsInACall",
+      "type": "int",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "maximum_number_of_metrics_in_a_call"
+    },
+    {
+      "name": "MaximumNumberOfRecordsPerResource",
+      "type": "int32",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "maximum_number_of_records_per_resource"
+    },
+    {
+      "name": "AppendTagsAsAttributes",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "append_tags_as_attributes"
+    },
+    {
+      "name": "Dimensions",
+      "type": "DimensionsConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "dimensions"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "go.uber.org/multierr",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/azuremonitorreceiver/internal/metadata"
+  ],
+  "packageName": "azuremonitorreceiver"
+}

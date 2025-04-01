@@ -1,0 +1,43 @@
+{
+  "fields": [
+    {
+      "name": "IndexedAttributes",
+      "type": "[]string",
+      "description": "By default, OpenTelemetry attributes are converted to X-Ray metadata, which are not indexed. Specify a list of attribute names to be converted to X-Ray annotations instead, which will be indexed. See annotation vs. metadata: https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-annotations",
+      "required": true,
+      "mapstructureTag": "indexed_attributes"
+    },
+    {
+      "name": "IndexAllAttributes",
+      "type": "bool",
+      "description": "Set to true to convert all OpenTelemetry attributes to X-Ray annotation (indexed) ignoring the IndexedAttributes option. Default value: false",
+      "required": true,
+      "mapstructureTag": "index_all_attributes"
+    },
+    {
+      "name": "LogGroupNames",
+      "type": "[]string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "aws_log_groups"
+    },
+    {
+      "name": "TelemetryConfig",
+      "type": "telemetry.Config",
+      "description": "TelemetryConfig contains the options for telemetry collection.",
+      "required": false,
+      "mapstructureTag": "telemetry,omitempty"
+    },
+    {
+      "name": "skipTimestampValidation",
+      "type": "bool",
+      "description": "skipTimestampValidation if enabled, will skip timestamp validation logic on the trace ID",
+      "required": true
+    }
+  ],
+  "imports": [
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/awsutil",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray/telemetry"
+  ],
+  "packageName": "awsxrayexporter"
+}

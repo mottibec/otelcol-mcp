@@ -1,0 +1,53 @@
+{
+  "fields": [
+    {
+      "name": "DefaultExporters",
+      "type": "[]string",
+      "description": "DefaultExporters contains the list of exporters to use when a more specific record can't be found in the routing table. Optional.",
+      "required": true,
+      "mapstructureTag": "default_exporters"
+    },
+    {
+      "name": "AttributeSource",
+      "type": "AttributeSource",
+      "description": "AttributeSource defines where the attribute defined in `from_attribute` is searched for. The allowed values are: - \"context\" - the attribute must exist in the incoming context - \"resource\" - the attribute must exist in resource attributes The default value is \"context\". Optional.",
+      "required": true,
+      "mapstructureTag": "attribute_source"
+    },
+    {
+      "name": "FromAttribute",
+      "type": "string",
+      "description": "FromAttribute contains the attribute name to look up the route value. This attribute should be part of the context propagated down from the previous receivers and/or processors. If all the receivers and processors are propagating the entire context correctly, this could be the HTTP/gRPC header from the original request/RPC. Typically, aggregation processors (batch, groupbytrace) will create a new context, so, those should be avoided when using this processor.Although the HTTP spec allows headers to be repeated, this processor will only use the first value. Required.",
+      "required": true,
+      "mapstructureTag": "from_attribute"
+    },
+    {
+      "name": "DropRoutingResourceAttribute",
+      "type": "bool",
+      "description": "DropRoutingResourceAttribute controls whether to remove the resource attribute used for routing. This is only relevant if AttributeSource is set to resource. Optional.",
+      "required": true,
+      "mapstructureTag": "drop_resource_routing_attribute"
+    },
+    {
+      "name": "ErrorMode",
+      "type": "ottl.ErrorMode",
+      "description": "ErrorMode determines how the processor reacts to errors that occur while processing an OTTL condition. Valid values are `ignore` and `propagate`. `ignore` means the processor ignores errors returned by conditions and continues on to the next condition. This is the recommended mode. If `ignored` is used and a statement's condition has an error then the payload will be routed to the default exporter. `propagate` means the processor returns the error up the pipeline.  This will result in the payload being dropped from the collector. The default value is `propagate`.",
+      "required": true,
+      "mapstructureTag": "error_mode"
+    },
+    {
+      "name": "Table",
+      "type": "[]RoutingTableItem",
+      "description": "Table contains the routing table for this processor. Required.",
+      "required": true,
+      "mapstructureTag": "table"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "strings",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
+  ],
+  "packageName": "routingprocessor"
+}

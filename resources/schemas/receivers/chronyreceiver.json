@@ -1,0 +1,21 @@
+{
+  "fields": [
+    {
+      "name": "Endpoint",
+      "type": "string",
+      "description": "Endpoint is the published address or unix socket that allows clients to connect to: The allowed format is: unix:///path/to/chronyd/unix.sock udp://localhost:323 The default value is unix:///var/run/chrony/chronyd.sock",
+      "required": true,
+      "mapstructureTag": "endpoint"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "time",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/chronyreceiver/internal/chrony",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/chronyreceiver/internal/metadata"
+  ],
+  "packageName": "chronyreceiver"
+}

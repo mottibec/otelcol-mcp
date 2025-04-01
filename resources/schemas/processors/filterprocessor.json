@@ -1,0 +1,54 @@
+{
+  "fields": [
+    {
+      "name": "ErrorMode",
+      "type": "ottl.ErrorMode",
+      "description": "ErrorMode determines how the processor reacts to errors that occur while processing an OTTL condition. Valid values are `ignore` and `propagate`. `ignore` means the processor ignores errors returned by conditions and continues on to the next condition. This is the recommended mode. `propagate` means the processor returns the error up the pipeline.  This will result in the payload being dropped from the collector. The default value is `propagate`.",
+      "required": true,
+      "mapstructureTag": "error_mode"
+    },
+    {
+      "name": "Metrics",
+      "type": "MetricFilters",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "metrics"
+    },
+    {
+      "name": "Logs",
+      "type": "LogFilters",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "logs"
+    },
+    {
+      "name": "Spans",
+      "type": "filterconfig.MatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "spans"
+    },
+    {
+      "name": "Traces",
+      "type": "TraceFilters",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "traces"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "strings",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/pdata/plog",
+    "go.uber.org/multierr",
+    "go.uber.org/zap",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterconfig",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterottl",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterset",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterset/regexp",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
+  ],
+  "packageName": "filterprocessor"
+}

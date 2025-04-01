@@ -1,0 +1,61 @@
+{
+  "fields": [
+    {
+      "name": "Username",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "username"
+    },
+    {
+      "name": "Password",
+      "type": "configopaque.String",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "password"
+    },
+    {
+      "name": "Account",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "account"
+    },
+    {
+      "name": "Schema",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "schema"
+    },
+    {
+      "name": "Warehouse",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "warehouse"
+    },
+    {
+      "name": "Database",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "database"
+    },
+    {
+      "name": "Role",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "role"
+    }
+  ],
+  "imports": [
+    "errors",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "go.uber.org/multierr",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/snowflakereceiver/internal/metadata"
+  ],
+  "packageName": "snowflakereceiver"
+}

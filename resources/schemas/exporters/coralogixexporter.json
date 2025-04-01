@@ -1,0 +1,113 @@
+{
+  "fields": [
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "Domain",
+      "type": "string",
+      "description": "Coralogix domain",
+      "required": true,
+      "mapstructureTag": "domain"
+    },
+    {
+      "name": "DomainSettings",
+      "type": "configgrpc.ClientConfig",
+      "description": "GRPC Settings used with Domain",
+      "required": true,
+      "mapstructureTag": "domain_settings"
+    },
+    {
+      "name": "Traces",
+      "type": "configgrpc.ClientConfig",
+      "description": "Coralogix traces ingress endpoint",
+      "required": true,
+      "mapstructureTag": "traces"
+    },
+    {
+      "name": "Metrics",
+      "type": "configgrpc.ClientConfig",
+      "description": "The Coralogix metrics ingress endpoint",
+      "required": true,
+      "mapstructureTag": "metrics"
+    },
+    {
+      "name": "Logs",
+      "type": "configgrpc.ClientConfig",
+      "description": "The Coralogix logs ingress endpoint",
+      "required": true,
+      "mapstructureTag": "logs"
+    },
+    {
+      "name": "Profiles",
+      "type": "configgrpc.ClientConfig",
+      "description": "The Coralogix profiles ingress endpoint",
+      "required": true,
+      "mapstructureTag": "profiles"
+    },
+    {
+      "name": "PrivateKey",
+      "type": "configopaque.String",
+      "description": "Your Coralogix private key (sensitive) for authentication",
+      "required": true,
+      "mapstructureTag": "private_key"
+    },
+    {
+      "name": "AppNameAttributes",
+      "type": "[]string",
+      "description": "Ordered list of Resource attributes that are used for Coralogix AppName and SubSystem values. The first non-empty Resource attribute is used. Example: AppNameAttributes: [\"k8s.namespace.name\", \"service.namespace\"] Example: SubSystemAttributes: [\"k8s.deployment.name\", \"k8s.daemonset.name\", \"service.name\"]",
+      "required": true,
+      "mapstructureTag": "application_name_attributes"
+    },
+    {
+      "name": "SubSystemAttributes",
+      "type": "[]string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "subsystem_name_attributes"
+    },
+    {
+      "name": "AppName",
+      "type": "string",
+      "description": "Default Coralogix application and subsystem name values.",
+      "required": true,
+      "mapstructureTag": "application_name"
+    },
+    {
+      "name": "SubSystem",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "subsystem_name"
+    },
+    {
+      "name": "BatcherConfig",
+      "type": "exporterbatcher.Config",
+      "description": "Reference: https://github.com/open-telemetry/opentelemetry-collector/issues/8122",
+      "required": true,
+      "mapstructureTag": "batcher"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "go.opentelemetry.io/collector/config/configgrpc",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterbatcher",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "go.opentelemetry.io/collector/pdata/pcommon"
+  ],
+  "packageName": "coralogixexporter"
+}

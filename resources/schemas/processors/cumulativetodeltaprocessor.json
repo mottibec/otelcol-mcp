@@ -1,0 +1,43 @@
+{
+  "fields": [
+    {
+      "name": "MaxStaleness",
+      "type": "time.Duration",
+      "description": "MaxStaleness is the total time a state entry will live past the time it was last seen. Set to 0 to retain state indefinitely.",
+      "required": true,
+      "mapstructureTag": "max_staleness"
+    },
+    {
+      "name": "InitialValue",
+      "type": "tracking.InitialValue",
+      "description": "InitialValue determines how to handle the first datapoint for a given metric. Valid values: - auto: (default) send the first point iff the startime is set AND the starttime happens after the component started AND the starttime is different from the timestamp - keep: always send the first point - drop: don't send the first point, but store it for subsequent delta calculations",
+      "required": true,
+      "mapstructureTag": "initial_value"
+    },
+    {
+      "name": "Include",
+      "type": "MatchMetrics",
+      "description": "Include specifies a filter on the metrics that should be converted. Exclude specifies a filter on the metrics that should not be converted. If neither `include` nor `exclude` are set, all metrics will be converted. Cannot be used with deprecated Metrics config option.",
+      "required": true,
+      "mapstructureTag": "include"
+    },
+    {
+      "name": "Exclude",
+      "type": "MatchMetrics",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "exclude"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "strings",
+    "time",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/pdata/pmetric",
+    "golang.org/x/exp/maps",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterset",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/cumulativetodeltaprocessor/internal/tracking"
+  ],
+  "packageName": "cumulativetodeltaprocessor"
+}

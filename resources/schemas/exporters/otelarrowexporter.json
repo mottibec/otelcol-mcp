@@ -1,0 +1,77 @@
+{
+  "fields": [
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "Timeout, Retry, Queue, and gRPC client settings are inherited from exporterhelper using field names intentionally identical to the core OTLP exporter.",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "RetryConfig",
+      "type": "configretry.BackOffConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "retry_on_failure"
+    },
+    {
+      "name": "BatcherConfig",
+      "type": "exporterbatcher.Config",
+      "description": "Experimental: This configuration is at the early stage of development and may change without backward compatibility until https://github.com/open-telemetry/opentelemetry-collector/issues/8122 is resolved",
+      "required": true,
+      "mapstructureTag": "batcher"
+    },
+    {
+      "name": "Arrow",
+      "type": "ArrowConfig",
+      "description": "Arrow includes settings specific to OTel Arrow.",
+      "required": true,
+      "mapstructureTag": "arrow"
+    },
+    {
+      "name": "UserDialOptions",
+      "type": "[]grpc.DialOption",
+      "description": "UserDialOptions cannot be configured via `mapstructure` schemes.  This is useful for custom purposes where the exporter is built and configured via code instead of yaml. Uses include custom dialer, custom user-agent, etc.",
+      "required": true,
+      "mapstructureTag": "-"
+    },
+    {
+      "name": "MetadataKeys",
+      "type": "[]string",
+      "description": "MetadataKeys is a list of client.Metadata keys that will be used to form distinct exporters.  If this setting is empty, a single exporter instance will be used.  When this setting is not empty, one exporter will be used per distinct combination of values for the listed metadata keys. Empty value and unset metadata are treated as distinct cases. Entries are case-insensitive.  Duplicated entries will trigger a validation error.",
+      "required": true,
+      "mapstructureTag": "metadata_keys"
+    },
+    {
+      "name": "MetadataCardinalityLimit",
+      "type": "uint32",
+      "description": "MetadataCardinalityLimit indicates the maximum number of exporter instances that will be created through a distinct combination of MetadataKeys.",
+      "required": true,
+      "mapstructureTag": "metadata_cardinality_limit"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "strings",
+    "time",
+    "github.com/open-telemetry/otel-arrow/pkg/config",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configcompression",
+    "go.opentelemetry.io/collector/config/configgrpc",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/confmap/xconfmap",
+    "go.opentelemetry.io/collector/exporter/exporterbatcher",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "google.golang.org/grpc",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/otelarrowexporter/internal/arrow",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/otelarrow/compression/zstd"
+  ],
+  "packageName": "otelarrowexporter"
+}

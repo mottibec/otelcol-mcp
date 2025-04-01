@@ -1,0 +1,50 @@
+{
+  "fields": [
+    {
+      "name": "DataSource",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "datasource"
+    },
+    {
+      "name": "Endpoint",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "endpoint"
+    },
+    {
+      "name": "Password",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "password"
+    },
+    {
+      "name": "Service",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "service"
+    },
+    {
+      "name": "Username",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "username"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net",
+    "net/url",
+    "strconv",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "go.uber.org/multierr",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/oracledbreceiver/internal/metadata"
+  ],
+  "packageName": "oracledbreceiver"
+}

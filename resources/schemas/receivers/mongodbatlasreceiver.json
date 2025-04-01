@@ -1,0 +1,89 @@
+{
+  "fields": [
+    {
+      "name": "PublicKey",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "public_key"
+    },
+    {
+      "name": "PrivateKey",
+      "type": "configopaque.String",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "private_key"
+    },
+    {
+      "name": "Granularity",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "granularity"
+    },
+    {
+      "name": "MetricsBuilderConfig",
+      "type": "metadata.MetricsBuilderConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "Projects",
+      "type": "[]*ProjectConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "projects"
+    },
+    {
+      "name": "Alerts",
+      "type": "AlertConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "alerts"
+    },
+    {
+      "name": "Events",
+      "type": "*EventsConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "events"
+    },
+    {
+      "name": "Logs",
+      "type": "LogConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "logs"
+    },
+    {
+      "name": "BackOffConfig",
+      "type": "configretry.BackOffConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "retry_on_failure"
+    },
+    {
+      "name": "StorageID",
+      "type": "*component.ID",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "storage"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net",
+    "strings",
+    "time",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/config/configtls",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "go.uber.org/multierr",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/mongodbatlasreceiver/internal/metadata"
+  ],
+  "packageName": "mongodbatlasreceiver"
+}

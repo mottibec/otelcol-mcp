@@ -1,0 +1,73 @@
+{
+  "fields": [
+    {
+      "name": "Authentication",
+      "type": "AuthType",
+      "description": "Type of authentication to use",
+      "required": true,
+      "mapstructureTag": "auth"
+    },
+    {
+      "name": "ConnectionString",
+      "type": "string",
+      "description": "Azure Blob Storage connection key, which can be found in the Azure Blob Storage resource on the Azure Portal. (no default)",
+      "required": true,
+      "mapstructureTag": "connection_string"
+    },
+    {
+      "name": "StorageAccountURL",
+      "type": "string",
+      "description": "Storage Account URL, used with Service Principal authentication",
+      "required": true,
+      "mapstructureTag": "storage_account_url"
+    },
+    {
+      "name": "ServicePrincipal",
+      "type": "ServicePrincipalConfig",
+      "description": "Configuration for the Service Principal credentials",
+      "required": true,
+      "mapstructureTag": "service_principal"
+    },
+    {
+      "name": "Cloud",
+      "type": "CloudType",
+      "description": "Azure Cloud to authenticate against, used with Service Principal authentication",
+      "required": true,
+      "mapstructureTag": "cloud"
+    },
+    {
+      "name": "EventHub",
+      "type": "EventHubConfig",
+      "description": "Configurations of Azure Event Hub triggering on the `Blob Create` event",
+      "required": true,
+      "mapstructureTag": "event_hub"
+    },
+    {
+      "name": "Logs",
+      "type": "LogsConfig",
+      "description": "Logs related configurations",
+      "required": true,
+      "mapstructureTag": "logs"
+    },
+    {
+      "name": "Traces",
+      "type": "TracesConfig",
+      "description": "Traces related configurations",
+      "required": true,
+      "mapstructureTag": "traces"
+    },
+    {
+      "name": "_",
+      "type": "struct{",
+      "description": "prevent unkeyed literal initialization",
+      "required": true
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.uber.org/multierr"
+  ],
+  "packageName": "azureblobreceiver"
+}

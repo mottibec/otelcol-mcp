@@ -1,0 +1,13 @@
+{
+  "fields": [
+    {
+      "name": "GroupByKeys",
+      "type": "[]string",
+      "description": "GroupByKeys describes the attribute names that are going to be used for grouping. Empty value is allowed, since processor in such case can compact data",
+      "required": true,
+      "mapstructureTag": "keys"
+    }
+  ],
+  "imports": [],
+  "packageName": "groupbyattrsprocessor"
+}

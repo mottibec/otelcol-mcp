@@ -1,0 +1,18 @@
+{
+  "fields": [
+    {
+      "name": "MaxOpenConn",
+      "type": "int",
+      "description": "The maximumn number of open connections to the sql server. <= 0 means unlimited",
+      "required": true,
+      "mapstructureTag": "max_open_conn"
+    }
+  ],
+  "imports": [
+    "time",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/sqlquery"
+  ],
+  "packageName": "sqlqueryreceiver"
+}

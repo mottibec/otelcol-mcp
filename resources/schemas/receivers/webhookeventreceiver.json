@@ -1,0 +1,68 @@
+{
+  "fields": [
+    {
+      "name": "ReadTimeout",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "read_timeout"
+    },
+    {
+      "name": "WriteTimeout",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "write_timeout"
+    },
+    {
+      "name": "Path",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "path"
+    },
+    {
+      "name": "HealthPath",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "health_path"
+    },
+    {
+      "name": "RequiredHeader",
+      "type": "RequiredHeader",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "required_header"
+    },
+    {
+      "name": "SplitLogsAtNewLine",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "split_logs_at_newline"
+    },
+    {
+      "name": "ConvertHeadersToAttributes",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "convert_headers_to_attributes"
+    },
+    {
+      "name": "HeaderAttributeRegex",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "header_attribute_regex"
+    }
+  ],
+  "imports": [
+    "errors",
+    "regexp",
+    "time",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.uber.org/multierr"
+  ],
+  "packageName": "webhookeventreceiver"
+}

@@ -1,0 +1,17 @@
+{
+  "fields": [
+    {
+      "name": "MetricsBuilderConfig",
+      "type": "metadata.MetricsBuilderConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    }
+  ],
+  "imports": [
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/nginxreceiver/internal/metadata"
+  ],
+  "packageName": "nginxreceiver"
+}

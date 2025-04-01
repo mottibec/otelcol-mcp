@@ -1,0 +1,39 @@
+{
+  "fields": [
+    {
+      "name": "ExtraMetadataLabels",
+      "type": "[]kubelet.MetadataLabel",
+      "description": "ExtraMetadataLabels contains list of extra metadata that should be taken from /pods endpoint and put as extra labels on metrics resource. No additional metadata is fetched by default, so there are no extra calls to /pods endpoint. Supported values include container.id and k8s.volume.type.",
+      "required": true,
+      "mapstructureTag": "extra_metadata_labels"
+    },
+    {
+      "name": "MetricGroupsToCollect",
+      "type": "[]kubelet.MetricGroup",
+      "description": "MetricGroupsToCollect provides a list of metrics groups to collect metrics from. \"container\", \"pod\", \"node\" and \"volume\" are the only valid groups.",
+      "required": true,
+      "mapstructureTag": "metric_groups"
+    },
+    {
+      "name": "K8sAPIConfig",
+      "type": "*k8sconfig.APIConfig",
+      "description": "Configuration of the Kubernetes API client.",
+      "required": true,
+      "mapstructureTag": "k8s_api_config"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/confignet",
+    "go.opentelemetry.io/collector/confmap",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "k8s.io/client-go/kubernetes",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sconfig",
+    "kube \"github.com/open-telemetry/opentelemetry-collector-contrib/internal/kubelet\"",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kubeletstatsreceiver/internal/kubelet",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kubeletstatsreceiver/internal/metadata"
+  ],
+  "packageName": "kubeletstatsreceiver"
+}

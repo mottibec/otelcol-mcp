@@ -1,0 +1,21 @@
+{
+  "fields": [
+    {
+      "name": "WebHook",
+      "type": "WebHook",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "webhook"
+    }
+  ],
+  "imports": [
+    "errors",
+    "time",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/confmap",
+    "go.uber.org/multierr"
+  ],
+  "packageName": "gitlabreceiver"
+}

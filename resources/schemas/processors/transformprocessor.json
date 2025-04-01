@@ -1,0 +1,61 @@
+{
+  "fields": [
+    {
+      "name": "ErrorMode",
+      "type": "ottl.ErrorMode",
+      "description": "ErrorMode determines how the processor reacts to errors that occur while processing a statement. Valid values are `ignore` and `propagate`. `ignore` means the processor ignores errors returned by statements and continues on to the next statement. This is the recommended mode. `propagate` means the processor returns the error up the pipeline.  This will result in the payload being dropped from the collector. The default value is `propagate`.",
+      "required": true,
+      "mapstructureTag": "error_mode"
+    },
+    {
+      "name": "TraceStatements",
+      "type": "[]common.ContextStatements",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "trace_statements"
+    },
+    {
+      "name": "MetricStatements",
+      "type": "[]common.ContextStatements",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "metric_statements"
+    },
+    {
+      "name": "LogStatements",
+      "type": "[]common.ContextStatements",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "log_statements"
+    },
+    {
+      "name": "FlattenData",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "flatten_data"
+    },
+    {
+      "name": "logger",
+      "type": "*zap.Logger",
+      "description": "",
+      "required": true
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "reflect",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/confmap",
+    "go.opentelemetry.io/collector/featuregate",
+    "go.uber.org/multierr",
+    "go.uber.org/zap",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor/internal/common",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor/internal/logs",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor/internal/metrics",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor/internal/traces"
+  ],
+  "packageName": "transformprocessor"
+}

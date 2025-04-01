@@ -1,0 +1,47 @@
+{
+  "fields": [
+    {
+      "name": "ClusterAlias",
+      "type": "string",
+      "description": "Alias name of the kafka cluster",
+      "required": true,
+      "mapstructureTag": "cluster_alias"
+    },
+    {
+      "name": "TopicMatch",
+      "type": "string",
+      "description": "TopicMatch topics to collect metrics on",
+      "required": true,
+      "mapstructureTag": "topic_match"
+    },
+    {
+      "name": "GroupMatch",
+      "type": "string",
+      "description": "GroupMatch consumer groups to collect on",
+      "required": true,
+      "mapstructureTag": "group_match"
+    },
+    {
+      "name": "RefreshFrequency",
+      "type": "time.Duration",
+      "description": "Cluster metadata refresh frequency Configures the refresh frequency to update cached cluster metadata Defaults to 10 minutes from Sarama library If Metadata.RefreshInterval is set, this will be ignored. Deprecated [v0.122.0]: use Metadata.RefreshInterval instead.",
+      "required": true,
+      "mapstructureTag": "refresh_frequency"
+    },
+    {
+      "name": "Scrapers",
+      "type": "[]string",
+      "description": "Scrapers defines which metric data points to be captured from kafka",
+      "required": true,
+      "mapstructureTag": "scrapers"
+    }
+  ],
+  "imports": [
+    "time",
+    "go.opentelemetry.io/collector/confmap",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/kafka/configkafka",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kafkametricsreceiver/internal/metadata"
+  ],
+  "packageName": "kafkametricsreceiver"
+}

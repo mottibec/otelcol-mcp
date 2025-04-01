@@ -1,0 +1,186 @@
+{
+  "fields": [
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "BatcherConfig",
+      "type": "exporterbatcher.Config",
+      "description": "Experimental: This configuration is at the early stage of development and may change without backward compatibility until https://github.com/open-telemetry/opentelemetry-collector/issues/8122 is resolved.",
+      "required": true,
+      "mapstructureTag": "batcher"
+    },
+    {
+      "name": "LogDataEnabled",
+      "type": "bool",
+      "description": "LogDataEnabled can be used to disable sending logs by the exporter.",
+      "required": true,
+      "mapstructureTag": "log_data_enabled"
+    },
+    {
+      "name": "ProfilingDataEnabled",
+      "type": "bool",
+      "description": "ProfilingDataEnabled can be used to disable sending profiling data by the exporter.",
+      "required": true,
+      "mapstructureTag": "profiling_data_enabled"
+    },
+    {
+      "name": "Token",
+      "type": "configopaque.String",
+      "description": "HEC Token is the authentication token provided by Splunk: https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector.",
+      "required": true,
+      "mapstructureTag": "token"
+    },
+    {
+      "name": "Source",
+      "type": "string",
+      "description": "Optional Splunk source: https://docs.splunk.com/Splexicon:Source. Sources identify the incoming data.",
+      "required": true,
+      "mapstructureTag": "source"
+    },
+    {
+      "name": "SourceType",
+      "type": "string",
+      "description": "Optional Splunk source type: https://docs.splunk.com/Splexicon:Sourcetype.",
+      "required": true,
+      "mapstructureTag": "sourcetype"
+    },
+    {
+      "name": "Index",
+      "type": "string",
+      "description": "Splunk index, optional name of the Splunk index.",
+      "required": true,
+      "mapstructureTag": "index"
+    },
+    {
+      "name": "DisableCompression",
+      "type": "bool",
+      "description": "Disable GZip compression. Defaults to false.",
+      "required": true,
+      "mapstructureTag": "disable_compression"
+    },
+    {
+      "name": "MaxContentLengthLogs",
+      "type": "uint",
+      "description": "Maximum log payload size in bytes. Default value is 2097152 bytes (2MiB). Maximum allowed value is 838860800 (~ 800 MB).",
+      "required": true,
+      "mapstructureTag": "max_content_length_logs"
+    },
+    {
+      "name": "MaxContentLengthMetrics",
+      "type": "uint",
+      "description": "Maximum metric payload size in bytes. Default value is 2097152 bytes (2MiB). Maximum allowed value is 838860800 (~ 800 MB).",
+      "required": true,
+      "mapstructureTag": "max_content_length_metrics"
+    },
+    {
+      "name": "MaxContentLengthTraces",
+      "type": "uint",
+      "description": "Maximum trace payload size in bytes. Default value is 2097152 bytes (2MiB). Maximum allowed value is 838860800 (~ 800 MB).",
+      "required": true,
+      "mapstructureTag": "max_content_length_traces"
+    },
+    {
+      "name": "MaxEventSize",
+      "type": "uint",
+      "description": "Maximum payload size, raw uncompressed. Default value is 5242880 bytes (5MiB). Maximum allowed value is 838860800 (~ 800 MB).",
+      "required": true,
+      "mapstructureTag": "max_event_size"
+    },
+    {
+      "name": "SplunkAppName",
+      "type": "string",
+      "description": "App name is used to track telemetry information for Splunk App's using HEC by App name. Defaults to \"OpenTelemetry Collector Contrib\".",
+      "required": true,
+      "mapstructureTag": "splunk_app_name"
+    },
+    {
+      "name": "SplunkAppVersion",
+      "type": "string",
+      "description": "App version is used to track telemetry information for Splunk App's using HEC by App version. Defaults to the current OpenTelemetry Collector Contrib build version.",
+      "required": true,
+      "mapstructureTag": "splunk_app_version"
+    },
+    {
+      "name": "OtelAttrsToHec",
+      "type": "splunk.HecToOtelAttrs",
+      "description": "OtelAttrsToHec creates a mapping from attributes to HEC specific metadata: source, sourcetype, index and host.",
+      "required": true,
+      "mapstructureTag": "otel_attrs_to_hec_metadata"
+    },
+    {
+      "name": "HecToOtelAttrs",
+      "type": "splunk.HecToOtelAttrs",
+      "description": "HecToOtelAttrs creates a mapping from attributes to HEC specific metadata: source, sourcetype, index and host. Deprecated: [v0.113.0] Use OtelAttrsToHec instead.",
+      "required": true,
+      "mapstructureTag": "hec_metadata_to_otel_attrs"
+    },
+    {
+      "name": "HecFields",
+      "type": "OtelToHecFields",
+      "description": "HecFields creates a mapping from attributes to HEC fields.",
+      "required": true,
+      "mapstructureTag": "otel_to_hec_fields"
+    },
+    {
+      "name": "HealthPath",
+      "type": "string",
+      "description": "HealthPath for health API, default is '/services/collector/health'",
+      "required": true,
+      "mapstructureTag": "health_path"
+    },
+    {
+      "name": "HecHealthCheckEnabled",
+      "type": "bool",
+      "description": "HecHealthCheckEnabled can be used to verify Splunk HEC health on exporter's startup",
+      "required": true,
+      "mapstructureTag": "health_check_enabled"
+    },
+    {
+      "name": "ExportRaw",
+      "type": "bool",
+      "description": "ExportRaw to send only the log's body, targeting a Splunk HEC raw endpoint.",
+      "required": true,
+      "mapstructureTag": "export_raw"
+    },
+    {
+      "name": "UseMultiMetricFormat",
+      "type": "bool",
+      "description": "UseMultiMetricFormat combines metric events to save space during ingestion.",
+      "required": true,
+      "mapstructureTag": "use_multi_metric_format"
+    },
+    {
+      "name": "Heartbeat",
+      "type": "HecHeartbeat",
+      "description": "Heartbeat is the configuration to enable heartbeat",
+      "required": true,
+      "mapstructureTag": "heartbeat"
+    },
+    {
+      "name": "Telemetry",
+      "type": "HecTelemetry",
+      "description": "Telemetry is the configuration for splunk hec exporter telemetry",
+      "required": true,
+      "mapstructureTag": "telemetry"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net/url",
+    "path",
+    "time",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterbatcher",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
+  ],
+  "packageName": "splunkhecexporter"
+}

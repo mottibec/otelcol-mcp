@@ -1,0 +1,32 @@
+{
+  "fields": [
+    {
+      "name": "Timeout",
+      "type": "time.Duration",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "timeout"
+    },
+    {
+      "name": "Encoding",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "encoding"
+    },
+    {
+      "name": "AttributesPrefix",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "attributes_prefix"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "strings",
+    "time",
+    "go.opentelemetry.io/collector/config/confighttp"
+  ],
+  "packageName": "collectdreceiver"
+}

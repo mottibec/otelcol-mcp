@@ -1,0 +1,54 @@
+{
+  "fields": [
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "Protocol",
+      "type": "Protocol",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "protocol"
+    },
+    {
+      "name": "Resolver",
+      "type": "ResolverSettings",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "resolver"
+    },
+    {
+      "name": "RoutingKey",
+      "type": "string",
+      "description": "RoutingKey is a single routing key value",
+      "required": true,
+      "mapstructureTag": "routing_key"
+    },
+    {
+      "name": "RoutingAttributes",
+      "type": "[]string",
+      "description": "RoutingAttributes creates a composite routing key, based on several resource attributes of the application. Supports all attributes available (both resource and span), as well as the pseudo attributes \"span.kind\" and \"span.name\".",
+      "required": true,
+      "mapstructureTag": "routing_attributes"
+    }
+  ],
+  "imports": [
+    "time",
+    "github.com/aws/aws-sdk-go-v2/service/servicediscovery/types",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "go.opentelemetry.io/collector/exporter/otlpexporter"
+  ],
+  "packageName": "loadbalancingexporter"
+}

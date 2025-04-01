@@ -1,0 +1,26 @@
+{
+  "fields": [
+    {
+      "name": "Protocols",
+      "type": "",
+      "description": "Protocols is the configuration for the supported protocols, currently gRPC and HTTP (Proto and JSON).",
+      "required": true,
+      "mapstructureTag": "protocols"
+    },
+    {
+      "name": "KeepTimestamp",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "use_incoming_timestamp"
+    }
+  ],
+  "imports": [
+    "errors",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configgrpc",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/confmap"
+  ],
+  "packageName": "lokireceiver"
+}

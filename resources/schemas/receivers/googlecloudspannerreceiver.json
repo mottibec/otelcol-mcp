@@ -1,0 +1,52 @@
+{
+  "fields": [
+    {
+      "name": "TopMetricsQueryMaxRows",
+      "type": "int",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "top_metrics_query_max_rows"
+    },
+    {
+      "name": "BackfillEnabled",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "backfill_enabled"
+    },
+    {
+      "name": "CardinalityTotalLimit",
+      "type": "int",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "cardinality_total_limit"
+    },
+    {
+      "name": "Projects",
+      "type": "[]Project",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "projects"
+    },
+    {
+      "name": "HideTopnLockstatsRowrangestartkey",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "hide_topn_lockstats_rowrangestartkey"
+    },
+    {
+      "name": "TruncateText",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "truncate_text"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "go.opentelemetry.io/collector/scraper/scraperhelper"
+  ],
+  "packageName": "googlecloudspannerreceiver"
+}

@@ -1,0 +1,83 @@
+{
+  "fields": [
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "Timeout for all API calls. If not set, defaults to 12 seconds.",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "ProjectID",
+      "type": "string",
+      "description": "Google Cloud Project ID where the Pubsub client will connect to",
+      "required": true,
+      "mapstructureTag": "project"
+    },
+    {
+      "name": "UserAgent",
+      "type": "string",
+      "description": "User agent that will be used by the Pubsub client to connect to the service",
+      "required": true,
+      "mapstructureTag": "user_agent"
+    },
+    {
+      "name": "Endpoint",
+      "type": "string",
+      "description": "Override of the Pubsub Endpoint, leave empty for the default endpoint",
+      "required": true,
+      "mapstructureTag": "endpoint"
+    },
+    {
+      "name": "Insecure",
+      "type": "bool",
+      "description": "Only has effect if Endpoint is not \"\"",
+      "required": true,
+      "mapstructureTag": "insecure"
+    },
+    {
+      "name": "Topic",
+      "type": "string",
+      "description": "The fully qualified resource name of the Pubsub topic",
+      "required": true,
+      "mapstructureTag": "topic"
+    },
+    {
+      "name": "Compression",
+      "type": "string",
+      "description": "Compression of the payload (only gzip or is supported, no compression is the default)",
+      "required": true,
+      "mapstructureTag": "compression"
+    },
+    {
+      "name": "Watermark",
+      "type": "WatermarkConfig",
+      "description": "Watermark defines the watermark (the ce-time attribute on the message) behavior",
+      "required": true,
+      "mapstructureTag": "watermark"
+    },
+    {
+      "name": "Ordering",
+      "type": "OrderingConfig",
+      "description": "Ordering configures the ordering keys",
+      "required": true,
+      "mapstructureTag": "ordering"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "regexp",
+    "time",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "go.uber.org/multierr"
+  ],
+  "packageName": "googlecloudpubsubexporter"
+}

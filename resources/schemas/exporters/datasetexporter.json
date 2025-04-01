@@ -1,0 +1,81 @@
+{
+  "fields": [
+    {
+      "name": "DatasetURL",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "dataset_url"
+    },
+    {
+      "name": "APIKey",
+      "type": "configopaque.String",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "api_key"
+    },
+    {
+      "name": "Debug",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "debug"
+    },
+    {
+      "name": "BufferSettings",
+      "type": "",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "buffer"
+    },
+    {
+      "name": "TracesSettings",
+      "type": "",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "traces"
+    },
+    {
+      "name": "LogsSettings",
+      "type": "",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "logs"
+    },
+    {
+      "name": "ServerHostSettings",
+      "type": "",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "server_host"
+    },
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "timeout"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "time",
+    "github.com/cenkalti/backoff/v4",
+    "github.com/scalyr/dataset-go/pkg/buffer",
+    "github.com/scalyr/dataset-go/pkg/buffer_config",
+    "datasetConfig \"github.com/scalyr/dataset-go/pkg/config\"",
+    "github.com/scalyr/dataset-go/pkg/server_host_config",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/confmap",
+    "go.opentelemetry.io/collector/exporter/exporterhelper"
+  ],
+  "packageName": "datasetexporter"
+}

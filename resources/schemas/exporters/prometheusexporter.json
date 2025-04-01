@@ -1,0 +1,61 @@
+{
+  "fields": [
+    {
+      "name": "Namespace",
+      "type": "string",
+      "description": "Namespace if set, exports metrics under the provided value.",
+      "required": true,
+      "mapstructureTag": "namespace"
+    },
+    {
+      "name": "ConstLabels",
+      "type": "prometheus.Labels",
+      "description": "ConstLabels are values that are applied for every exported metric.",
+      "required": true,
+      "mapstructureTag": "const_labels"
+    },
+    {
+      "name": "SendTimestamps",
+      "type": "bool",
+      "description": "SendTimestamps will send the underlying scrape timestamp with the export",
+      "required": true,
+      "mapstructureTag": "send_timestamps"
+    },
+    {
+      "name": "MetricExpiration",
+      "type": "time.Duration",
+      "description": "MetricExpiration defines how long metrics are kept without updates",
+      "required": true,
+      "mapstructureTag": "metric_expiration"
+    },
+    {
+      "name": "ResourceToTelemetrySettings",
+      "type": "resourcetotelemetry.Settings",
+      "description": "ResourceToTelemetrySettings defines configuration for converting resource attributes to metric labels.",
+      "required": true,
+      "mapstructureTag": "resource_to_telemetry_conversion"
+    },
+    {
+      "name": "EnableOpenMetrics",
+      "type": "bool",
+      "description": "EnableOpenMetrics enables the use of the OpenMetrics encoding option for the prometheus exporter.",
+      "required": true,
+      "mapstructureTag": "enable_open_metrics"
+    },
+    {
+      "name": "AddMetricSuffixes",
+      "type": "bool",
+      "description": "AddMetricSuffixes controls whether suffixes are added to metric names. Defaults to true.",
+      "required": true,
+      "mapstructureTag": "add_metric_suffixes"
+    }
+  ],
+  "imports": [
+    "time",
+    "github.com/prometheus/client_golang/prometheus",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/resourcetotelemetry"
+  ],
+  "packageName": "prometheusexporter"
+}

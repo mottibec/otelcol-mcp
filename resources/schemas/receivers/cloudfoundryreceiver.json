@@ -1,0 +1,27 @@
+{
+  "fields": [
+    {
+      "name": "RLPGateway",
+      "type": "RLPGatewayConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "rlp_gateway"
+    },
+    {
+      "name": "UAA",
+      "type": "UAAConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "uaa"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net/url",
+    "strings",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configopaque"
+  ],
+  "packageName": "cloudfoundryreceiver"
+}

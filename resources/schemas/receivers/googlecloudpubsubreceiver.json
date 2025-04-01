@@ -1,0 +1,73 @@
+{
+  "fields": [
+    {
+      "name": "ProjectID",
+      "type": "string",
+      "description": "Google Cloud Project ID where the Pubsub client will connect to",
+      "required": true,
+      "mapstructureTag": "project"
+    },
+    {
+      "name": "UserAgent",
+      "type": "string",
+      "description": "User agent that will be used by the Pubsub client to connect to the service",
+      "required": true,
+      "mapstructureTag": "user_agent"
+    },
+    {
+      "name": "Endpoint",
+      "type": "string",
+      "description": "Override of the Pubsub Endpoint, leave empty for the default endpoint",
+      "required": true,
+      "mapstructureTag": "endpoint"
+    },
+    {
+      "name": "Insecure",
+      "type": "bool",
+      "description": "Only has effect if Endpoint is not \"\"",
+      "required": true,
+      "mapstructureTag": "insecure"
+    },
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "Timeout for all API calls. If not set, defaults to 12 seconds.",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "Subscription",
+      "type": "string",
+      "description": "The fully qualified resource name of the Pubsub subscription",
+      "required": true,
+      "mapstructureTag": "subscription"
+    },
+    {
+      "name": "Encoding",
+      "type": "string",
+      "description": "Lock down the encoding of the payload, leave empty for attribute based detection",
+      "required": true,
+      "mapstructureTag": "encoding"
+    },
+    {
+      "name": "Compression",
+      "type": "string",
+      "description": "Lock down the compression of the payload, leave empty for attribute based detection",
+      "required": true,
+      "mapstructureTag": "compression"
+    },
+    {
+      "name": "ClientID",
+      "type": "string",
+      "description": "The client id that will be used by Pubsub to make load balancing decisions",
+      "required": true,
+      "mapstructureTag": "client_id"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "regexp",
+    "go.opentelemetry.io/collector/exporter/exporterhelper"
+  ],
+  "packageName": "googlecloudpubsubreceiver"
+}

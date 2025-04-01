@@ -1,0 +1,52 @@
+{
+  "fields": [
+    {
+      "name": "CollectionInterval",
+      "type": "time.Duration",
+      "description": "CollectionInterval is the interval at which metrics should be collected",
+      "required": true,
+      "mapstructureTag": "collection_interval"
+    },
+    {
+      "name": "MetricsPath",
+      "type": "string",
+      "description": "MetricsPath the path to the metrics endpoint.",
+      "required": true,
+      "mapstructureTag": "metrics_path"
+    },
+    {
+      "name": "Params",
+      "type": "url.Values",
+      "description": "Params the parameters to the metrics endpoint.",
+      "required": false,
+      "mapstructureTag": "params,omitempty"
+    },
+    {
+      "name": "Labels",
+      "type": "map[string]string",
+      "description": "Labels static labels",
+      "required": false,
+      "mapstructureTag": "labels,omitempty"
+    },
+    {
+      "name": "UseServiceAccount",
+      "type": "bool",
+      "description": "Whether or not to use pod service account to authenticate.",
+      "required": true,
+      "mapstructureTag": "use_service_account"
+    },
+    {
+      "name": "JobName",
+      "type": "string",
+      "description": "JobName allows users to customize the job name optionally.",
+      "required": true,
+      "mapstructureTag": "job_name"
+    }
+  ],
+  "imports": [
+    "net/url",
+    "time",
+    "go.opentelemetry.io/collector/config/confighttp"
+  ],
+  "packageName": "simpleprometheusreceiver"
+}

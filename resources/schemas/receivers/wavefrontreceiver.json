@@ -1,0 +1,24 @@
+{
+  "fields": [
+    {
+      "name": "TCPIdleTimeout",
+      "type": "time.Duration",
+      "description": "TCPIdleTimeout is the timeout for idle TCP connections.",
+      "required": true,
+      "mapstructureTag": "tcp_idle_timeout"
+    },
+    {
+      "name": "ExtractCollectdTags",
+      "type": "bool",
+      "description": "ExtractCollectdTags instructs the Wavefront receiver to attempt to extract tags in the CollectD format from the metric name. The default is false.",
+      "required": true,
+      "mapstructureTag": "extract_collectd_tags"
+    }
+  ],
+  "imports": [
+    "errors",
+    "time",
+    "go.opentelemetry.io/collector/config/confignet"
+  ],
+  "packageName": "wavefrontreceiver"
+}

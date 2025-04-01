@@ -1,0 +1,17 @@
+{
+  "fields": [
+    {
+      "name": "Include",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "include"
+    }
+  ],
+  "imports": [
+    "errors",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filestatsreceiver/internal/metadata"
+  ],
+  "packageName": "filestatsreceiver"
+}

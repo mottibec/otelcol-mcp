@@ -1,0 +1,62 @@
+{
+  "fields": [
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "Token",
+      "type": "configopaque.String",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "account_token"
+    },
+    {
+      "name": "Region",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "region"
+    },
+    {
+      "name": "CustomEndpoint",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "custom_endpoint"
+    },
+    {
+      "name": "DrainInterval",
+      "type": "int",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "drain_interval"
+    },
+    {
+      "name": "QueueCapacity",
+      "type": "int64",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "queue_capacity"
+    },
+    {
+      "name": "QueueMaxLength",
+      "type": "int",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "queue_max_length"
+    }
+  ],
+  "imports": [
+    "errors",
+    "github.com/hashicorp/go-hclog",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper"
+  ],
+  "packageName": "logzioexporter"
+}

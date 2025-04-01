@@ -1,0 +1,40 @@
+{
+  "fields": [
+    {
+      "name": "Region",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "region"
+    },
+    {
+      "name": "Profile",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "profile"
+    },
+    {
+      "name": "IMDSEndpoint",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "imds_endpoint"
+    },
+    {
+      "name": "Logs",
+      "type": "*LogsConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "logs"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net/url",
+    "time",
+    "go.opentelemetry.io/collector/confmap"
+  ],
+  "packageName": "awscloudwatchreceiver"
+}

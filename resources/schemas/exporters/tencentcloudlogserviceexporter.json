@@ -1,0 +1,9 @@
+{
+  "fields": [],
+  "imports": [
+    "errors",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configopaque"
+  ],
+  "packageName": "tencentcloudlogserviceexporter"
+}

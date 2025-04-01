@@ -1,0 +1,44 @@
+{
+  "fields": [
+    {
+      "name": "APIKey",
+      "type": "configopaque.String",
+      "description": "APIKey is the authentication token associated with the Honeycomb account.",
+      "required": true,
+      "mapstructureTag": "api_key"
+    },
+    {
+      "name": "APIURL",
+      "type": "string",
+      "description": "API URL to use (defaults to https://api.honeycomb.io)",
+      "required": true,
+      "mapstructureTag": "api_url"
+    },
+    {
+      "name": "Markers",
+      "type": "[]Marker",
+      "description": "Markers is the list of markers to create",
+      "required": true,
+      "mapstructureTag": "markers"
+    },
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "go.uber.org/zap",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter/filterottl",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
+  ],
+  "packageName": "honeycombmarkerexporter"
+}

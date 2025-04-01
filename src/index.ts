@@ -3,6 +3,8 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js"
 import { z } from "zod";
 import { fetchComponents, fetchComponentConfig } from "./github.js";
+import fs from 'fs/promises';
+import path from 'path';
 
 // Simple logger implementation
 const logger = {
@@ -20,6 +22,13 @@ const logger = {
     }
 };
 
+// Resource file paths
+const RESOURCES_DIR = './resources';
+const RECEIVERS_FILE = path.join(RESOURCES_DIR, 'receivers.json');
+const PROCESSORS_FILE = path.join(RESOURCES_DIR, 'processors.json');
+const EXPORTERS_FILE = path.join(RESOURCES_DIR, 'exporters.json');
+const SCHEMAS_DIR = path.join(RESOURCES_DIR, 'schemas');
+
 // Create Express app
 const app = express();
 
@@ -33,40 +42,100 @@ const server = new McpServer({
         resources: true,
         logging: false,
         roots: {
-            listChanged: false
+            listChanged: true
         }
     },
 });
 
-// Register otelcol-config tools
+// Function to update resource files
+async function updateResourceFiles() {
+    try {
+        // Ensure resources directory exists
+        await fs.mkdir(RESOURCES_DIR, { recursive: true });
+        await fs.mkdir(SCHEMAS_DIR, { recursive: true });
+
+        // Create schema directories
+        await fs.mkdir(path.join(SCHEMAS_DIR, 'receivers'), { recursive: true });
+        await fs.mkdir(path.join(SCHEMAS_DIR, 'processors'), { recursive: true });
+        await fs.mkdir(path.join(SCHEMAS_DIR, 'exporters'), { recursive: true });
+
+        // Fetch and save receivers
+        const receivers = await fetchComponents('receiver');
+        await fs.writeFile(RECEIVERS_FILE, JSON.stringify(receivers, null, 2));
+        await saveComponentSchemas('receiver', receivers);
+
+        // Fetch and save processors
+        const processors = await fetchComponents('processor');
+        await fs.writeFile(PROCESSORS_FILE, JSON.stringify(processors, null, 2));
+        await saveComponentSchemas('processor', processors);
+
+        // Fetch and save exporters
+        const exporters = await fetchComponents('exporter');
+        await fs.writeFile(EXPORTERS_FILE, JSON.stringify(exporters, null, 2));
+        await saveComponentSchemas('exporter', exporters);
+
+        return {
+            receivers: receivers.length,
+            processors: processors.length,
+            exporters: exporters.length
+        };
+    } catch (error) {
+        throw new Error(`Failed to update resource files: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+}
+
+// Function to save component schemas
+async function saveComponentSchemas(type: 'receiver' | 'processor' | 'exporter', components: any[]) {
+    const typeDir = path.join(SCHEMAS_DIR, `${type}s`);
+    
+    for (const component of components) {
+        if (component.configSchema) {
+            const schemaPath = path.join(typeDir, `${component.name}.json`);
+            await fs.writeFile(schemaPath, JSON.stringify(component.configSchema, null, 2));
+        }
+    }
+}
+
+// Function to load component schema
+async function loadComponentSchema(type: 'receiver' | 'processor' | 'exporter', name: string) {
+    try {
+        const schemaPath = path.join(SCHEMAS_DIR, `${type}s`, `${name}.json`);
+        const schemaContent = await fs.readFile(schemaPath, 'utf-8');
+        return JSON.parse(schemaContent);
+    } catch (error) {
+        logger.warn(`Failed to load schema for ${type} ${name}`, { error });
+        return undefined;
+    }
+}
+
+// Tool to update resources
 server.tool(
-    "get-receivers",
-    "Get all available OpenTelemetry Collector receivers",
+    "update-resources",
+    "Update local resource files with latest component information",
     {},
     async () => {
-        logger.info('Fetching OpenTelemetry receivers');
+        logger.info('Updating resource files');
         try {
-            const receivers = await fetchComponents('receiver');
-            logger.info(`Successfully fetched ${receivers.length} receivers`);
-            const formattedReceivers = receivers.map(rec =>
-                `Name: ${rec.name}\nDescription: ${rec.description}\nStability: ${rec.stability}\n---`
-            ).join('\n\n');
-
+            const stats = await updateResourceFiles();
+            logger.info('Successfully updated resource files', stats);
             return {
                 content: [
                     {
                         type: "text",
-                        text: `Available OpenTelemetry Collector Receivers:\n\n${formattedReceivers}`,
+                        text: `Successfully updated resource files:\n` +
+                              `- Receivers: ${stats.receivers}\n` +
+                              `- Processors: ${stats.processors}\n` +
+                              `- Exporters: ${stats.exporters}`,
                     },
                 ],
             };
         } catch (error) {
-            logger.error('Error fetching receivers', { error: error instanceof Error ? error.message : 'Unknown error' });
+            logger.error('Error updating resource files', { error });
             return {
                 content: [
                     {
                         type: "text",
-                        text: `Error fetching receivers: ${error instanceof Error ? error.message : 'Unknown error'}`,
+                        text: `Error updating resource files: ${error instanceof Error ? error.message : 'Unknown error'}`,
                     },
                 ],
             };
@@ -74,119 +143,82 @@ server.tool(
     },
 );
 
-server.tool(
-    "get-processors",
-    "Get all available OpenTelemetry Collector processors",
-    {},
-    async () => {
-        logger.info('Fetching OpenTelemetry processors');
-        try {
-            const processors = await fetchComponents('processor');
-            logger.info(`Successfully fetched ${processors.length} processors`);
-            const formattedProcessors = processors.map(proc =>
-                `Name: ${proc.name}\nDescription: ${proc.description}\nStability: ${proc.stability}\n---`
-            ).join('\n\n');
+// Resource to get receivers
+server.resource("receivers", "OpenTelemetry Collector receivers", {}, async () => {
+    try {
+        const data = await fs.readFile(RECEIVERS_FILE, 'utf8');
+        const receivers = JSON.parse(data);
+        return {
+            contents: receivers.map((rec: any) => ({
+                uri: `receiver/${rec.name}`,
+                text: JSON.stringify({
+                    name: rec.name,
+                    description: rec.description,
+                    stability: rec.stability
+                }, null, 2),
+                mimeType: "application/json"
+            }))
+        };
+    } catch (error) {
+        logger.error('Error reading receivers resource', { error });
+        throw error;
+    }
+});
 
-            return {
-                content: [
-                    {
-                        type: "text",
-                        text: `Available OpenTelemetry Collector Processors:\n\n${formattedProcessors}`,
-                    },
-                ],
-            };
-        } catch (error) {
-            logger.error('Error fetching processors', { error: error instanceof Error ? error.message : 'Unknown error' });
-            return {
-                content: [
-                    {
-                        type: "text",
-                        text: `Error fetching processors: ${error instanceof Error ? error.message : 'Unknown error'}`,
-                    },
-                ],
-            };
-        }
-    },
-);
+// Resource to get processors
+server.resource("processors", "OpenTelemetry Collector processors", {}, async () => {
+    try {
+        const data = await fs.readFile(PROCESSORS_FILE, 'utf8');
+        const processors = JSON.parse(data);
+        return {
+            contents: processors.map((proc: any) => ({
+                uri: `processor/${proc.name}`,
+                text: JSON.stringify({
+                    name: proc.name,
+                    description: proc.description,
+                    stability: proc.stability
+                }, null, 2),
+                mimeType: "application/json"
+            }))
+        };
+    } catch (error) {
+        logger.error('Error reading processors resource', { error });
+        throw error;
+    }
+});
 
-server.tool(
-    "get-exporters",
-    "Get all available OpenTelemetry Collector exporters",
-    {},
-    async () => {
-        logger.info('Fetching OpenTelemetry exporters');
-        try {
-            const exporters = await fetchComponents('exporter');
-            logger.info(`Successfully fetched ${exporters.length} exporters`);
-            const formattedExporters = exporters.map(exp =>
-                `Name: ${exp.name}\nDescription: ${exp.description}\nStability: ${exp.stability}\n---`
-            ).join('\n\n');
+// Resource to get exporters
+server.resource("exporters", "OpenTelemetry Collector exporters", {}, async () => {
+    try {
+        const data = await fs.readFile(EXPORTERS_FILE, 'utf8');
+        const exporters = JSON.parse(data);
+        return {
+            contents: exporters.map((exp: any) => ({
+                uri: `exporter/${exp.name}`,
+                text: JSON.stringify({
+                    name: exp.name,
+                    description: exp.description,
+                    stability: exp.stability
+                }, null, 2),
+                mimeType: "application/json"
+            }))
+        };
+    } catch (error) {
+        logger.error('Error reading exporters resource', { error });
+        throw error;
+    }
+});
 
-            return {
-                content: [
-                    {
-                        type: "text",
-                        text: `Available OpenTelemetry Collector Exporters:\n\n${formattedExporters}`,
-                    },
-                ],
-            };
-        } catch (error) {
-            logger.error('Error fetching exporters', { error: error instanceof Error ? error.message : 'Unknown error' });
-            return {
-                content: [
-                    {
-                        type: "text",
-                        text: `Error fetching exporters: ${error instanceof Error ? error.message : 'Unknown error'}`,
-                    },
-                ],
-            };
-        }
-    },
-);
+// Initialize resources on startup
+if (!process.env.GITHUB_TOKEN) {
+    logger.warn('No GITHUB_TOKEN environment variable found. GitHub API rate limits will be restricted.');
+    logger.warn('To increase rate limits, set the GITHUB_TOKEN environment variable with a GitHub Personal Access Token.');
+    logger.warn('You can create a token at: https://github.com/settings/tokens');
+}
 
-server.tool(
-    "get-component-config",
-    "Get configuration options for a specific OpenTelemetry Collector component",
-    {
-        type: z.enum(['receiver', 'processor', 'exporter']).describe("Type of component"),
-        name: z.string().describe("Name of the component"),
-    },
-    async ({ type, name }) => {
-        logger.info('Fetching component configuration', { type, name });
-        try {
-            const config = await fetchComponentConfig(type, name);
-            logger.info('Successfully fetched component configuration', { type, name });
-            const formattedConfig =
-                `Name: ${config.name}\n` +
-                `Description: ${config.description}\n` +
-                `Stability: ${config.stability}\n\n` +
-                `Configuration Options:\n${config.configuration}`;
-
-            return {
-                content: [
-                    {
-                        type: "text",
-                        text: formattedConfig,
-                    },
-                ],
-            };
-        } catch (error) {
-            logger.error('Error fetching component configuration', { 
-                type, 
-                name, 
-                error: error instanceof Error ? error.message : 'Unknown error' 
-            });
-            return {
-                content: [
-                    {
-                        type: "text",
-                        text: `Error fetching component configuration: ${error instanceof Error ? error.message : 'Unknown error'}`,
-                    },
-                ],
-            };
-        }
-    },
-);
+updateResourceFiles().catch(error => {
+    logger.error('Failed to initialize resource files', { error });
+});
 
 // to support multiple simultaneous connections we have a lookup object from
 // sessionId to transport

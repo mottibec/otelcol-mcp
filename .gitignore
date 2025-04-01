@@ -138,3 +138,21 @@ dist
 build/
 
 pnpm-lock.yaml
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo

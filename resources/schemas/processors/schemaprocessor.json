@@ -1,0 +1,25 @@
+{
+  "fields": [
+    {
+      "name": "Prefetch",
+      "type": "[]string",
+      "description": "PreCache is a list of schema URLs that are downloaded and cached at the start of the collector runtime in order to avoid fetching data that later on could block processing of signals. (Optional field)",
+      "required": true,
+      "mapstructureTag": "prefetch"
+    },
+    {
+      "name": "Targets",
+      "type": "[]string",
+      "description": "Targets define what schema families should be translated to, allowing older and newer formats to conform to the target schema identifier.",
+      "required": true,
+      "mapstructureTag": "targets"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/schemaprocessor/internal/translation"
+  ],
+  "packageName": "schemaprocessor"
+}

@@ -1,0 +1,27 @@
+{
+  "fields": [
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "Region",
+      "type": "string",
+      "description": "Region specifies the Sematext region the user is operating in Options: - EU - US",
+      "required": true,
+      "mapstructureTag": "region"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "regexp",
+    "strings",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper"
+  ],
+  "packageName": "sematextexporter"
+}

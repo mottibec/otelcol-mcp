@@ -1,0 +1,42 @@
+{
+  "fields": [
+    {
+      "name": "HTTP",
+      "type": "*HTTPConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "http"
+    },
+    {
+      "name": "AuthAPI",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "auth_api"
+    },
+    {
+      "name": "Wrapper",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "wrapper"
+    },
+    {
+      "name": "FieldMapConfig",
+      "type": "libhoneyevent.FieldMapConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "fields"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net/url",
+    "path",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/confmap",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/libhoneyreceiver/internal/libhoneyevent"
+  ],
+  "packageName": "libhoneyreceiver"
+}

@@ -1,0 +1,69 @@
+{
+  "fields": [
+    {
+      "name": "Path",
+      "type": "string",
+      "description": "Path of the file to write to. Path is relative to current directory.",
+      "required": true,
+      "mapstructureTag": "path"
+    },
+    {
+      "name": "Append",
+      "type": "bool",
+      "description": "Mode defines whether the exporter should append to the file. Options: - false[default]:  truncates the file - true:  appends to the file.",
+      "required": true,
+      "mapstructureTag": "append"
+    },
+    {
+      "name": "Rotation",
+      "type": "*Rotation",
+      "description": "Rotation defines an option about rotation of telemetry files. Ignored when GroupByAttribute is used.",
+      "required": true,
+      "mapstructureTag": "rotation"
+    },
+    {
+      "name": "FormatType",
+      "type": "string",
+      "description": "FormatType define the data format of encoded telemetry data Options: - json[default]:  OTLP json bytes. - proto:  OTLP binary protobuf bytes.",
+      "required": true,
+      "mapstructureTag": "format"
+    },
+    {
+      "name": "Encoding",
+      "type": "*component.ID",
+      "description": "Encoding defines the encoding of the telemetry data. If specified, it overrides `FormatType` and applies an encoding extension.",
+      "required": true,
+      "mapstructureTag": "encoding"
+    },
+    {
+      "name": "Compression",
+      "type": "string",
+      "description": "Compression Codec used to export telemetry data Supported compression algorithms:`zstd`",
+      "required": true,
+      "mapstructureTag": "compression"
+    },
+    {
+      "name": "FlushInterval",
+      "type": "time.Duration",
+      "description": "FlushInterval is the duration between flushes. See time.ParseDuration for valid values.",
+      "required": true,
+      "mapstructureTag": "flush_interval"
+    },
+    {
+      "name": "GroupBy",
+      "type": "*GroupBy",
+      "description": "GroupBy enables writing to separate files based on a resource attribute.",
+      "required": true,
+      "mapstructureTag": "group_by"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "strings",
+    "time",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/confmap"
+  ],
+  "packageName": "fileexporter"
+}

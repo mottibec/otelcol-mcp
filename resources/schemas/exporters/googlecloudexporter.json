@@ -1,0 +1,24 @@
+{
+  "fields": [
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "Timeout for all API calls. If not set, defaults to 12 seconds.",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/collector",
+    "go.opentelemetry.io/collector/exporter/exporterhelper"
+  ],
+  "packageName": "googlecloudexporter"
+}

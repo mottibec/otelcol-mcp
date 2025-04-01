@@ -1,0 +1,43 @@
+{
+  "fields": [
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "ResourceToTelemetrySettings",
+      "type": "resourcetotelemetry.Settings",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "resource_to_telemetry_conversion"
+    },
+    {
+      "name": "APIToken",
+      "type": "APIToken",
+      "description": "ApiToken of Logicmonitor Platform",
+      "required": true,
+      "mapstructureTag": "api_token"
+    },
+    {
+      "name": "Logs",
+      "type": "LogsConfig",
+      "description": "Logs defines the Logs exporter specific configuration",
+      "required": true,
+      "mapstructureTag": "logs"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "net/url",
+    "strings",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/resourcetotelemetry"
+  ],
+  "packageName": "logicmonitorexporter"
+}

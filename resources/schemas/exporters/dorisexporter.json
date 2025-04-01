@@ -1,0 +1,113 @@
+{
+  "fields": [
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "Database",
+      "type": "string",
+      "description": "Database is the database name.",
+      "required": true,
+      "mapstructureTag": "database"
+    },
+    {
+      "name": "Username",
+      "type": "string",
+      "description": "Username is the authentication username.",
+      "required": true,
+      "mapstructureTag": "username"
+    },
+    {
+      "name": "Password",
+      "type": "configopaque.String",
+      "description": "Password is the authentication password.",
+      "required": true,
+      "mapstructureTag": "password"
+    },
+    {
+      "name": "CreateSchema",
+      "type": "bool",
+      "description": "CreateSchema is whether databases and tables are created automatically.",
+      "required": true,
+      "mapstructureTag": "create_schema"
+    },
+    {
+      "name": "MySQLEndpoint",
+      "type": "string",
+      "description": "MySQLEndpoint is the mysql protocol address to create the schema; ignored if create_schema is false.",
+      "required": true,
+      "mapstructureTag": "mysql_endpoint"
+    },
+    {
+      "name": "HistoryDays",
+      "type": "int32",
+      "description": "Data older than these days will be deleted; ignored if create_schema is false. If set to 0, historical data will not be deleted.",
+      "required": true,
+      "mapstructureTag": "history_days"
+    },
+    {
+      "name": "CreateHistoryDays",
+      "type": "int32",
+      "description": "The number of days in the history partition that was created when the table was created; ignored if create_schema is false. If history_days is not 0, create_history_days needs to be less than or equal to history_days.",
+      "required": true,
+      "mapstructureTag": "create_history_days"
+    },
+    {
+      "name": "ReplicationNum",
+      "type": "int32",
+      "description": "ReplicationNum is the number of replicas of the table; ignored if create_schema is false.",
+      "required": true,
+      "mapstructureTag": "replication_num"
+    },
+    {
+      "name": "TimeZone",
+      "type": "string",
+      "description": "Timezone is the timezone of the doris.",
+      "required": true,
+      "mapstructureTag": "timezone"
+    },
+    {
+      "name": "LogResponse",
+      "type": "bool",
+      "description": "LogResponse is whether to log the response of doris stream load.",
+      "required": true,
+      "mapstructureTag": "log_response"
+    },
+    {
+      "name": "LabelPrefix",
+      "type": "string",
+      "description": "LabelPrefix is the prefix of the label in doris stream load.",
+      "required": true,
+      "mapstructureTag": "label_prefix"
+    },
+    {
+      "name": "LogProgressInterval",
+      "type": "int",
+      "description": "ProgressInterval is the interval of the progress reporter.",
+      "required": true,
+      "mapstructureTag": "log_progress_interval"
+    },
+    {
+      "name": "timeLocation",
+      "type": "*time.Location",
+      "description": "not in config file, will be set in Validate",
+      "required": true,
+      "mapstructureTag": "-"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "regexp",
+    "time",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper"
+  ],
+  "packageName": "dorisexporter"
+}

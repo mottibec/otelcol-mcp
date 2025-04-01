@@ -1,0 +1,74 @@
+{
+  "fields": [
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "CompressEncoding",
+      "type": "*configcompression.Type",
+      "description": "Compression encoding format, either empty string, gzip or deflate (default gzip) Empty string means no compression NOTE: CompressEncoding is deprecated and will be removed in an upcoming release",
+      "required": true,
+      "mapstructureTag": "compress_encoding"
+    },
+    {
+      "name": "MaxRequestBodySize",
+      "type": "int",
+      "description": "Max HTTP request body size in bytes before compression (if applied). By default 1MB is recommended.",
+      "required": true,
+      "mapstructureTag": "max_request_body_size"
+    },
+    {
+      "name": "LogFormat",
+      "type": "LogFormatType",
+      "description": "Logs related configuration Format to post logs into Sumo. (default json) * text - Logs will appear in Sumo Logic in text format. * json - Logs will appear in Sumo Logic in json format. * otlp - Logs will be send in otlp format and will appear in Sumo Logic: * in json format if record level attributes exists * in text format in case of no level attributes See Sumo Logic documentation for more details: https://help.sumologic.com/docs/send-data/opentelemetry-collector/data-source-configurations/mapping-records-resources/",
+      "required": true,
+      "mapstructureTag": "log_format"
+    },
+    {
+      "name": "MetricFormat",
+      "type": "MetricFormatType",
+      "description": "Metrics related configuration The format of metrics you will be sending, either otlp or prometheus (Default is otlp)",
+      "required": true,
+      "mapstructureTag": "metric_format"
+    },
+    {
+      "name": "DecomposeOtlpHistograms",
+      "type": "bool",
+      "description": "Decompose OTLP Histograms into individual metrics, similar to how they're represented in Prometheus format",
+      "required": true,
+      "mapstructureTag": "decompose_otlp_histograms"
+    },
+    {
+      "name": "Client",
+      "type": "string",
+      "description": "Sumo specific options Name of the client",
+      "required": true,
+      "mapstructureTag": "client"
+    },
+    {
+      "name": "StickySessionEnabled",
+      "type": "bool",
+      "description": "StickySessionEnabled defines if sticky session support is enable. By default this is false.",
+      "required": true,
+      "mapstructureTag": "sticky_session_enabled"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net/url",
+    "time",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configauth",
+    "go.opentelemetry.io/collector/config/configcompression",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/extension/sumologicextension"
+  ],
+  "packageName": "sumologicexporter"
+}

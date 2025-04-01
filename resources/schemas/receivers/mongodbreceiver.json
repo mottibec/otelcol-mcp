@@ -1,0 +1,62 @@
+{
+  "fields": [
+    {
+      "name": "Hosts",
+      "type": "[]confignet.TCPAddrConfig",
+      "description": "Deprecated - Transport option will be removed in v0.102.0",
+      "required": true,
+      "mapstructureTag": "hosts"
+    },
+    {
+      "name": "Username",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "username"
+    },
+    {
+      "name": "Password",
+      "type": "configopaque.String",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "password"
+    },
+    {
+      "name": "ReplicaSet",
+      "type": "string",
+      "description": "",
+      "required": false,
+      "mapstructureTag": "replica_set,omitempty"
+    },
+    {
+      "name": "Timeout",
+      "type": "time.Duration",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "timeout"
+    },
+    {
+      "name": "DirectConnection",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "direct_connection"
+    }
+  ],
+  "imports": [
+    "context",
+    "errors",
+    "fmt",
+    "strings",
+    "time",
+    "go.mongodb.org/mongo-driver/mongo/options",
+    "go.mongodb.org/mongo-driver/mongo/readpref",
+    "go.opentelemetry.io/collector/config/confignet",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configtls",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "go.uber.org/multierr",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/mongodbreceiver/internal/metadata"
+  ],
+  "packageName": "mongodbreceiver"
+}

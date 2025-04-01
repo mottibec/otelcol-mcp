@@ -1,0 +1,25 @@
+{
+  "fields": [
+    {
+      "name": "ProjectID",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "project_id"
+    },
+    {
+      "name": "MetricsList",
+      "type": "[]MetricConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "metrics_list"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "time",
+    "go.opentelemetry.io/collector/scraper/scraperhelper"
+  ],
+  "packageName": "googlecloudmonitoringreceiver"
+}

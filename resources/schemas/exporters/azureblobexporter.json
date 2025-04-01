@@ -1,0 +1,52 @@
+{
+  "fields": [
+    {
+      "name": "URL",
+      "type": "string",
+      "description": "URL is the endpoint to the azure storage account. This is only required until there is an azure auth extension in the future.",
+      "required": true,
+      "mapstructureTag": "url"
+    },
+    {
+      "name": "Container",
+      "type": "*Container",
+      "description": "A container organizes a set of blobs, similar to a directory in a file system.",
+      "required": true,
+      "mapstructureTag": "container"
+    },
+    {
+      "name": "Auth",
+      "type": "*Authentication",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "auth"
+    },
+    {
+      "name": "BlobNameFormat",
+      "type": "*BlobNameFormat",
+      "description": "BlobNameFormat is the format of the blob name. It controls the uploaded blob name, e.g. \"2006/01/02/metrics_15_04_05.json\"",
+      "required": true,
+      "mapstructureTag": "blob_name_format"
+    },
+    {
+      "name": "FormatType",
+      "type": "string",
+      "description": "FormatType is the format of encoded telemetry data. Supported values are json and proto.",
+      "required": true,
+      "mapstructureTag": "format"
+    },
+    {
+      "name": "Encodings",
+      "type": "*Encodings",
+      "description": "Encoding extension to apply for logs/metrics/traces. If present, overrides the marshaler configuration option and format.",
+      "required": true,
+      "mapstructureTag": "encodings"
+    }
+  ],
+  "imports": [
+    "errors",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/configretry"
+  ],
+  "packageName": "azureblobexporter"
+}

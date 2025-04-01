@@ -1,0 +1,52 @@
+{
+  "fields": [
+    {
+      "name": "Detectors",
+      "type": "[]string",
+      "description": "Detectors is an ordered list of named detectors that should be run to attempt to detect resource information.",
+      "required": true,
+      "mapstructureTag": "detectors"
+    },
+    {
+      "name": "Override",
+      "type": "bool",
+      "description": "Override indicates whether any existing resource attributes should be overridden or preserved. Defaults to true.",
+      "required": true,
+      "mapstructureTag": "override"
+    },
+    {
+      "name": "DetectorConfig",
+      "type": "DetectorConfig",
+      "description": "DetectorConfig is a list of settings specific to all detectors",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "Attributes",
+      "type": "[]string",
+      "description": "Attributes is an allowlist of attributes to add. If a supplied attribute is not a valid attribute of a supplied detector it will be ignored. Deprecated: Please use detector's resource_attributes config instead",
+      "required": true,
+      "mapstructureTag": "attributes"
+    }
+  ],
+  "imports": [
+    "go.opentelemetry.io/collector/config/confighttp",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/aws/ec2",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/aws/ecs",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/aws/eks",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/aws/elasticbeanstalk",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/aws/lambda",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/azure",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/azure/aks",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/consul",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/docker",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/gcp",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/heroku",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/k8snode",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/kubeadm",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/openshift",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor/internal/system"
+  ],
+  "packageName": "resourcedetectionprocessor"
+}

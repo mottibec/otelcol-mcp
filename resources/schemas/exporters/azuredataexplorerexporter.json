@@ -1,0 +1,126 @@
+{
+  "fields": [
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "ClusterURI",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "cluster_uri"
+    },
+    {
+      "name": "ApplicationID",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "application_id"
+    },
+    {
+      "name": "ApplicationKey",
+      "type": "configopaque.String",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "application_key"
+    },
+    {
+      "name": "TenantID",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "tenant_id"
+    },
+    {
+      "name": "ManagedIdentityID",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "managed_identity_id"
+    },
+    {
+      "name": "UseAzureAuth",
+      "type": "bool",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "use_azure_auth"
+    },
+    {
+      "name": "Database",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "db_name"
+    },
+    {
+      "name": "MetricTable",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "metrics_table_name"
+    },
+    {
+      "name": "LogTable",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "logs_table_name"
+    },
+    {
+      "name": "TraceTable",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "traces_table_name"
+    },
+    {
+      "name": "MetricTableMapping",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "metrics_table_json_mapping"
+    },
+    {
+      "name": "LogTableMapping",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "logs_table_json_mapping"
+    },
+    {
+      "name": "TraceTableMapping",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "traces_table_json_mapping"
+    },
+    {
+      "name": "IngestionType",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "ingestion_type"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "strings",
+    "github.com/google/uuid",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper"
+  ],
+  "packageName": "azuredataexplorerexporter"
+}

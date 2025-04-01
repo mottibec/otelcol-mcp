@@ -1,0 +1,13 @@
+{
+  "fields": [
+    {
+      "name": "ListenAddress",
+      "type": "string",
+      "description": "The address to listen on for incoming Fluent Forward events.  Should be of the form `<ip addr>:<port>` (TCP) or `unix://<socket_path>` (Unix domain socket).",
+      "required": true,
+      "mapstructureTag": "endpoint"
+    }
+  ],
+  "imports": [],
+  "packageName": "fluentforwardreceiver"
+}

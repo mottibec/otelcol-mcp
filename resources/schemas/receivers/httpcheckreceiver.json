@@ -1,0 +1,21 @@
+{
+  "fields": [
+    {
+      "name": "Targets",
+      "type": "[]*targetConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "targets"
+    }
+  ],
+  "imports": [
+    "errors",
+    "fmt",
+    "net/url",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/scraper/scraperhelper",
+    "go.uber.org/multierr",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/httpcheckreceiver/internal/metadata"
+  ],
+  "packageName": "httpcheckreceiver"
+}

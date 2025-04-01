@@ -1,0 +1,38 @@
+{
+  "fields": [
+    {
+      "name": "RawPath",
+      "type": "string",
+      "description": "RawPath for raw data collection, default is '/services/collector/raw'",
+      "required": true,
+      "mapstructureTag": "raw_path"
+    },
+    {
+      "name": "Splitting",
+      "type": "SplittingStrategy",
+      "description": "Splitting defines the splitting strategy used by the receiver when ingesting raw events. Can be set to \"line\" or \"none\". Default is \"line\".",
+      "required": true,
+      "mapstructureTag": "splitting"
+    },
+    {
+      "name": "HealthPath",
+      "type": "string",
+      "description": "HealthPath for health API, default is '/services/collector/health'",
+      "required": true,
+      "mapstructureTag": "health_path"
+    },
+    {
+      "name": "HecToOtelAttrs",
+      "type": "splunk.HecToOtelAttrs",
+      "description": "HecToOtelAttrs creates a mapping from HEC metadata to attributes.",
+      "required": true,
+      "mapstructureTag": "hec_metadata_to_otel_attrs"
+    }
+  ],
+  "imports": [
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk"
+  ],
+  "packageName": "splunkhecreceiver"
+}

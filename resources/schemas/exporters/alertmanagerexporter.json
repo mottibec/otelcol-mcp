@@ -1,0 +1,54 @@
+{
+  "fields": [
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "QueueSettings",
+      "type": "exporterhelper.QueueBatchConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "sending_queue"
+    },
+    {
+      "name": "BackoffConfig",
+      "type": "configretry.BackOffConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "retry_on_failure"
+    },
+    {
+      "name": "GeneratorURL",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "generator_url"
+    },
+    {
+      "name": "DefaultSeverity",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "severity"
+    },
+    {
+      "name": "SeverityAttribute",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "severity_attribute"
+    }
+  ],
+  "imports": [
+    "errors",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper"
+  ],
+  "packageName": "alertmanagerexporter"
+}

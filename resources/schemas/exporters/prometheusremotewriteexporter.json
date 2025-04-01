@@ -1,0 +1,97 @@
+{
+  "fields": [
+    {
+      "name": "TimeoutSettings",
+      "type": "exporterhelper.TimeoutConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "Namespace",
+      "type": "string",
+      "description": "prefix attached to each exported metric name See: https://prometheus.io/docs/practices/naming/#metric-names",
+      "required": true,
+      "mapstructureTag": "namespace"
+    },
+    {
+      "name": "RemoteWriteQueue",
+      "type": "RemoteWriteQueue",
+      "description": "QueueConfig allows users to fine tune the queues that handle outgoing requests.",
+      "required": true,
+      "mapstructureTag": "remote_write_queue"
+    },
+    {
+      "name": "ExternalLabels",
+      "type": "map[string]string",
+      "description": "ExternalLabels defines a map of label keys and values that are allowed to start with reserved prefix \"__\"",
+      "required": true,
+      "mapstructureTag": "external_labels"
+    },
+    {
+      "name": "ClientConfig",
+      "type": "confighttp.ClientConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": ",squash"
+    },
+    {
+      "name": "MaxBatchSizeBytes",
+      "type": "int",
+      "description": "maximum size in bytes of time series batch sent to remote storage",
+      "required": true,
+      "mapstructureTag": "max_batch_size_bytes"
+    },
+    {
+      "name": "MaxBatchRequestParallelism",
+      "type": "*int",
+      "description": "maximum amount of parallel requests to do when handling large batch request",
+      "required": true,
+      "mapstructureTag": "max_batch_request_parallelism"
+    },
+    {
+      "name": "ResourceToTelemetrySettings",
+      "type": "resourcetotelemetry.Settings",
+      "description": "ResourceToTelemetrySettings is the option for converting resource attributes to telemetry attributes. \"Enabled\" - A boolean field to enable/disable this option. Default is `false`. If enabled, all the resource attributes will be converted to metric labels by default.",
+      "required": true,
+      "mapstructureTag": "resource_to_telemetry_conversion"
+    },
+    {
+      "name": "WAL",
+      "type": "*WALConfig",
+      "description": "",
+      "required": true,
+      "mapstructureTag": "wal"
+    },
+    {
+      "name": "TargetInfo",
+      "type": "*TargetInfo",
+      "description": "TargetInfo allows customizing the target_info metric",
+      "required": false,
+      "mapstructureTag": "target_info,omitempty"
+    },
+    {
+      "name": "AddMetricSuffixes",
+      "type": "bool",
+      "description": "AddMetricSuffixes controls whether unit and type suffixes are added to metrics on export",
+      "required": true,
+      "mapstructureTag": "add_metric_suffixes"
+    },
+    {
+      "name": "SendMetadata",
+      "type": "bool",
+      "description": "SendMetadata controls whether prometheus metadata will be generated and sent",
+      "required": true,
+      "mapstructureTag": "send_metadata"
+    }
+  ],
+  "imports": [
+    "fmt",
+    "go.opentelemetry.io/collector/component",
+    "go.opentelemetry.io/collector/config/confighttp",
+    "go.opentelemetry.io/collector/config/configretry",
+    "go.opentelemetry.io/collector/exporter/exporterhelper",
+    "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/resourcetotelemetry"
+  ],
+  "packageName": "prometheusremotewriteexporter"
+}

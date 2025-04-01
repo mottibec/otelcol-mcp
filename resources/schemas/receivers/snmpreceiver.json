@@ -1,0 +1,13 @@
+{
+  "fields": [],
+  "imports": [
+    "errors",
+    "fmt",
+    "net/url",
+    "strings",
+    "time",
+    "go.opentelemetry.io/collector/config/configopaque",
+    "go.opentelemetry.io/collector/scraper/scraperhelper"
+  ],
+  "packageName": "snmpreceiver"
+}
