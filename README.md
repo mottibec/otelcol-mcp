@@ -9,15 +9,31 @@ An MCP server implementation for configuring and managing OpenTelemetry Collecto
 
 ## Tools
 
-- **Get Available Components**
-  - List all available receivers, processors, and exporters
+- **Update Resources**
+  - Updates local resource files with latest component information from GitHub
   - No input parameters required
+  - Returns statistics about updated components (receivers, processors, exporters)
 
-- **Get Component Configuration**
-  - Retrieve configuration options for specific components
-  - Inputs:
-    - `type` (string): Component type ("receiver", "processor", or "exporter")
-    - `name` (string): Name of the component
+## Resources
+
+- **Receivers** (`receivers://receivers`)
+  - Lists all available OpenTelemetry receivers
+  - Returns receiver metadata including name, description, and stability
+
+- **Processors** (`processors://processors`)
+  - Lists all available OpenTelemetry processors
+  - Returns processor metadata including name, description, and stability
+
+- **Exporters** (`exporters://exporters`)
+  - Lists all available OpenTelemetry exporters
+  - Returns exporter metadata including name, description, and stability
+
+- **Component Schemas** (`component://{type}/{name}`)
+  - Retrieves configuration schema for specific components
+  - Supports listing all available schemas or getting a specific component's schema
+  - Parameters:
+    - `type`: Component type ("receiver", "processor", or "exporter")
+    - `name`: Name of the specific component (optional)
 
 ## Configuration
 
