@@ -57,7 +57,7 @@ This is a local implementation of an MCP server for OpenTelemetry configuration.
 
 1. Clone the repository
 2. Build the project using the provided build scripts
-3. Configure Claude Desktop to use the local server implementation
+3. Configure your MCP client to use the local server implementation
 
 ## License
 
