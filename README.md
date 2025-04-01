@@ -1,6 +1,6 @@
-# OpenTelemetry MCP Server
+# OpenTelemetry Collector MCP Server
 
-An MCP server implementation for configuring and managing OpenTelemetry Collectors, allowing dynamic configuration of telemetry data collection, processing, and export.
+An MCP server implementation for configuring OpenTelemetry Collectors.
 
 ## Features
 
