@@ -36,15 +36,6 @@ const app = express();
 const server = new McpServer({
     name: "otelcol-config",
     version: "1.0.0",
-    capabilities: {
-        tools: true,
-        prompts: false,
-        resources: true,
-        logging: false,
-        roots: {
-            listChanged: true
-        }
-    },
 });
 
 // Function to update resource files
@@ -144,7 +135,7 @@ server.tool(
 );
 
 // Resource to get receivers
-server.resource("receivers", "OpenTelemetry Collector receivers", {}, async () => {
+server.resource("receivers", "receivers://receivers", {}, async () => {
     try {
         const data = await fs.readFile(RECEIVERS_FILE, 'utf8');
         const receivers = JSON.parse(data);
@@ -166,7 +157,7 @@ server.resource("receivers", "OpenTelemetry Collector receivers", {}, async () =
 });
 
 // Resource to get processors
-server.resource("processors", "OpenTelemetry Collector processors", {}, async () => {
+server.resource("processors", "processors://processors", {}, async () => {
     try {
         const data = await fs.readFile(PROCESSORS_FILE, 'utf8');
         const processors = JSON.parse(data);
@@ -188,7 +179,7 @@ server.resource("processors", "OpenTelemetry Collector processors", {}, async ()
 });
 
 // Resource to get exporters
-server.resource("exporters", "OpenTelemetry Collector exporters", {}, async () => {
+server.resource("exporters", "exporters://exporters", {}, async () => {
     try {
         const data = await fs.readFile(EXPORTERS_FILE, 'utf8');
         const exporters = JSON.parse(data);
@@ -210,73 +201,72 @@ server.resource("exporters", "OpenTelemetry Collector exporters", {}, async () =
 });
 
 // Resource to get component schema for a specific component
-server.resource("component-schemas", new ResourceTemplate("://{type}/{name}", { list: undefined }), {}, async (uri: URL,
-    { type, name }) => {
-    logger.info('component-schemas', { uri, type, name });
+server.resource("component-schemas", new ResourceTemplate("component://{type}/{name}", { list: undefined }), {},
+    async (uri, { type, name }) => {
+        logger.info('component-schemas', { uri, type, name });
 
-    if (Array.isArray(type)) {
-        type = type[0]
+        if (Array.isArray(type)) {
+            type = type[0]
 
-    }
-    if (Array.isArray(name)) {
-        name = name[0]
-    }
+        }
+        if (Array.isArray(name)) {
+            name = name[0]
+        }
 
-    try {
+        try {
+            if (type && name) {
+                // Convert plural to singular for the component type
+                const componentType = type.endsWith('s') ?
+                    type.slice(0, -1) as 'receiver' | 'processor' | 'exporter' :
+                    type as 'receiver' | 'processor' | 'exporter';
 
-        if (type && name) {
-            // Convert plural to singular for the component type
-            const componentType = type.endsWith('s') ?
-                type.slice(0, -1) as 'receiver' | 'processor' | 'exporter' :
-                type as 'receiver' | 'processor' | 'exporter';
+                // Load specific component schema
+                const schema = await loadComponentSchema(componentType, name);
+                if (!schema) {
+                    throw new Error(`Schema not found for ${type} ${name}`);
+                }
 
-            // Load specific component schema
-            const schema = await loadComponentSchema(componentType, name);
-            if (!schema) {
-                throw new Error(`Schema not found for ${type} ${name}`);
+                return {
+                    contents: [{
+                        uri: `${type}/${name}`,
+                        text: JSON.stringify(schema, null, 2),
+                        mimeType: "application/json"
+                    }]
+                };
+            }
+
+            // If no specific path provided, list all available schemas
+            const types = ['receivers', 'processors', 'exporters'];
+            const allSchemas = [];
+
+            for (const type of types) {
+                const typeDir = path.join(SCHEMAS_DIR, type);
+                try {
+                    const files = await fs.readdir(typeDir);
+                    for (const file of files) {
+                        if (file.endsWith('.json')) {
+                            const componentName = path.basename(file, '.json');
+                            const schema = await fs.readFile(path.join(typeDir, file), 'utf8');
+                            allSchemas.push({
+                                uri: `${type}/${componentName}`,
+                                text: schema,
+                                mimeType: "application/json"
+                            });
+                        }
+                    }
+                } catch (error) {
+                    logger.warn(`Error reading schemas from ${type} directory`, { error });
+                }
             }
 
             return {
-                contents: [{
-                    uri: `${type}/${name}`,
-                    text: JSON.stringify(schema, null, 2),
-                    mimeType: "application/json"
-                }]
+                contents: allSchemas
             };
+        } catch (error) {
+            logger.error('Error reading component schemas resource', { error });
+            throw error;
         }
-
-        // If no specific path provided, list all available schemas
-        const types = ['receivers', 'processors', 'exporters'];
-        const allSchemas = [];
-
-        for (const type of types) {
-            const typeDir = path.join(SCHEMAS_DIR, type);
-            try {
-                const files = await fs.readdir(typeDir);
-                for (const file of files) {
-                    if (file.endsWith('.json')) {
-                        const componentName = path.basename(file, '.json');
-                        const schema = await fs.readFile(path.join(typeDir, file), 'utf8');
-                        allSchemas.push({
-                            uri: `${type}/${componentName}`,
-                            text: schema,
-                            mimeType: "application/json"
-                        });
-                    }
-                }
-            } catch (error) {
-                logger.warn(`Error reading schemas from ${type} directory`, { error });
-            }
-        }
-
-        return {
-            contents: allSchemas
-        };
-    } catch (error) {
-        logger.error('Error reading component schemas resource', { error });
-        throw error;
-    }
-});
+    });
 
 // Initialize resources on startup
 if (!process.env.GITHUB_TOKEN) {

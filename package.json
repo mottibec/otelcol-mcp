@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc && chmod 755 build/index.js",
-    "dev": "node build/index.js"
+    "dev": "tsc && node build/index.js"
   },
   "type": "module",
   "bin": {
