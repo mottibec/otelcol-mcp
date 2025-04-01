@@ -10,7 +10,7 @@ An MCP server implementation for configuring OpenTelemetry Collectors.
 ## Tools
 
 - **Update Resources**
-  - Updates local resource files with latest component information from GitHub
+  - Updates local resource files with the latest component information from GitHub
   - No input parameters required
   - Returns statistics about updated components (receivers, processors, exporters)
 
@@ -61,4 +61,4 @@ This is a local implementation of an MCP server for OpenTelemetry configuration.
 
 ## License
 
-This MCP server is licensed under the MIT License. This means you are free to use, modify, and distribute the software, subject to the terms and conditions of the MIT License. For more details, please see the LICENSE file in the project repository.
+This MCP server is licensed under the GPL-3.0 License. This means you are free to use, modify, and distribute the software, subject to the terms and conditions of the GPL-3.0 License. For more details, please see the LICENSE file in the project repository.
