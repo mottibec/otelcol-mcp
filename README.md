@@ -1,3 +1,5 @@
+[![MseeP Badge](https://mseep.net/pr/mottibec-otelcol-mcp-badge.jpg)](https://mseep.ai/app/mottibec-otelcol-mcp)
+
 # OpenTelemetry Collector MCP Server
 
 An MCP server implementation for configuring OpenTelemetry Collectors.
